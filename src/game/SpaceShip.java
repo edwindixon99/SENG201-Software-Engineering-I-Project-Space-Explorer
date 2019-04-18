@@ -18,6 +18,12 @@ public class SpaceShip {
 	public void setShieldHealth(int shieldHealth) {
 		this.shieldHealth = shieldHealth;
 	}
+	public String getShipName(){
+		return shipName;
+	}
+	public void setShipName(String name) {
+		this.shipName = name;
+	}
 	
 	public static void main(String[] args) {   // random testing
 		SpaceShip rocket = new SpaceShip(100);
