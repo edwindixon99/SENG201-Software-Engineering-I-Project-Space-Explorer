@@ -67,11 +67,10 @@ public class SpaceOutpost {
 	}
 	
 	public static void main(String[] args) {    // random testing
-		Crew team = new Crew("team");
-		System.out.println(team.getName());
+		Crew team = new Crew();
 		System.out.println(team.getMoney());
 		System.out.println(team.getItems());
-		SpaceShip rocket = new SpaceShip(100);
+		SpaceShip rocket = new SpaceShip();
 		System.out.println(rocket.getShieldHealth());
 		team.setShip(rocket);
 		Food apple = new Food("apple", 10, 2.5);

@@ -1,14 +1,15 @@
 package game;
 
 public class SpaceShip {
+	private String shipName;
 	private int shieldHealth;
 	
 	/* Getter and Setter for 
 	 * shieldHealth
 	 */
 	
-	public SpaceShip(int tempShieldHealth) {
-		shieldHealth = tempShieldHealth;
+	public SpaceShip() {
+		shieldHealth = 100;
 	}
 	
 	public int getShieldHealth() {
@@ -26,7 +27,7 @@ public class SpaceShip {
 	}
 	
 	public static void main(String[] args) {   // random testing
-		SpaceShip rocket = new SpaceShip(100);
+		SpaceShip rocket = new SpaceShip();
 		System.out.println(rocket.getShieldHealth());
 	}
 	
