@@ -7,12 +7,21 @@ public class SpaceShip {
 	 * shieldHealth
 	 */
 	
+	public SpaceShip(int tempShieldHealth) {
+		shieldHealth = tempShieldHealth;
+	}
+	
 	public int getShieldHealth() {
 		return shieldHealth;
 	}
 
 	public void setShieldHealth(int shieldHealth) {
 		this.shieldHealth = shieldHealth;
+	}
+	
+	public static void main(String[] args) {   // random testing
+		SpaceShip rocket = new SpaceShip(100);
+		System.out.println(rocket.getShieldHealth());
 	}
 	
 }

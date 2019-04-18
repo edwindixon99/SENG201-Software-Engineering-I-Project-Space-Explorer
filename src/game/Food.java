@@ -4,7 +4,7 @@ public class Food extends Item{
 	private int hungerRemoved;
 	
 	// Constructor for Food
-	public Food(String tempName, int tempHungerRemoved, float tempPrice) {
+	public Food(String tempName, int tempHungerRemoved, double tempPrice) {
 		setName(tempName);
 		setHungerRemoved(tempHungerRemoved);
 		setPrice(tempPrice);

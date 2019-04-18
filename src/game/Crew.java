@@ -7,10 +7,16 @@ import java.util.ArrayList;
 public class Crew {
 	private String name;
 	private SpaceShip ship;
-	private ArrayList<CrewMember> crewMemberList;
-	private ArrayList<Food> foodItems;
-	private ArrayList<MedicalItem> medicalItems;
-	private float money = 0;
+	private ArrayList<CrewMember> crewMemberList = new ArrayList<CrewMember>();
+	//private ArrayList<Food> foodItems = new ArrayList<Food>();
+	//private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
+	private ArrayList<Item> Items = new ArrayList<Item>();    // I commented out the Food and medical items lists and the getters and setters. just testing with one list to see how it is. 
+	private double money = 0;
+	
+	
+	public Crew(String tempName) {
+		name = tempName;
+	}
 	
 	
 	
@@ -36,13 +42,13 @@ public class Crew {
 		this.ship = ship;
 	}
 
-	public float getMoney() {
+	public double getMoney() {
 		return money;
 	}
-	public void setMoney(float money) {
+	public void setMoney(double money) {
 		this.money = money;
 	}
-	public ArrayList<MedicalItem> getMedicalItems() {
+	/*public ArrayList<MedicalItem> getMedicalItems() {
 		return medicalItems;
 	}
 	public void setMedicalItems(ArrayList<MedicalItem> medicalItems) {
@@ -54,11 +60,24 @@ public class Crew {
 	public void setFoodItems(ArrayList<Food> foodItems) {
 		this.foodItems = foodItems;
 	}
+	*/
 	public ArrayList<CrewMember> getCrewMemberList() {
 		return crewMemberList;
 	}
 	public void setCrewMemberList(ArrayList<CrewMember> crewMemberList) {
 		this.crewMemberList = crewMemberList;
+	}
+
+
+
+	public ArrayList<Item> getItems() {
+		return Items;
+	}
+
+
+
+	public void setItems(ArrayList<Item> items) {
+		Items = items;
 	}
 	
 	

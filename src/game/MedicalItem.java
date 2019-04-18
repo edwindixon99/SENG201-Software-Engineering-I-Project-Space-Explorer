@@ -6,7 +6,7 @@ public class MedicalItem extends Item {
 	
 	
 	// Constructor for MedicalItem
-	public MedicalItem(String tempName, boolean tempSpacePlagueCure, int tempHealingAmount, float tempPrice) {
+	public MedicalItem(String tempName, boolean tempSpacePlagueCure, int tempHealingAmount, double tempPrice) {
 		setName(tempName);
 		spacePlagueCure = tempSpacePlagueCure;
 		healingAmount = tempHealingAmount;
