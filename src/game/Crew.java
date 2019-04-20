@@ -9,21 +9,17 @@ public class Crew {
 	private ArrayList<CrewMember> crewMemberList = new ArrayList<CrewMember>();
 	private ArrayList<Food> foodItems = new ArrayList<Food>();
 	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
-	private ArrayList<Item> Items = new ArrayList<Item>();    // I made an item list and the getter and setter. just testing with one list to see how it is. 
+	private ArrayList<Item> Items = new ArrayList<Item>();
 	private double money = 0;
+	private int numPieces = 0;
+	private ArrayList<CrewMember> pilotCount = new ArrayList<CrewMember>();
 	
-	
-	public Crew() {
-	}
 	
 	public void buy(SpaceOutpost spaceOutpost,Item item) {
 		if (item.getPrice() > getMoney()) {
 			System.out.println("Not enough money for purchase");
 		}else {
 			setMoney(getMoney() - item.getPrice());
-			ArrayList<Item> itemsForSale = spaceOutpost.getItemsForSale();
-			itemsForSale.remove(item);
-			spaceOutpost.setItemsForSale(itemsForSale);
 			System.out.println("Successful Purchase of " + item.getName());
 			if (item instanceof Food) {
 				buyFood((Food) item);  		// casts item to food then calls buyFood() to add to foodList
@@ -83,6 +79,18 @@ public class Crew {
 	 * MedicalItems
 	 * money
 	 */
+	public void setPilotCount(ArrayList<CrewMember> pilotCount) {
+		this.pilotCount = pilotCount;
+	}
+	public ArrayList<CrewMember> getPilotCount() {
+		return pilotCount;
+	}
+	public int getNumPieces() {
+		return numPieces;
+	}
+	public void setNumPieces(int pieces) {
+		this.numPieces = pieces;
+	}
 	
 	public SpaceShip getShip() {
 		return ship;
