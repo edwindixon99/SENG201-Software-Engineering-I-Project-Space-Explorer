@@ -8,10 +8,6 @@ public class SpaceShip {
 	 * shieldHealth
 	 */
 	
-	public SpaceShip() {
-		shieldHealth = 100;
-	}
-	
 	public int getShieldHealth() {
 		return shieldHealth;
 	}
@@ -25,7 +21,12 @@ public class SpaceShip {
 	public void setShipName(String name) {
 		this.shipName = name;
 	}
-	
+	public void repairShip() {
+		setShieldHealth(getShieldHealth() + 100);
+		if (getShieldHealth() > 100) {
+			getShieldHealth();
+		}
+	}
 	public static void main(String[] args) {   // random testing
 		SpaceShip rocket = new SpaceShip();
 		System.out.println(rocket.getShieldHealth());
