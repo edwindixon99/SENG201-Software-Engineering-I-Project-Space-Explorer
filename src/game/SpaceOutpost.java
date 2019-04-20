@@ -97,7 +97,6 @@ public class SpaceOutpost {
 		itemsForSale.add(pills);
 		itemsForSale.add(apple);
 		itemsForSale.add(bapple);
-		SpaceOutpost chch = new SpaceOutpost("chch", itemsForSale);
 		chch.view(apple);
 		chch.view(pills);
 		team.buy(chch, apple);
