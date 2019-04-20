@@ -27,5 +27,9 @@ public class Item {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	public String toString() {   // For testing: printing out Items
+		return name;
+	}
 
 }

@@ -16,6 +16,64 @@ public class Crew {
 	public Crew() {
 	}
 	
+	public void buy(SpaceOutpost spaceOutpost,Item item) {
+		if (item.getPrice() > getMoney()) {
+			System.out.println("Not enough money for purchase");
+		}else {
+			setMoney(getMoney() - item.getPrice());
+			ArrayList<Item> itemsForSale = spaceOutpost.getItemsForSale();
+			itemsForSale.remove(item);
+			spaceOutpost.setItemsForSale(itemsForSale);
+			System.out.println("Successful Purchase of " + item.getName());
+			if (item instanceof Food) {
+				buyFood((Food) item);  		// casts item to food then calls buyFood() to add to foodList
+			}else {
+				buyMedicalItem((MedicalItem) item); 		// casts item to medicalItem "" "" "" "" "" medicalItemList
+			}
+	}}
+	
+	
+	public void buyFood(Food item) {             
+		ArrayList<Food> foodItems = getFoodItems();
+		foodItems.add(item);
+		setFoodItems(foodItems);
+	}
+	
+	
+	public void buyMedicalItem(MedicalItem item) {             
+		ArrayList<MedicalItem> medicalItems = getMedicalItems();
+		medicalItems.add(item);
+		setMedicalItems(medicalItems);
+		}
+	
+	
+	 public static void main(String[] args) {  			// random testing
+		Crew team = new Crew();
+		System.out.println(team.getMoney());
+		System.out.println(team.getItems());
+		SpaceShip rocket = new SpaceShip();
+		System.out.println(rocket.getShieldHealth());
+		team.setShip(rocket);
+		Food apple = new Food("apple", 10, 2.5);
+		Food bapple = new Food("bapple", 22, 2.3);
+		ArrayList<Item> itemsForSale = new ArrayList<Item>();
+		itemsForSale.add(apple);
+		itemsForSale.add(bapple);
+		SpaceOutpost chch = new SpaceOutpost("chch", itemsForSale);
+		team.buy(chch, apple);
+		team.setMoney(10000000);
+		System.out.println(chch.getItemsForSale());
+		team.buy(chch, apple);
+		System.out.println(chch.getItemsForSale());
+		System.out.println(team.getFoodItems());
+		System.out.println(team.getMoney());
+	 }
+		
+		
+		
+			
+			
+	
 	
 	
 	/* Getters and Setters for 

@@ -21,18 +21,24 @@ public class SpaceOutpost {
 	 * buy(Item item)
 	 * view(Item item)
 	 */
-	public String buy(Crew crew, Item item) {             // not finished yet
-		if (item.getPrice() > crew.getMoney()) {
-			return "Insufficient Funds";
-		}else {	
-			itemsForSale.remove(item);
-			crew.setMoney(crew.getMoney() - item.getPrice());
-			ArrayList<Item> crewItems = crew.getItems();
-			crewItems.add(item);
-			crew.setItems(crewItems);
-			return "Success";
+
+	public void view(Item item){
+		String name = item.getName();
+		double price = item.getPrice();
+		if (item instanceof Food) {                    // Creates a println for Food
+			Food foodItem = (Food) item;				// casts item to food to use Food's methods
+			int hungerRemoved = foodItem.getHungerRemoved();
+			System.out.println("Food: " + name + "\nPrice: " + Double.toString(price) + "\nRemoved Hunger: " +  Integer.toString(hungerRemoved));
 		}
-		
+		else {											// Creates a println for MedicalItem
+			MedicalItem medicalItem = (MedicalItem) item;		// casts medicalItem to food to use MedicalItems's methods
+			int healingAmount = medicalItem.getHealingAmount();
+			String spacePlagueCure = "No";
+			if (medicalItem.isSpacePlagueCure()) {
+				spacePlagueCure = "Yes";
+			}
+			System.out.println("Medicine: " + name + "\nPrice: " + Double.toString(price) + "\nHealing Amount: " +  Integer.toString(healingAmount) + "\nSpace Plague Cure: " + spacePlagueCure);
+		}
 		
 	}
 	
@@ -67,6 +73,7 @@ public class SpaceOutpost {
 	}
 	
 	public static void main(String[] args) {    // random testing
+		
 		Crew team = new Crew();
 		System.out.println(team.getMoney());
 		System.out.println(team.getItems());
@@ -75,13 +82,22 @@ public class SpaceOutpost {
 		team.setShip(rocket);
 		Food apple = new Food("apple", 10, 2.5);
 		Food bapple = new Food("bapple", 22, 2.3);
+		MedicalItem pills = new MedicalItem("pills", true, 60, 30);
 		ArrayList<Item> itemsForSale = new ArrayList<Item>();
+		itemsForSale.add(pills);
 		itemsForSale.add(apple);
 		itemsForSale.add(bapple);
 		SpaceOutpost chch = new SpaceOutpost("chch", itemsForSale);
-		System.out.println(chch.buy(team, apple));
+		chch.view(apple);
+		chch.view(pills);
+		team.buy(chch, apple);
 		team.setMoney(10000000);
-		System.out.println(chch.buy(team, apple));
+		System.out.println(chch.getItemsForSale());
+		team.buy(chch, pills);
+		team.buy(chch, apple);
+		System.out.println(chch.getItemsForSale());
+		System.out.println(team.getFoodItems());
+		System.out.println(team.getMoney());
 		
 		
 		
