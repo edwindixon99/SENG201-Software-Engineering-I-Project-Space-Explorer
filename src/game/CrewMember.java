@@ -50,9 +50,17 @@ public class CrewMember {
 		}
 	}
 	
-	public void repairShip() {
-		
+	
+	public void viewStatus() {
+		System.out.println(name + "'s status:");
+		System.out.println("Health level: " + healthLevel + "\nHunger level: " + hungerLevel + "\nTirdness: " + tiredness + "\nSpacePlague: " + spacePlague + "\nActions left: " + actionCounter + "\n");	
 	}
+
+public static void main(String[] args) {
+	CrewMember toy = new CrewMember();
+	toy.setName("toy");
+	toy.viewStatus(); 
+}
 	
 	/* Getters and Setters for 
 	 * name
