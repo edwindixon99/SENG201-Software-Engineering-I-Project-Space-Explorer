@@ -15,6 +15,7 @@ public class CrewMember {
 	 * NOT FINISHED YET Still need to: 
 	 * delete the food from Crew.foodItems
 	 */
+
 	public void eat(Food food) {
 		hungerLevel = hungerLevel - food.getHungerRemoved();
 		if (hungerLevel < 0){  //  Keeps hungerLevel above 0
@@ -70,6 +71,9 @@ public static void main(String[] args) {
 	 * tiredness
 	 * spacePlague
 	 */
+	public String toString() {   	// Just for testing
+		return name;
+	}
 
 	public String getName() {
 		return name;
