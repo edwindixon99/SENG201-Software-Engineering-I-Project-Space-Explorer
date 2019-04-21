@@ -46,19 +46,17 @@ public class RandomEvent {
 			for (int i = 0; i<=n; i++) {
 				CrewMember crewMember = crew.getCrewMemberList().get(i);
 				crewMember.setSpacePlague(true);
-				Double healthLost = (double) crewMember.getHealthLevel() / 5;  // 5 could be changed to different number depending on amount health lost
-				int healthLostRounded = healthLost.intValue();
-				crewMember.setHealthLevel(crewMember.getHealthLevel() - healthLostRounded);
-				System.out.println(crewMember.getName() + " has lost " + Integer.toString(healthLostRounded) + "HP and has contracted Space Plague!");
+				int healthLost = crewMember.getHealthLevel() / 5;  // 5 could be changed to different number depending on amount health lost
+				crewMember.setHealthLevel(crewMember.getHealthLevel() - healthLost);
+				System.out.println(crewMember.getName() + " has lost " + Integer.toString(healthLost) + "HP and has contracted Space Plague!");
 		}}
 	}
 			
 			
 	public void AsteroidBelt(SpaceShip ship) {
-		Double amountOfDamage = (double) ship.getShieldHealth() / 5;  // 5 could be changed to different number depending on amount damage dealt
-		int amountOfDamageRounded = amountOfDamage.intValue();
-		ship.setShieldHealth(ship.getShieldHealth() - amountOfDamageRounded);
-		System.out.println("Space Ship " + ship.getShipName() + " is going through an Asteroid Belt!\n" + ship.getShipName() + " suffered damage and lost " + Integer.toString(amountOfDamageRounded) + "% of shield health\nThe shield health is now " + Integer.toString(ship.getShieldHealth()) + "%");
+		int amountOfDamage = ship.getShieldHealth() / 5;  // 5 could be changed to different number depending on amount damage dealt
+		ship.setShieldHealth(ship.getShieldHealth() - amountOfDamage);
+		System.out.println("Space Ship " + ship.getShipName() + " is going through an Asteroid Belt!\n" + ship.getShipName() + " suffered damage and lost " + Integer.toString(amountOfDamage) + "% of shield health\nThe shield health is now " + Integer.toString(ship.getShieldHealth()) + "%");
 		}
 		
 		
@@ -105,10 +103,6 @@ public class RandomEvent {
 		crewMembers.add(blue);
 		team.setCrewMemberList(crewMembers);
 		plague.spacePlague(team);
-			
-
-		
-		
 	}
 
 }
