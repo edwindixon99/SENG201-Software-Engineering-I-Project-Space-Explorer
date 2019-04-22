@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class Crew {
-	private SpaceShip ship;
+		private SpaceShip ship;
 	private ArrayList<CrewMember> crewMemberList = new ArrayList<CrewMember>();
 	private ArrayList<Food> foodItems = new ArrayList<Food>();
 	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
@@ -13,7 +13,7 @@ public class Crew {
 	private double money = 0;
 	private int numPieces = 0;
 	private ArrayList<CrewMember> pilotCount = new ArrayList<CrewMember>();
-	
+	private int days = 1;
 	
 	public void buy(SpaceOutpost spaceOutpost,Item item) {
 		if (item.getPrice() > getMoney()) {
@@ -79,6 +79,12 @@ public class Crew {
 	 * MedicalItems
 	 * money
 	 */
+	public int getDays() {
+		return days;
+	}
+	public void setDays(int day) {
+		this.days = day;
+	}
 	public void setPilotCount(ArrayList<CrewMember> pilotCount) {
 		this.pilotCount = pilotCount;
 	}
