@@ -15,31 +15,27 @@ public class Crew {
 	private ArrayList<CrewMember> pilotCount = new ArrayList<CrewMember>();
 	private int days = 1;
 	
-	public void buy(SpaceOutpost spaceOutpost,Item item) {
+	public void buy(ArrayList<Food> foodList, ArrayList<MedicalItem> medList, Item item) {
 		if (item.getPrice() > getMoney()) {
 			System.out.println("Not enough money for purchase");
 		}else {
 			setMoney(getMoney() - item.getPrice());
 			System.out.println("Successful Purchase of " + item.getName());
 			if (item instanceof Food) {
-				buyFood((Food) item);  		// casts item to food then calls buyFood() to add to foodList
+				buyFood(foodList, (Food) item);  		// casts item to food then calls buyFood() to add to foodList
 			}else {
-				buyMedicalItem((MedicalItem) item); 		// casts item to medicalItem "" "" "" "" "" medicalItemList
+				buyMedicalItem(medList, (MedicalItem) item); 		// casts item to medicalItem "" "" "" "" "" medicalItemList
 			}
 	}}
 	
 	
-	public void buyFood(Food item) {             
-		ArrayList<Food> foodItems = getFoodItems();
-		foodItems.add(item);
-		setFoodItems(foodItems);
+	public void buyFood(ArrayList<Food> foodList, Food item) {   
+		foodList.add(item);
 	}
 	
 	
-	public void buyMedicalItem(MedicalItem item) {             
-		ArrayList<MedicalItem> medicalItems = getMedicalItems();
-		medicalItems.add(item);
-		setMedicalItems(medicalItems);
+	public void buyMedicalItem(ArrayList<MedicalItem> medList, MedicalItem item) {             
+		medList.add(item);
 		}
 	
 	
