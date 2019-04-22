@@ -5,9 +5,10 @@ public class CrewMember {
 	private String name;
 	private int actionCounter = 2;
 	private int healthLevel = 100;
-	private int hungerLevel;
-	private int tiredness;
+	private int hungerLevel = 100;
+	private int tiredness = 100;
 	private boolean spacePlague;
+	private int healthDegrade;
 	
 	/*
 	 * eat function subtracts value associated with food from hunger level
@@ -15,10 +16,31 @@ public class CrewMember {
 	 * NOT FINISHED YET Still need to: 
 	 * delete the food from Crew.foodItems
 	 */
+	public void newDay() {
+		tiredness -= 50;
+		hungerLevel -= 50;
+		actionCounter = 2;
+		if (hasSpacePlague() == true) {
+			healthDegrade += (getHealthLevel() / 5);
+		}
+		if (hungerLevel <= 0) {
+			hungerLevel = 0;
+			healthDegrade += 30;
+		}
+		if (tiredness <= 0) {
+			tiredness = 0;
+			healthDegrade += 30;
+		}
+		healthLevel -= healthDegrade;
+		healthDegrade = 0;
+	}
 
 	public void eat(Food food) {
 		hungerLevel = hungerLevel - food.getHungerRemoved();
-		if (hungerLevel < 0){  //  Keeps hungerLevel above 0
+		if (hungerLevel > 100){  //  Keeps hungerLevel above 0
+			hungerLevel = 100;
+		}
+		if (hungerLevel < 0) {
 			hungerLevel = 0;
 		}
 	}
@@ -28,12 +50,12 @@ public class CrewMember {
 	 */
 	
 	public void sleep() {
-		tiredness -= 100000;
-		if (tiredness < 0){    // Keeps tiredness above 0
-			tiredness = 0;
+		tiredness += 100000;
+		if (tiredness > 100){    // Keeps tiredness above 0
+			tiredness = 100;
 		}
+		actionCounter -= 1;
 	}
-	
 	/*
 	 * heal function increases the healthLevel by value associated with MedicalItem
 	 * 
@@ -50,7 +72,6 @@ public class CrewMember {
 			setSpacePlague(false);  // Removes space plague 
 		}
 	}
-	
 	
 	public void viewStatus() {
 		System.out.println(name + "'s status:");
