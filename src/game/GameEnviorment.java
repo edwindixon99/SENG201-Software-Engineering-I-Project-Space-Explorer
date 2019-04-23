@@ -37,9 +37,9 @@ class GameEnvironment {
 	    	 */
 	    	Scanner input0 = new Scanner(System.in);
 	    	while (crew1.getNumPieces() < requiredPieces) {
-	        	System.out.print("Pick what you want to do: \n1. View the crew members status.\n2. View your space ships status\n3. Visit nearest outpost.\n4. Eat a food item.\n5. Heal a Crew Member\n6. Get a crew member to sleep\n7. Repair the ship\n8. Search the nearest planet.\n9. Pilot ship to another planet\n10. Next Day");
-	        	int number = input0.nextInt();
-	        	
+	    		String question = "Pick what you want to do: \n1. View the crew members status.\n2. View your space ships status\n3. Visit nearest outpost.\n4. Eat a food item.\n5. Heal a Crew Member\n6. Get a crew member to sleep\n7. Repair the ship\n8. Search the nearest planet.\n9. Pilot ship to another planet\n10. Next Day";
+	        	String error = "You need to enter an integer between 1 and 10";
+	        	int number = getValidInput(input0, 1, 10, question, error);
 	        	if (number == 1) {
 	        		for (CrewMember member: crewList) {
 	        			member.viewStatus();
@@ -54,9 +54,9 @@ class GameEnvironment {
 	        	boolean leaveOutPost = false;
 	        	if (number == 3) {
 	        		while (leaveOutPost == false) {
-	        			System.out.println("Welcome to the space outpost, please choose what you would like to do: \n1. View owned items\n2. View Items for sale\n3. Go back\n");
-	            		
-	            		int postNumber = input0.nextInt();
+	        			String error1 = "You need to enter an integer between 1 and 3";
+	            		String question1 = ("Welcome to the space outpost, please choose what you would like to do: \n1. View owned items\n2. View Items for sale\n3. Go back\n");
+	            		int postNumber = getValidInput(input0, 1, 3, question1, error1);
 	            		if (postNumber == 1) {
 	            			if (foodList.isEmpty() == true) {
 	            				System.out.println("You have no Food items\n");
@@ -96,14 +96,15 @@ class GameEnvironment {
 	            		if (postNumber == 2) {
 	            			boolean doneShopping = false;
 	            			int i = 0;
-	            			System.out.println("Pick the nuber of the item that you want to buy.\nYou have $" + crew1.getMoney() +" to spend");
 	            			for (Item item: outpost.getItemsForSale()) {
 	            				i++;
 	            				outpost.view(item, i);
 	            			}
 	            			System.out.println("10. Go back to menu");
 	            			while (doneShopping == false) {
-	            				int num = input0.nextInt();
+	            				String question2 = ("Pick the number of the item that you want to buy.\nYou have $ " + crew1.getMoney() + " to spend");
+	            				String error2 = "You need to enter an integer between 1 and 10";
+	            				int num = getValidInput(input0, 1, 10, question2, error2);
 	                			if (num == 7) {
 	                				MedicalItem med = new MedicalItem("SmallHealing", false, 10, 5);
 	                				crew1.buy(foodList, medicalList, med);
@@ -160,13 +161,14 @@ class GameEnvironment {
 	        			int i = 0;
 	            		int i2 = 0;
 	            		CrewMember memEat; 
-	            		System.out.println("Type the number corresponding to the crewmember that you want to eat.\n");
 	            		for (CrewMember member: crewList) {
 	            			i++;
 	            			System.out.println(i + ". " + member.getName());
 	            		}
 	            		System.out.println((i + 1) + ". Go back to menu.\n");
-	            		int crewNum = input0.nextInt();
+	            		String question3 = "Type the number corresponding to the crewmember that you want to eat.\n";
+	            		String error3 = "Please enter an integer between 1 to " + (crewList.size()+1);
+	            		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question3, error3);
 	            		if (crewNum == (i+1)) {
 	            			doneEating = true;
 	            		}
@@ -234,14 +236,14 @@ class GameEnvironment {
 	        			int i = 0;
 	            		int i2 = 0;
 	            		CrewMember memHeal; 
-	            		System.out.println("Type the number corresponding to the crewmember that you want to heal.\n");
 	            		for (CrewMember member: crewList) {
 	            			i++;
 	            			System.out.println(i + ". " + member.getName());
 	            		}
 	            		System.out.println((i + 1) + ". Go back to menu.\n");
-	            		int crewNum = input0.nextInt();
-	            		if (crewNum == (i+1)) {
+	            		String question4 = "Type the number corresponding to the crewmember that you want to heal.\n";
+	            		String error4 = "You need to enter an integer between 1 and " + (crewList.size()+1);
+	            		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question4, error4);	            		if (crewNum == (i+1)) {
 	            			doneHealing = true;
 	            		}
 	            		else {
@@ -277,8 +279,9 @@ class GameEnvironment {
 	                    				System.out.println(i2 + ". " + med.getName() + "(" + (Collections.frequency(stringHealList2, med.getName())) + ")");
 	                	  			}
 	                	  			System.out.println((i2 + 1) + ". Go back to menu\n");
-	                	  			System.out.println("Select what medical item you want " + memHeal.getName() + " to use.\n");
-	                        		int medNum = input0.nextInt();
+	                	  			String question5 = "Select what medical item you want " + memHeal.getName() + " to use.\n";
+	        	            		String error5 = "You need to enter an integer between 1 and " + (finalHealList.size()+1);
+	        	            		int medNum = getValidInput(input0, 1, (finalHealList.size()+1), question4, error4);	
 	                        		if (medNum == (i2+1)) {
 	                        			doneHealing = true;
 	                        		}
@@ -305,13 +308,14 @@ class GameEnvironment {
 	        		int i = 0;
 	        		while (doneSleeping == false){
 	        			CrewMember memSleep;
-	            		System.out.println("Pick the crew member you want to sleep.\n");
 	            		for (CrewMember member: crewList) {
 	            			i++;
 	            			System.out.println(i + ". " + member.getName());
 	            		}
 	            		System.out.println((i + 1) + ". Go back to menu.\n");
-	            		int crewNum = input0.nextInt();
+	            		String question6 = "Pick the crew member you want to sleep.\n";
+	            		String error6 = "You need to enter an integer between 1 and " + (crewList.size()+1);
+	            		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question6, error6);	
 	            		if (crewNum == (i+1)) {
 	            			doneSleeping = true;
 	            		}
@@ -344,7 +348,9 @@ class GameEnvironment {
 	            			System.out.println(i + ". " + member.getName());
 	            		}
 	            		System.out.println((i + 1) + ". Go back to menu.\n");
-	            		int crewNum = input0.nextInt();
+	            		String question7 = "Pick the crew member you want to Repair the ship\n";
+	            		String error7 = "You need to enter an integer between 1 and " + (crewList.size()+1);
+	            		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question7, error7);	
 	            		if (crewNum == (i+1)) {
 	            			doneRepair = true;
 	            		}
@@ -378,13 +384,14 @@ class GameEnvironment {
 	        			}
 	        			else {
 	        				CrewMember memSearch;
-	                		System.out.println("Pick the crew member you want to Search the nearest planet.");
 	                		for (CrewMember member: crewList) {
 	                			i++;
 	                			System.out.println(i + ". " + member.getName());
 	                		}
 	                		System.out.println((i + 1) + ". Go back to menu.\n");
-	                		int crewNum = input0.nextInt();
+	                		String question8 = "Pick the crew member you want to Search the nearest planet.\n";
+		            		String error8 = "You need to enter an integer between 1 and " + (crewList.size()+1);
+		            		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question8, error8);	
 	                		memSearch = crewList.get(crewNum - 1);
 	                		if (crewNum == (i+1)) {
 	                			doneSearch = true;
@@ -433,13 +440,15 @@ class GameEnvironment {
 	        		boolean donePilot = false;
 	        		int i = 0;
 	        		CrewMember memPilot;
-	        		System.out.println("Pick the crew member you want to Search the nearest planet.\n");
+	        		System.out.println("Pick the crew member you want to pilot the ship to the next planet.\n");
 	        		for (CrewMember member: crewList) {
 	        			i++;
 	        			System.out.println(i + ". " + member.getName());
 	        		}
 	        		System.out.println((i + 1) + ". Go back to menu.\n");
-	        		int crewNum = input0.nextInt();
+            		String question9 = "Pick the crew member you want to pilot the ship to the next planet.\n";
+            		String error9 = "You need to enter an integer between 1 and " + (crewList.size()+1);
+            		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question9, error9);	
 	        		if (crewNum == (i+1)) {
 	        			donePilot = true;
 	        		}
@@ -523,20 +532,9 @@ class GameEnvironment {
     }
 		public static int getNumOfDays(Scanner input) {
 			int days = 0;
-			do {
-				System.out.println("How many days would you like to play?");
-				try {
-					days = input.nextInt();
-					if (days < 3 || days > 10) {
-						System.out.println("You need to enter a number between 3 and 10.");
-					}
-				}
-				catch (InputMismatchException e) {
-					System.out.println("You need to enter a Integer between 3 and 10");
-					input.next();
-				}
-			}
-			while(days < 3 || days > 10);
+			String question = "How many days would you like to play?";
+			String errorMessage = "You need to enter a number between 3 and 10.";
+			days = getValidInput(input, 3, 10, question, errorMessage);
 			return days;
 			}
 		public static int getNumCrew(Scanner input) {
@@ -584,4 +582,23 @@ class GameEnvironment {
 			System.out.println("\n" + ship.getShipName() + "'s status:");
 			System.out.println("Shield: " + ship.getShieldHealth() + "\n");
 		}
+        public static int getValidInput(Scanner input, int lowerBound, int upperBound, String question, String errorMessage) {
+        	int inputedNumber = 0; 
+			do {
+				System.out.println(question);
+				try {
+					inputedNumber = input.nextInt();
+					if (inputedNumber < lowerBound || inputedNumber > upperBound) {
+						System.out.println(errorMessage);
+					}
+				}
+				catch (InputMismatchException e) {
+					System.out.println(errorMessage);
+					input.next();
+				}
+			}
+			while(inputedNumber < lowerBound || inputedNumber > upperBound);
+        	return inputedNumber;
+        }
 }
+
