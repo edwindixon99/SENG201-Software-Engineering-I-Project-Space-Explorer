@@ -1,5 +1,7 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.Random;
 
 public class CrewMember {
 	private String name;
@@ -8,40 +10,63 @@ public class CrewMember {
 	private int hungerLevel = 100;
 	private int tiredness = 100;
 	private boolean spacePlague;
+	private int finalHealthDegrade;
 	private int healthDegrade;
+	private int hungerDegrade;
+	private int tirednessDegrade;
 	
-	/*
-	 * eat function subtracts value associated with food from hunger level
-	 * 
-	 * NOT FINISHED YET Still need to: 
-	 * delete the food from Crew.foodItems
-	 */
+
 	public void newDay() {
-		tiredness -= 50;
-		hungerLevel -= 50;
+		tiredness -= tirednessDegrade;
+		hungerLevel -= hungerDegrade;
 		actionCounter = 2;
 		if (hasSpacePlague() == true) {
-			healthDegrade += (getHealthLevel() / 5);
+			finalHealthDegrade += (getHealthLevel() / 5);
 		}
 		if (hungerLevel <= 0) {
 			hungerLevel = 0;
-			healthDegrade += 30;
+			finalHealthDegrade += 30;
 		}
 		if (tiredness <= 0) {
 			tiredness = 0;
-			healthDegrade += 30;
+			finalHealthDegrade += 30;
 		}
-		healthLevel -= healthDegrade;
-		healthDegrade = 0;
+		setHealthLevel(getHealthLevel() - (finalHealthDegrade / healthDegrade));
+		finalHealthDegrade = 0;
 	}
-
+	
 	public void eat(Food food) {
-		hungerLevel = hungerLevel - food.getHungerRemoved();
+		hungerLevel = hungerLevel + food.getHungerRemoved();
 		if (hungerLevel > 100){  //  Keeps hungerLevel above 0
 			hungerLevel = 100;
 		}
 		if (hungerLevel < 0) {
 			hungerLevel = 0;
+		}
+	}
+	public int search(CrewMember memSearch) {
+		Random rand = new Random();
+		if (memSearch instanceof Type5) {
+			int search = rand.nextInt(6);
+			search += 1;
+			if (search == 1 || search == 2 || search == 3 || search == 4) {
+				return 2;}
+			if (search == 5) {
+				return 1;
+			}
+			else {
+				return 3;
+			}
+		}
+		else {
+			int search = rand.nextInt(3);
+			search += 1;
+			if (search == 2) {
+				return 2;}
+			if (search == 3) {
+				return 3;}
+			else {
+				return 1;}
 		}
 	}
 	
@@ -56,15 +81,17 @@ public class CrewMember {
 		}
 		actionCounter -= 1;
 	}
+	
 	/*
 	 * heal function increases the healthLevel by value associated with MedicalItem
 	 * 
 	 * NOT FINISHED YET Still need to: 
 	 * delete the MedicalItem from Crew.medicalItems
+	 * Done this in game environment, but could still add it here if you want to make it more 'modular'
 	 */
 	
 	public void heal(MedicalItem medicine) {
-		healthLevel += medicine.getHealingAmount();
+		setHealthLevel(getHealthLevel() +  medicine.getHealingAmount());
 		if (healthLevel > 100){  // Keeps healthLevel below a cap
 			healthLevel = 100;
 		}
@@ -73,16 +100,12 @@ public class CrewMember {
 		}
 	}
 	
-	public void viewStatus() {
+	public void viewStatus(CrewMember member) {
 		System.out.println(name + "'s status:");
-		System.out.println("Health level: " + healthLevel + "\nHunger level: " + hungerLevel + "\nTirdness: " + tiredness + "\nSpacePlague: " + spacePlague + "\nActions left: " + actionCounter + "\n");	
+		System.out.println("Health level: " + member.getHealthLevel() + "\nHunger level: " + member.getHungerLevel() + "\nTirdness: " + tiredness + "\nSpacePlague: " + spacePlague + "\nActions left: " + actionCounter + "\n");	
 	}
+	
 
-public static void main(String[] args) {
-	CrewMember toy = new CrewMember();
-	toy.setName("toy");
-	toy.viewStatus(); 
-}
 	
 	/* Getters and Setters for 
 	 * name
@@ -92,10 +115,6 @@ public static void main(String[] args) {
 	 * tiredness
 	 * spacePlague
 	 */
-	public String toString() {   	// Just for testing
-		return name;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -143,9 +162,27 @@ public static void main(String[] args) {
 	public void setActionCounter(int actionCounter) {
 		this.actionCounter = actionCounter;
 	}
-	
+	public int getHungerDegrade() {
+		return hungerDegrade;
+	}
 
-	
+	public void setHungerDegrade(int hunger) {
+		this.hungerDegrade = hunger;
+	}
+	public int getHealthDegrade() {
+		return healthDegrade;
+	}
+
+	public void setHealthDegrade(int health) {
+		this.healthDegrade = health;
+	}
+	public int getTirednessDegrade() {
+		return tirednessDegrade;
+	}
+
+	public void setTirednessDegrade(int tired) {
+		this.tirednessDegrade = tired;
+	}
 	
 
 }
