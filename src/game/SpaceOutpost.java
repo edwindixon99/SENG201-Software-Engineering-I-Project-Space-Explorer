@@ -2,11 +2,11 @@ package game;
 
 import java.util.ArrayList;
 
-
-
 public class SpaceOutpost {
 	private String name;
 	private ArrayList<Item> itemsForSale  = new ArrayList<Item>();
+
+	
 	
 	
 	/*
@@ -60,7 +60,7 @@ public class SpaceOutpost {
 		return itemsForSale;
 	}
 
-	
+
 	public void setItemsForSale(){
 		Food Apple = new Food("Apple", 15, 7);
 		itemsForSale.add(Apple);
@@ -97,19 +97,6 @@ public class SpaceOutpost {
 		itemsForSale.add(pills);
 		itemsForSale.add(apple);
 		itemsForSale.add(bapple);
-		chch.view(apple);
-		chch.view(pills);
-		team.buy(chch, apple);
-		team.setMoney(10000000);
-		System.out.println(chch.getItemsForSale());
-		team.buy(chch, pills);
-		team.buy(chch, apple);
-		System.out.println(chch.getItemsForSale());
-		System.out.println(team.getFoodItems());
-		System.out.println(team.getMoney());
-		
-		
-		
 	}
 
 
