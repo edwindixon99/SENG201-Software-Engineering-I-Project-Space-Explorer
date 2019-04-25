@@ -21,8 +21,8 @@ public class SpaceShip {
 	public void setShipName(String name) {
 		this.shipName = name;
 	}
-	public void repairShip() {
-		setShieldHealth(getShieldHealth() + 100);
+	public void repairShip(int repair) {
+		setShieldHealth(getShieldHealth() + repair);
 		if (getShieldHealth() > 100) {
 			shieldHealth = 100;
 		}
