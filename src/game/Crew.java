@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class Crew {
-		private SpaceShip ship;
+	private SpaceShip ship;
 	private ArrayList<CrewMember> crewMemberList = new ArrayList<CrewMember>();
 	private ArrayList<Food> foodItems = new ArrayList<Food>();
 	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
@@ -15,6 +15,7 @@ public class Crew {
 	private ArrayList<CrewMember> pilotCount = new ArrayList<CrewMember>();
 	private int days = 1;
 	
+
 	public void buy(ArrayList<Food> foodList, ArrayList<MedicalItem> medList, Item item) {
 		if (item.getPrice() > getMoney()) {
 			System.out.println("Not enough money for purchase");
@@ -51,29 +52,15 @@ public class Crew {
 		ArrayList<Item> itemsForSale = new ArrayList<Item>();
 		itemsForSale.add(apple);
 		itemsForSale.add(bapple);
-		SpaceOutpost chch = new SpaceOutpost("chch", itemsForSale);
-		team.buy(chch, apple);
-		team.setMoney(10000000);
-		System.out.println(chch.getItemsForSale());
-		team.buy(chch, apple);
-		System.out.println(chch.getItemsForSale());
-		System.out.println(team.getFoodItems());
-		System.out.println(team.getMoney());
 	 }
-		
-		
-		
-			
-			
-	
-	
-	
+
 	/* Getters and Setters for 
 	 * ship
 	 * crewMemebrList
 	 * foodItems
 	 * MedicalItems
 	 * money
+	 * days
 	 */
 	public int getDays() {
 		return days;
