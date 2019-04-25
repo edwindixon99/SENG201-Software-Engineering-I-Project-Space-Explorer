@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class RandomEvent {
-	
+public class RandomEvents {
 	
 	public void alienPirates(Crew crew) {
 		Random rand = new Random();
@@ -46,63 +45,17 @@ public class RandomEvent {
 			for (int i = 0; i<=n; i++) {
 				CrewMember crewMember = crew.getCrewMemberList().get(i);
 				crewMember.setSpacePlague(true);
-				int healthLost = crewMember.getHealthLevel() / 5;  // 5 could be changed to different number depending on amount health lost
-				crewMember.setHealthLevel(crewMember.getHealthLevel() - healthLost);
-				System.out.println(crewMember.getName() + " has lost " + Integer.toString(healthLost) + "HP and has contracted Space Plague!");
+				Double healthLost = (double) crewMember.getHealthLevel() / 5;  // 5 could be changed to different number depending on amount health lost
+				int healthLostRounded = healthLost.intValue();
+				crewMember.setHealthLevel(crewMember.getHealthLevel() - healthLostRounded);
+				System.out.println(crewMember.getName() + " has lost " + Integer.toString(healthLostRounded) + "HP and has contracted Space Plague!");
 		}}
 	}
 			
 			
 	public void AsteroidBelt(SpaceShip ship) {
-		int amountOfDamage = ship.getShieldHealth() / 5;  // 5 could be changed to different number depending on amount damage dealt
-		ship.setShieldHealth(ship.getShieldHealth() - amountOfDamage);
-		System.out.println("Space Ship " + ship.getShipName() + " is going through an Asteroid Belt!\n" + ship.getShipName() + " suffered damage and lost " + Integer.toString(amountOfDamage) + "% of shield health\nThe shield health is now " + Integer.toString(ship.getShieldHealth()) + "%");
-		}
-		
-		
-		
-		
-		
-
-	public static void main(String[] args) {    // random testing
-		
-		Crew team = new Crew();
-		System.out.println(team.getMoney());
-		System.out.println(team.getItems());
-		SpaceShip rocket = new SpaceShip();
-		System.out.println(rocket.getShieldHealth());
-		team.setShip(rocket);
-		Food apple = new Food("apple", 10, 2.5);
-		Food bapple = new Food("bapple", 22, 2.3);
-		MedicalItem pills = new MedicalItem("pills", true, 60, 30);
-		SpaceOutpost chch = new SpaceOutpost();
-		chch.setItemsForSale();
-		chch.view(apple, 1);
-		chch.view((Item) pills, 2);
-		team.buy(chch, apple);
-		team.setMoney(10000000);
-		System.out.println(chch.getItemsForSale());
-		team.buy(chch, pills);
-		System.out.println(team.getFoodItems());
-		System.out.println(team.getMoney());
-		RandomEvent pirates = new RandomEvent();
-		pirates.alienPirates(team);
-		System.out.println(team.getFoodItems());
-		System.out.println(team.getMedicalItems());
-		RandomEvent belt = new RandomEvent();
-		rocket.setShieldHealth(100);
-		rocket.setShipName("Y8JK");
-		belt.AsteroidBelt(rocket);
-		RandomEvent plague = new RandomEvent();
-		ArrayList<CrewMember> crewMembers = team.getCrewMemberList();
-		CrewMember red = new CrewMember();
-		red.setName("red");
-		crewMembers.add(red);
-		CrewMember blue = new CrewMember();
-		blue.setName("blue");
-		crewMembers.add(blue);
-		team.setCrewMemberList(crewMembers);
-		plague.spacePlague(team);
+		ship.setShieldHealth(ship.getShieldHealth() - 40);
+		System.out.println("Space Ship " + ship.getShipName() + " is going through an Asteroid Belt!\n" + ship.getShipName() + " suffered 40 damage to the shield health\nThe shield health is now " + Integer.toString(ship.getShieldHealth()) + "%");
 	}
 
 }
