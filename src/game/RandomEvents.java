@@ -44,11 +44,14 @@ public class RandomEvents {
 			System.out.println("Members of the crew has been affected by Space Plague! \nCrew members affected will remain sick and loses more health each day until they take medicine for the space plague."); // Change this 
 			for (int i = 0; i<=n; i++) {
 				CrewMember crewMember = crew.getCrewMemberList().get(i);
-				crewMember.setSpacePlague(true);  
-				int healthLost = crewMember.getHealthLevel() / 5;			// 5 could be changed to different number depending on amount health lost
-				crewMember.setHealthLevel(crewMember.getHealthLevel() - healthLost);
-				System.out.println(crewMember.getName() + " has lost " + Integer.toString(healthLost) + "HP and has contracted Space Plague!");
-		}}
+				if (!crewMember.hasSpacePlague()) {
+					crewMember.setSpacePlague(true);  
+					int healthLost = crewMember.getHealthLevel() / 5;			// 5 could be changed to different number depending on amount health lost
+					crewMember.setHealthLevel(crewMember.getHealthLevel() - healthLost);
+					System.out.println(crewMember.getName() + " has lost " + Integer.toString(healthLost) + "HP and has contracted Space Plague!");
+				}
+			}
+		}
 	}
 			
 			
