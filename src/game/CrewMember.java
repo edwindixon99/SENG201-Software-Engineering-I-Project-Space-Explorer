@@ -100,9 +100,17 @@ public class CrewMember {
 		}
 	}
 	
-	public void viewStatus(CrewMember member) {
+	public void viewStatus() {
 		System.out.println(name + "'s status:");
-		System.out.println("Health level: " + member.getHealthLevel() + "\nHunger level: " + member.getHungerLevel() + "\nTirdness: " + tiredness + "\nSpacePlague: " + spacePlague + "\nActions left: " + actionCounter + "\n");	
+		System.out.println("Health level: " + healthLevel + "\nHunger level: " + hungerLevel + "\nTirdness: " + tiredness + "\nSpacePlague: " + spacePlague + "\nActions left: " + actionCounter + "\n");	
+	}
+	
+	public boolean isDead() {
+		if (healthLevel <= 0) {
+			System.out.println(name + "  has died, due to their health level dropping to 0.\n");
+			return true;
+		}
+		return false;
 	}
 	
 
@@ -183,6 +191,8 @@ public class CrewMember {
 	public void setTirednessDegrade(int tired) {
 		this.tirednessDegrade = tired;
 	}
+	
+
 	
 
 }

@@ -44,18 +44,22 @@ public class RandomEvents {
 			System.out.println("Members of the crew has been affected by Space Plague! \nCrew members affected will remain sick and loses more health each day until they take medicine for the space plague."); // Change this 
 			for (int i = 0; i<=n; i++) {
 				CrewMember crewMember = crew.getCrewMemberList().get(i);
-				crewMember.setSpacePlague(true);
-				Double healthLost = (double) crewMember.getHealthLevel() / 5;  // 5 could be changed to different number depending on amount health lost
-				int healthLostRounded = healthLost.intValue();
-				crewMember.setHealthLevel(crewMember.getHealthLevel() - healthLostRounded);
-				System.out.println(crewMember.getName() + " has lost " + Integer.toString(healthLostRounded) + "HP and has contracted Space Plague!");
+				crewMember.setSpacePlague(true);  
+				int healthLost = crewMember.getHealthLevel() / 5;			// 5 could be changed to different number depending on amount health lost
+				crewMember.setHealthLevel(crewMember.getHealthLevel() - healthLost);
+				System.out.println(crewMember.getName() + " has lost " + Integer.toString(healthLost) + "HP and has contracted Space Plague!");
 		}}
 	}
 			
 			
-	public void AsteroidBelt(SpaceShip ship) {
-		ship.setShieldHealth(ship.getShieldHealth() - 40);
-		System.out.println("Space Ship " + ship.getShipName() + " is going through an Asteroid Belt!\n" + ship.getShipName() + " suffered 40 damage to the shield health\nThe shield health is now " + Integer.toString(ship.getShieldHealth()) + "%");
+	public void asteroidBelt(SpaceShip ship) {
+		int damageTaken;
+		if (ship.getShieldHealth() < 25) {
+			damageTaken = 10;
+		}else {
+			damageTaken = (int) (ship.getShieldHealth() / 2.5);
+		}
+		ship.setShieldHealth(ship.getShieldHealth() - damageTaken);
+		System.out.println("Space Ship " + ship.getShipName() + " is going through an Asteroid Belt!\n" + ship.getShipName() + " suffered " + Integer.toString(damageTaken) + " damage to the shield health\nThe shield health is now " + Integer.toString(ship.getShieldHealth()) + "%");
 	}
-
 }
