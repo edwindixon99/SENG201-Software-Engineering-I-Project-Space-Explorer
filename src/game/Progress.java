@@ -283,11 +283,11 @@ class Progress {
              		System.out.println((i + 1) + ". Go back to menu.\n");
              		String question8 = "Pick the crew member you want to Search the nearest planet.\n";
              		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question8);	
-             		memSearch = crewList.get(crewNum - 1);
              		if (crewNum == (i+1)) {
              			doneSearch = true;
              		}
              		else {
+             			memSearch = crewList.get(crewNum - 1);
              			if (memSearch.getActionCounter() == 0) {
              				System.out.println("This crewmember does not have enough action points to go searching\n");
              				doneSearch = true;
@@ -628,7 +628,7 @@ class Progress {
                          		chosenFood = finalFoodList.get(foodNum - 1);
                          		memEat.eat(finalFoodList.get(foodNum - 1));
                          		foodList.remove(chosenFood);
-                         		System.out.println(memEat.getName() + " ate a " + chosenFood.getName() + "\\n");
+                         		System.out.println(memEat.getName() + " ate a " + chosenFood.getName() + "\n");
                          		int action;
                          		action = memEat.getActionCounter();
                          		memEat.setActionCounter(action -1);
@@ -669,7 +669,5 @@ class Progress {
 				else {
 					System.out.println("You have sucessfully piloted the ship to a new planet.\n");
 				}
-         }
-
-         
+         }  
 }
