@@ -11,36 +11,38 @@ import java.util.Set;
 import java.util.TreeSet;
 
 
-class Progress {
+class GameEnvironment {
 	public static int requiredPieces;
 	public static int planetPieces = 1;
+	public static ArrayList<Food> foodList = new ArrayList<Food>();
+	public static ArrayList<CrewMember> crewList = new ArrayList<CrewMember>();
+	public static ArrayList<MedicalItem> medicalList = new ArrayList<MedicalItem>();
+	public static ArrayList<CrewMember> pilotList = new ArrayList<CrewMember>();
 	public static int daysProgressedThrough = 1;
 	public static boolean gameIsOver = false; 
-	public static int days;
-	public static RandomEvents random = new RandomEvents();  
-	public static Crew crew1 = new Crew(); 
-	public static SpaceShip ship = new SpaceShip();
-	public static SpaceOutpost outpost = new SpaceOutpost();
-	public static Scanner input0 = new Scanner(System.in);
 	
 	 public static void main(String[] args) {
-	    	Scanner input = new Scanner(System.in);
+	    	SpaceOutpost outpost = new SpaceOutpost();
 	    	outpost.setItemsForSale();
-	    	days = getNumOfDays(input);
-	    	crew1.setDays(days);
+	    	RandomEvents random = new RandomEvents();
+	    	Crew crew1 = new Crew();
+	    	SpaceShip ship = new SpaceShip();
+	    	Scanner input = new Scanner(System.in);
+	    	int days = getNumOfDays(input);
 	    	requiredPieces = days * 2/3;
-	    	crew1.setCrewMemberList(getCrewList(input));
-	    	getShipName();
+	    	ArrayList<CrewMember> crewList =  getCrewList(input);
+	    	getShipName(ship, input, days);
 
 	    	/*
 	    	 * This is where the main game loop starts, obviously it is not done yet, there are still many features to add
 	    	 * It starts by asking what the player wants to do, with the first option being to check the crews stats.
 	    	 */
+	    	Scanner input0 = new Scanner(System.in);
 	    	while (crew1.getNumPieces() < requiredPieces) {
 	    		String question = "\nPick what you want to do: \n1. View the crew members status.\n2. View your space ships status\n3. Visit nearest outpost.\n4. Eat a food item.\n5. Heal a Crew Member\n6. Get a crew member to sleep\n7. Repair the ship\n8. Search the nearest planet.\n9. Pilot ship to another planet\n10. Next Day";
 	        	int number = getValidInput(input0, 1, 10, question);
 	        	if (number == 1) {
-	        		for (CrewMember member: crew1.getCrewMemberList()) {
+	        		for (CrewMember member: crewList) {
 	        			member.viewStatus();
 	        		}	
 	        	}
@@ -48,55 +50,54 @@ class Progress {
 	        	 * 
 	        	 */
 	        	if (number == 2) {
-	        		checkShipShield();
+	        		checkShipShield(ship);
 	        	}
 	        	if (number == 3) {
 	        		boolean leaveOutPost = false;
-	        		visitOutpost(leaveOutPost);
+	        		visitOutpost(leaveOutPost, input0, outpost, crew1);
 	        	}
 	        	/*
 	        	 * This function allows the player to eat an item from foodlist.
 	        	 */
 	        	if (number == 4) {
-	        		eat();
+	        		eat(input0);
 	        	}
 	        	/*
 	        	 * This function allows a crew member to use a healing item from med list
 	        	 */
 	        	if (number == 5) {
-	        		heal();
+	        		heal(input0);
 	        	}
 	        	/*
 	        	 * This function allows a crew member to sleep, copletly replenishing their tirdness
 	        	 */
 	        	if (number == 6) {
-	        		sleep();
+	        		sleep(input0);
 	        	}
 	        	/*
 	        	 * this function allows a crew member to repair the ships shield it max again
 	        	 */
 	        	if (number == 7) {
-	        		repairShip();
+	        		repairShip(input0,ship);
 	        	}
 	        	/*
 	        	 * this function is for searching the planet, where the player can either find money, an item or a missing piece.
 	        	 * only one missing piece can be found per planet.
 	        	 */
 	        	if (number == 8) {
-	        		searchPlanet();
+	        		searchPlanet(input0, crew1, outpost);
 	        	}
 	        	/*
 	        	 * this allows the player to fly to a new planet, but only if two crew members do so
 	        	 */
 	        	if (number == 9) {
-	        		flyToNewPlanet();
+	        		flyToNewPlanet(input0, crew1, ship, random);
 	        		
 	        	}
 	        	if (number == 10) {
-	        		nextDay();
-	        	}
-	    	}
-	    }
+	        		nextDay(crew1, random, days);
+	        	}}
+    }
 		public static int getNumOfDays(Scanner input) {
 			int days = 0;
 			String question = "How many days would you like to play?";
@@ -110,7 +111,6 @@ class Progress {
 			return numCrew;
 			}
 		public static ArrayList<CrewMember> getCrewList(Scanner input) {
-			ArrayList<CrewMember> crewList = new ArrayList<CrewMember>();
 			Scanner scanner = new Scanner(System.in);
 			int numCrew = getNumCrew(input);
 			viewTypes();
@@ -145,14 +145,14 @@ class Progress {
 		    Scanner input = new Scanner(System.in);
 		    return input.nextLine();
 		}
-		public static void getShipName() {
+		public static void getShipName(SpaceShip ship, Scanner input, int days) {
 			System.out.println("What would you like to name your Spaceship");
 	    	String shipName = getInput();
 	    	ship.setShipName(shipName);
 	    	System.out.println("The game will now begin. To win, you will have to collect " + requiredPieces + " of your space ships missing pieces in " + days + " days.\n");
 		}
 		
-		public static void checkShipShield() {
+		public static void checkShipShield(SpaceShip ship) {
 			System.out.println("\n" + ship.getShipName() + "'s status:");
 			System.out.println("Shield: " + ship.getShieldHealth() + "\n");
 		}
@@ -184,47 +184,45 @@ class Progress {
     		System.out.println("Type 6:\nHunger degrade: high\nHealth degrade: medium\nTiredness Degrade: medium\nSpecial ability: Fully repair the ships shield\n");
     	}	
     	
-    	public static void nextDay() {
+    	public static void nextDay(Crew crew1, RandomEvents random, int days) {
+        	ArrayList<CrewMember> crewList2 = new ArrayList<CrewMember>();
+    		crew1.setCrewMemberList(crewList2);
     		crew1.setDays(crew1.getDays() + 1);
-        	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
     		daysProgressedThrough += 1;
     		if (days < daysProgressedThrough) {
     			gameIsOver = true;
     			crew1.setNumPieces(100);
-    			System.out.println("Ran out of days!\nGame Over!");
+    			System.out.println("Game Over!");
     		}
 			for (CrewMember member: crewList) {
+				crewList2.add(member);
 				member.newDay();
 			}
-			crew1.setCrewMemberList(crewList);
 			if (!gameIsOver) {
-				for (CrewMember member: crew1.getCrewMemberList()) {
+				for (CrewMember member: crewList2) {
 					if (member.isDead()) {
 						crewList.remove(member);
 						if (crewList.size() == 0) {
 							gameIsOver = true;
 							crew1.setNumPieces(100);
-							System.out.println("Ran out of crew members!\nGame Over!");
+							System.out.println("Game Over!");
 					}
 				}
-				crew1.setCrewMemberList(crewList);
 			}
 			}
 			if (!gameIsOver) {
 				if (crewList.size() > 0) {
-					getRandomEvent();
-					System.out.println("\nYou have moved on to day " + Integer.toString(daysProgressedThrough) + "\n*********************************************************** Day " + Integer.toString(daysProgressedThrough) + " ***********************************************************");
+					getRandomEvent(crew1, random);
+					System.out.println("\nYou have moved on to day " + crew1.getDays() + "\n*********************************************************** Day " + Integer.toString(daysProgressedThrough) + " ***********************************************************");
 			}
     	}
     	}
     	
-    	 public static void flyToNewPlanet() {
-    		ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
-    		boolean donePilot = false;
+    	 public static void flyToNewPlanet(Scanner input0, Crew crew1, SpaceShip ship, RandomEvents random) {
+    		boolean donePilot = true;
      		int i = 0;
      		CrewMember memPilot;
      		System.out.println("Pick the crew member you want to pilot the ship to the next planet.\n");
-     		ArrayList<CrewMember> pilotList = crew1.getPilotCount();
      		for (CrewMember member: crewList) {
      			i++;
      			System.out.println(i + ". " + member.getName());
@@ -243,7 +241,24 @@ class Progress {
          			}
          			else {
              			if (memPilot instanceof Type4) {
-             				successfulFlight(memPilot, pilotList);
+             				planetPieces = 1;
+             				pilotList.clear();
+             				memPilot.setActionCounter(memPilot.getActionCounter() - 1);
+             				Random randAsteroid = new Random();
+     						int n = randAsteroid.nextInt(2);
+     						n += 1;
+     						if (n == 1) {
+     							random.asteroidBelt(ship);
+     							if (ship.getShieldHealth() <= 0) {
+     								System.out.println("The shield of your ship has depleted, and everyone on the crew has died!\n");
+     								crew1.setNumPieces(100);
+     								donePilot = true;
+     							}
+     						}
+     						else {
+     							System.out.println("You have sucessfully piloted the ship to a new planet.\n");
+                 				donePilot = true;
+     							}
              			}
              			else {
              				if (pilotList.contains(memPilot)) {
@@ -252,7 +267,24 @@ class Progress {
              				}
              				else {
              					if (pilotList.size() == 1) {
-             						successfulFlight(memPilot, pilotList);
+                     				planetPieces = 1;
+                     				pilotList.clear();
+                     				memPilot.setActionCounter(memPilot.getActionCounter() - 1);
+             						Random randAsteroid = new Random();
+             						int n = randAsteroid.nextInt(2);
+             						n += 1;
+             						if (n == 1) {
+             							random.asteroidBelt(ship);
+             							if (ship.getShieldHealth() <= 0) {
+             								System.out.println("The shield of your ship has depleted, and everyone on the crew has died!\n");
+             								crew1.setNumPieces(100);
+             								donePilot = true;
+             							}
+             						}
+             						else {
+             							System.out.println("You have sucessfully piloted the ship to a new planet.\n");
+                         				donePilot = true;
+             							}
              					}
              					else {
              						pilotList.add(memPilot);
@@ -265,8 +297,7 @@ class Progress {
      			}
      		}
          }
-    	 public static void searchPlanet() {
-    		ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
+    	 public static void searchPlanet(Scanner input0, Crew crew1, SpaceOutpost outpost) {
          	boolean doneSearch = false;
      		int i = 0;
      		while (doneSearch == false){
@@ -283,11 +314,11 @@ class Progress {
              		System.out.println((i + 1) + ". Go back to menu.\n");
              		String question8 = "Pick the crew member you want to Search the nearest planet.\n";
              		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question8);	
+             		memSearch = crewList.get(crewNum - 1);
              		if (crewNum == (i+1)) {
              			doneSearch = true;
              		}
              		else {
-             			memSearch = crewList.get(crewNum - 1);
              			if (memSearch.getActionCounter() == 0) {
              				System.out.println("This crewmember does not have enough action points to go searching\n");
              				doneSearch = true;
@@ -305,8 +336,6 @@ class Progress {
                  			}
                  			if (search == 3) {
                  				Random rand = new Random();
-                 				ArrayList<Food> foodList = crew1.getFoodItems();
-                 				ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
                  				int randItem = rand.nextInt(outpost.getItemsForSale().size());
                  				System.out.println("You have found a " + (outpost.getItemsForSale().get(randItem)).getName() + "\n");
                  				if ((outpost.getItemsForSale().get(randItem)) instanceof Food) {
@@ -325,8 +354,7 @@ class Progress {
      			}
      		}
          }
-         public static void repairShip() {
-        	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
+         public static void repairShip(Scanner input0, SpaceShip ship) {
          	boolean doneRepair = false;
      		int i = 0;
      		while (doneRepair == false){
@@ -366,8 +394,7 @@ class Progress {
          		}
      		}
          }
-         public static void sleep() {
-        	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
+         public static void sleep(Scanner input0) {
          	boolean doneSleeping = false;
      		int i = 0;
      		while (doneSleeping == false){
@@ -397,9 +424,7 @@ class Progress {
          		}
      		}
          }
-         public static void heal() {
-        	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
-        	ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
+         public static void heal(Scanner input0) {
          	boolean doneHealing = false;
      		while (doneHealing == false) {
      			int i = 0;
@@ -468,9 +493,7 @@ class Progress {
          		
      		}
          }
-         public static void visitOutpost(boolean leaveOutPost) {
-        	ArrayList<Food> foodList = crew1.getFoodItems();
-        	ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
+         public static void visitOutpost(boolean leaveOutPost, Scanner input0, SpaceOutpost outpost, Crew crew1) {
      		while (leaveOutPost == false) {
          		String question1 = ("Welcome to the space outpost, please choose what you would like to do: \n1. View owned items\n2. View Items for sale\n3. Go back\n");
          		int postNumber = getValidInput(input0, 1, 3, question1);
@@ -567,9 +590,7 @@ class Progress {
          			leaveOutPost = true;
          		}
      		}}
-         public static void eat() {
-        	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
-        	ArrayList<Food> foodList = crew1.getFoodItems();
+         public static void eat(Scanner input0) {
          	boolean doneEating = false;
      		while (doneEating == false) {
      			int i = 0;
@@ -628,7 +649,7 @@ class Progress {
                          		chosenFood = finalFoodList.get(foodNum - 1);
                          		memEat.eat(finalFoodList.get(foodNum - 1));
                          		foodList.remove(chosenFood);
-                         		System.out.println(memEat.getName() + " ate a " + chosenFood.getName() + "\n");
+                         		System.out.println(memEat.getName() + " ate a " + chosenFood.getName() + "\\n");
                          		int action;
                          		action = memEat.getActionCounter();
                          		memEat.setActionCounter(action -1);
@@ -640,7 +661,7 @@ class Progress {
      		}
          } 
          
-         public static void getRandomEvent() {
+         public static void getRandomEvent(Crew crew1, RandomEvents random) {
         	Random dayEvent = new Random();
 			int n = dayEvent.nextInt(3);
 			n += 1;
@@ -651,23 +672,6 @@ class Progress {
 				random.spacePlague(crew1);
 			}
 			}
-         public static void successfulFlight(CrewMember memPilot, ArrayList<CrewMember> pilotList) {
-				planetPieces = 1;
-				pilotList.clear();
-				memPilot.setActionCounter(memPilot.getActionCounter() - 1);
-				Random randAsteroid = new Random();
-				int n = randAsteroid.nextInt(2);
-				n += 1;
-				if (n == 1) {
-					random.asteroidBelt(ship);
-					if (ship.getShieldHealth() <= 0) {
-						System.out.println("The shield of your ship has depleted, and everyone on the crew has died!\n");
-						crew1.setNumPieces(100);
-						System.out.println("Game Over");
-					}
-				}
-				else {
-					System.out.println("You have sucessfully piloted the ship to a new planet.\n");
-				}
-         }  
+
+         
 }

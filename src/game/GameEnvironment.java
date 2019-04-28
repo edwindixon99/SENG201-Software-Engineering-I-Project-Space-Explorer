@@ -14,36 +14,33 @@ import java.util.TreeSet;
 class GameEnvironment {
 	public static int requiredPieces;
 	public static int planetPieces = 1;
-	public static ArrayList<Food> foodList = new ArrayList<Food>();
-	public static ArrayList<CrewMember> crewList = new ArrayList<CrewMember>();
-	public static ArrayList<MedicalItem> medicalList = new ArrayList<MedicalItem>();
-	public static ArrayList<CrewMember> pilotList = new ArrayList<CrewMember>();
 	public static int daysProgressedThrough = 1;
 	public static boolean gameIsOver = false; 
+	public static int days;
+	public static RandomEvents random = new RandomEvents();  
+	public static Crew crew1 = new Crew(); 
+	public static SpaceShip ship = new SpaceShip();
+	public static SpaceOutpost outpost = new SpaceOutpost();
+	public static Scanner input0 = new Scanner(System.in);
 	
 	 public static void main(String[] args) {
-	    	SpaceOutpost outpost = new SpaceOutpost();
-	    	outpost.setItemsForSale();
-	    	RandomEvents random = new RandomEvents();
-	    	Crew crew1 = new Crew();
-	    	SpaceShip ship = new SpaceShip();
 	    	Scanner input = new Scanner(System.in);
-	    	int days = getNumOfDays(input);
+	    	outpost.setItemsForSale();
+	    	days = getNumOfDays(input);
+	    	crew1.setDays(days);
 	    	requiredPieces = days * 2/3;
-	    	ArrayList<CrewMember> crewList =  getCrewList(input);
-	    	getShipName(ship, input, days);
+	    	crew1.setCrewMemberList(getCrewList(input));
+	    	getShipName();
 
 	    	/*
 	    	 * This is where the main game loop starts, obviously it is not done yet, there are still many features to add
 	    	 * It starts by asking what the player wants to do, with the first option being to check the crews stats.
 	    	 */
-	    	Scanner input0 = new Scanner(System.in);
 	    	while (crew1.getNumPieces() < requiredPieces) {
-	    		String question = "*********************************************************** Day " + Integer.toString(daysProgressedThrough) + " ***********************************************************\n\nPick what you want to do: \n1. View the crew members status.\n2. View your space ships status\n3. Visit nearest outpost.\n4. Eat a food item.\n5. Heal a Crew Member\n6. Get a crew member to sleep\n7. Repair the ship\n8. Search the nearest planet.\n9. Pilot ship to another planet\n10. Next Day";
-	        	String error = "You need to enter an integer between 1 and 10";
-	        	int number = getValidInput(input0, 1, 10, question, error);
+	    		String question = "\nPick what you want to do: \n1. View the crew members status.\n2. View your space ships status\n3. Visit nearest outpost.\n4. Eat a food item.\n5. Heal a Crew Member\n6. Get a crew member to sleep\n7. Repair the ship\n8. Search the nearest planet.\n9. Pilot ship to another planet\n10. Next Day";
+	        	int number = getValidInput(input0, 1, 10, question);
 	        	if (number == 1) {
-	        		for (CrewMember member: crewList) {
+	        		for (CrewMember member: crew1.getCrewMemberList()) {
 	        			member.viewStatus();
 	        		}	
 	        	}
@@ -51,80 +48,69 @@ class GameEnvironment {
 	        	 * 
 	        	 */
 	        	if (number == 2) {
-	        		checkShipShield(ship);
+	        		checkShipShield();
 	        	}
 	        	if (number == 3) {
 	        		boolean leaveOutPost = false;
-	        		visitOutpost(leaveOutPost, input0, outpost, crew1);
+	        		visitOutpost(leaveOutPost);
 	        	}
 	        	/*
 	        	 * This function allows the player to eat an item from foodlist.
 	        	 */
 	        	if (number == 4) {
-	        		eat(input0);
+	        		eat();
 	        	}
 	        	/*
 	        	 * This function allows a crew member to use a healing item from med list
 	        	 */
 	        	if (number == 5) {
-	        		heal(input0);
+	        		heal();
 	        	}
 	        	/*
 	        	 * This function allows a crew member to sleep, copletly replenishing their tirdness
 	        	 */
 	        	if (number == 6) {
-	        		sleep(input0);
+	        		sleep();
 	        	}
 	        	/*
 	        	 * this function allows a crew member to repair the ships shield it max again
 	        	 */
 	        	if (number == 7) {
-	        		repairShip(input0,ship);
+	        		repairShip();
 	        	}
 	        	/*
 	        	 * this function is for searching the planet, where the player can either find money, an item or a missing piece.
 	        	 * only one missing piece can be found per planet.
 	        	 */
 	        	if (number == 8) {
-	        		searchPlanet(input0, crew1, outpost);
+	        		searchPlanet();
 	        	}
 	        	/*
 	        	 * this allows the player to fly to a new planet, but only if two crew members do so
 	        	 */
 	        	if (number == 9) {
-	        		flyToNewPlanet(input0, crew1, ship, random);
+	        		flyToNewPlanet();
 	        		
 	        	}
 	        	if (number == 10) {
-	        		nextDay(crew1, random, days);
-	        	}}
-    }
+	        		nextDay();
+	        	}
+	    	}
+	    }
 		public static int getNumOfDays(Scanner input) {
 			int days = 0;
 			String question = "How many days would you like to play?";
-			String errorMessage = "You need to enter a number between 3 and 10.";
-			days = getValidInput(input, 3, 10, question, errorMessage);
+			days = getValidInput(input, 3, 10, question);
 			return days;
 			}
 		public static int getNumCrew(Scanner input) {
 			int numCrew = 0;
-			do {
-				System.out.println("How many crew Members would you like?");
-				try {
-					numCrew = input.nextInt();
-					if (numCrew < 2 || numCrew > 4) {
-						System.out.println("You need to enter a number between 2 and 4.");
-					}
-				}
-				catch (InputMismatchException e) {
-					System.out.println("You need to enter a Integer between 2 and 4");
-					input.next();
-				}
-			}
-			while(numCrew < 2 || numCrew > 4);
+			String question = "How many crew Members would you like?";
+			numCrew = getValidInput(input, 2, 4, question);
 			return numCrew;
 			}
 		public static ArrayList<CrewMember> getCrewList(Scanner input) {
+			ArrayList<CrewMember> crewList = new ArrayList<CrewMember>();
 			Scanner scanner = new Scanner(System.in);
 			int numCrew = getNumCrew(input);
 			viewTypes();
@@ -132,8 +118,7 @@ class GameEnvironment {
 	    		System.out.println("What do you want to name your " + (i+1) + "st crewmember?");
 	    		String name  = getInput();
 				String question10 = "Pick a type bewteen 1 and 6";
-				String error10 = "You need to pick an integer between 1 and 6";
-				int typeNum = getValidInput(scanner, 1, 6, question10, error10);
+				int typeNum = getValidInput(scanner, 1, 6, question10);
 				if (typeNum == 1) {
 					Type1 newMember = new Type1(name, 40, 2, 10);
 					crewList.add(newMember);}
@@ -157,32 +142,32 @@ class GameEnvironment {
 	    }
 		
 		private static String getInput() {						// so can have more than 1 word in input 
-		    Scanner scanner = new Scanner(System.in);
-		    return scanner.nextLine();
+		    Scanner input = new Scanner(System.in);
+		    return input.nextLine();
 		}
-		public static void getShipName(SpaceShip ship, Scanner input, int days) {
+		public static void getShipName() {
 			System.out.println("What would you like to name your Spaceship");
 	    	String shipName = getInput();
 	    	ship.setShipName(shipName);
 	    	System.out.println("The game will now begin. To win, you will have to collect " + requiredPieces + " of your space ships missing pieces in " + days + " days.\n");
 		}
 		
-		public static void checkShipShield(SpaceShip ship) {
+		public static void checkShipShield() {
 			System.out.println("\n" + ship.getShipName() + "'s status:");
 			System.out.println("Shield: " + ship.getShieldHealth() + "\n");
 		}
-        public static int getValidInput(Scanner input, int lowerBound, int upperBound, String question, String errorMessage) {
+        public static int getValidInput(Scanner input, int lowerBound, int upperBound, String question) {
         	int inputedNumber = 0; 
 			do {
 				System.out.println(question);
 				try {
 					inputedNumber = input.nextInt();
 					if (inputedNumber < lowerBound || inputedNumber > upperBound) {
-						System.out.println(errorMessage);
+						System.out.println("You need to enter an integer between " + lowerBound + " and " + upperBound);
 					}
 				}
 				catch (InputMismatchException e) {
-					System.out.println(errorMessage);
+					System.out.println("You need to enter an integer between " + lowerBound + " and " + upperBound);
 					input.next();
 				}
 			}
@@ -199,61 +184,54 @@ class GameEnvironment {
     		System.out.println("Type 6:\nHunger degrade: high\nHealth degrade: medium\nTiredness Degrade: medium\nSpecial ability: Fully repair the ships shield\n");
     	}	
     	
-    	public static void nextDay(Crew crew1, RandomEvents random, int days) {
-        	ArrayList<CrewMember> crewList2 = new ArrayList<CrewMember>();
-    		crew1.setCrewMemberList(crewList2);
+    	public static void nextDay() {
     		crew1.setDays(crew1.getDays() + 1);
+        	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
     		daysProgressedThrough += 1;
     		if (days < daysProgressedThrough) {
     			gameIsOver = true;
     			crew1.setNumPieces(100);
-    			System.out.println("Game Over!");
+    			System.out.println("Ran out of days!\nGame Over!");
     		}
 			for (CrewMember member: crewList) {
-				crewList2.add(member);
 				member.newDay();
 			}
+			crew1.setCrewMemberList(crewList);
 			if (!gameIsOver) {
-				for (CrewMember member: crewList2) {
+				for (CrewMember member: crew1.getCrewMemberList()) {
 					if (member.isDead()) {
 						crewList.remove(member);
 						if (crewList.size() == 0) {
 							gameIsOver = true;
 							crew1.setNumPieces(100);
-							System.out.println("Game Over!");
+							System.out.println("Ran out of crew members!\nGame Over!");
 					}
 				}
+				crew1.setCrewMemberList(crewList);
 			}
 			}
 			if (!gameIsOver) {
 				if (crewList.size() > 0) {
-					Random dayEvent = new Random();
-					int n = dayEvent.nextInt(3);
-					n += 1;
-					if (n == 1) {
-						random.alienPirates(crew1);
-					}
-					if (n == 2) {
-						random.spacePlague(crew1);
-					}
-				}
-				System.out.println("\nYou have moved on to day " + crew1.getDays() + "\n");
+					getRandomEvent();
+					System.out.println("\nYou have moved on to day " + Integer.toString(daysProgressedThrough) + "\n*********************************************************** Day " + Integer.toString(daysProgressedThrough) + " ***********************************************************");
 			}
     	}
+    	}
     	
-    	 public static void flyToNewPlanet(Scanner input0, Crew crew1, SpaceShip ship, RandomEvents random) {
-         	boolean donePilot = false;
+    	 public static void flyToNewPlanet() {
+    		ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
+    		boolean donePilot = false;
      		int i = 0;
      		CrewMember memPilot;
      		System.out.println("Pick the crew member you want to pilot the ship to the next planet.\n");
+     		ArrayList<CrewMember> pilotList = crew1.getPilotCount();
      		for (CrewMember member: crewList) {
      			i++;
      			System.out.println(i + ". " + member.getName());
      		}
      		System.out.println((i + 1) + ". Go back to menu.\n");
      		String question9 = "Pick the crew member you want to pilot the ship to the next planet.\n";
-     		String error9 = "You need to enter an integer between 1 and " + (crewList.size()+1);
-     		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question9, error9);	
+     		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question9);	
      		if (crewNum == (i+1)) {
      			donePilot = true;
      		}
@@ -265,24 +243,7 @@ class GameEnvironment {
          			}
          			else {
              			if (memPilot instanceof Type4) {
-             				planetPieces = 1;
-             				pilotList.clear();
-             				memPilot.setActionCounter(memPilot.getActionCounter() - 1);
-             				Random randAsteroid = new Random();
-     						int n = randAsteroid.nextInt(2);
-     						n += 1;
-     						if (n == 1) {
-     							random.asteroidBelt(ship);
-     							if (ship.getShieldHealth() <= 0) {
-     								System.out.println("The shield of your ship has depleted, and everyone on the crew has died!\n");
-     								crew1.setNumPieces(100);
-     								donePilot = true;
-     							}
-     						}
-     						else {
-     							System.out.println("You have sucessfully piloted the ship to a new planet.\n");
-                 				donePilot = true;
-     							}
+             				successfulFlight(memPilot, pilotList);
              			}
              			else {
              				if (pilotList.contains(memPilot)) {
@@ -291,24 +252,7 @@ class GameEnvironment {
              				}
              				else {
              					if (pilotList.size() == 1) {
-                     				planetPieces = 1;
-                     				pilotList.clear();
-                     				memPilot.setActionCounter(memPilot.getActionCounter() - 1);
-             						Random randAsteroid = new Random();
-             						int n = randAsteroid.nextInt(2);
-             						n += 1;
-             						if (n == 1) {
-             							random.asteroidBelt(ship);
-             							if (ship.getShieldHealth() <= 0) {
-             								System.out.println("The shield of your ship has depleted, and everyone on the crew has died!\n");
-             								crew1.setNumPieces(100);
-             								donePilot = true;
-             							}
-             						}
-             						else {
-             							System.out.println("You have sucessfully piloted the ship to a new planet.\n");
-                         				donePilot = true;
-             							}
+             						successfulFlight(memPilot, pilotList);
              					}
              					else {
              						pilotList.add(memPilot);
@@ -321,7 +265,8 @@ class GameEnvironment {
      			}
      		}
          }
-    	 public static void searchPlanet(Scanner input0, Crew crew1, SpaceOutpost outpost) {
+    	 public static void searchPlanet() {
+    		ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
          	boolean doneSearch = false;
      		int i = 0;
      		while (doneSearch == false){
@@ -337,13 +282,12 @@ class GameEnvironment {
              		}
              		System.out.println((i + 1) + ". Go back to menu.\n");
              		String question8 = "Pick the crew member you want to Search the nearest planet.\n";
-             		String error8 = "You need to enter an integer between 1 and " + (crewList.size()+1);
-             		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question8, error8);	
-             		memSearch = crewList.get(crewNum - 1);
+             		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question8);	
              		if (crewNum == (i+1)) {
              			doneSearch = true;
              		}
              		else {
+             			memSearch = crewList.get(crewNum - 1);
              			if (memSearch.getActionCounter() == 0) {
              				System.out.println("This crewmember does not have enough action points to go searching\n");
              				doneSearch = true;
@@ -361,6 +305,8 @@ class GameEnvironment {
                  			}
                  			if (search == 3) {
                  				Random rand = new Random();
+                 				ArrayList<Food> foodList = crew1.getFoodItems();
+                 				ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
                  				int randItem = rand.nextInt(outpost.getItemsForSale().size());
                  				System.out.println("You have found a " + (outpost.getItemsForSale().get(randItem)).getName() + "\n");
                  				if ((outpost.getItemsForSale().get(randItem)) instanceof Food) {
@@ -379,7 +325,8 @@ class GameEnvironment {
      			}
      		}
          }
-         public static void repairShip(Scanner input0, SpaceShip ship) {
+         public static void repairShip() {
+        	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
          	boolean doneRepair = false;
      		int i = 0;
      		while (doneRepair == false){
@@ -391,8 +338,7 @@ class GameEnvironment {
          		}
          		System.out.println((i + 1) + ". Go back to menu.\n");
          		String question7 = "Pick the crew member you want to Repair the ship\n";
-         		String error7 = "You need to enter an integer between 1 and " + (crewList.size()+1);
-         		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question7, error7);	
+         		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question7);	
          		if (crewNum == (i+1)) {
          			doneRepair = true;
          		}
@@ -420,7 +366,8 @@ class GameEnvironment {
          		}
      		}
          }
-         public static void sleep(Scanner input0) {
+         public static void sleep() {
+        	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
          	boolean doneSleeping = false;
      		int i = 0;
      		while (doneSleeping == false){
@@ -431,8 +378,7 @@ class GameEnvironment {
          		}
          		System.out.println((i + 1) + ". Go back to menu.\n");
          		String question6 = "Pick the crew member you want to sleep.\n";
-         		String error6 = "You need to enter an integer between 1 and " + (crewList.size()+1);
-         		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question6, error6);	
+         		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question6);	
          		if (crewNum == (i+1)) {
          			doneSleeping = true;
          		}
@@ -451,7 +397,9 @@ class GameEnvironment {
          		}
      		}
          }
-         public static void heal(Scanner input0) {
+         public static void heal() {
+        	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
+        	ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
          	boolean doneHealing = false;
      		while (doneHealing == false) {
      			int i = 0;
@@ -463,8 +411,7 @@ class GameEnvironment {
          		}
          		System.out.println((i + 1) + ". Go back to menu.\n");
          		String question4 = "Type the number corresponding to the crewmember that you want to heal.\n";
-         		String error4 = "You need to enter an integer between 1 and " + (crewList.size()+1);
-         		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question4, error4);	            		
+         		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question4);	            		
          		if (crewNum == (i+1)) {
          			doneHealing = true;
          		}
@@ -502,8 +449,7 @@ class GameEnvironment {
              	  			}
              	  			System.out.println((i2 + 1) + ". Go back to menu\n");
              	  			String question5 = "Select what medical item you want " + memHeal.getName() + " to use.\n";
-     	            		String error5 = "You need to enter an integer between 1 and " + (finalHealList.size()+1);
-     	            		int medNum = getValidInput(input0, 1, (finalHealList.size()+1), question5, error5);	
+     	            		int medNum = getValidInput(input0, 1, (finalHealList.size()+1), question5);	
                      		if (medNum == (i2+1)) {
                      			doneHealing = true;
                      		}
@@ -522,11 +468,12 @@ class GameEnvironment {
          		
      		}
          }
-         public static void visitOutpost(boolean leaveOutPost, Scanner input0, SpaceOutpost outpost, Crew crew1) {
+         public static void visitOutpost(boolean leaveOutPost) {
+        	ArrayList<Food> foodList = crew1.getFoodItems();
+        	ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
      		while (leaveOutPost == false) {
-     			String error1 = "You need to enter an integer between 1 and 3";
          		String question1 = ("Welcome to the space outpost, please choose what you would like to do: \n1. View owned items\n2. View Items for sale\n3. Go back\n");
-         		int postNumber = getValidInput(input0, 1, 3, question1, error1);
+         		int postNumber = getValidInput(input0, 1, 3, question1);
          		if (postNumber == 1) {
          			if (foodList.isEmpty() == true) {
          				System.out.println("You have no Food items\n");
@@ -573,8 +520,7 @@ class GameEnvironment {
          			System.out.println("10. Go back to menu");
          			while (doneShopping == false) {
          				String question2 = ("Pick the number of the item that you want to buy.\nYou have $ " + crew1.getMoney() + " to spend");
-         				String error2 = "You need to enter an integer between 1 and 10";
-         				int num = getValidInput(input0, 1, 10, question2, error2);
+         				int num = getValidInput(input0, 1, 10, question2);
              			if (num == 7) {
              				MedicalItem med = new MedicalItem("SmallHealing", false, 10, 5);
              				crew1.buy(foodList, medicalList, med);
@@ -621,7 +567,9 @@ class GameEnvironment {
          			leaveOutPost = true;
          		}
      		}}
-         public static void eat(Scanner input0) {
+         public static void eat() {
+        	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
+        	ArrayList<Food> foodList = crew1.getFoodItems();
          	boolean doneEating = false;
      		while (doneEating == false) {
      			int i = 0;
@@ -633,8 +581,7 @@ class GameEnvironment {
          		}
          		System.out.println((i + 1) + ". Go back to menu.\n");
          		String question3 = "Type the number corresponding to the crewmember that you want to eat.\n";
-         		String error3 = "Please enter an integer between 1 to " + (crewList.size()+1);
-         		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question3, error3);
+         		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question3);
          		if (crewNum == (i+1)) {
          			doneEating = true;
          		}
@@ -681,7 +628,7 @@ class GameEnvironment {
                          		chosenFood = finalFoodList.get(foodNum - 1);
                          		memEat.eat(finalFoodList.get(foodNum - 1));
                          		foodList.remove(chosenFood);
-                         		System.out.println(memEat.getName() + " ate a " + chosenFood.getName() + "\\n");
+                         		System.out.println(memEat.getName() + " ate a " + chosenFood.getName() + "\n");
                          		int action;
                          		action = memEat.getActionCounter();
                          		memEat.setActionCounter(action -1);
@@ -693,4 +640,35 @@ class GameEnvironment {
      		}
          } 
          
+         public static void getRandomEvent() {
+        	Random dayEvent = new Random();
+			int n = dayEvent.nextInt(3);
+			n += 1;
+			if (n == 1) {
+				random.alienPirates(crew1);	
+			}
+			if (n == 2) {
+				random.spacePlague(crew1);
+			}
+			}
+         public static void successfulFlight(CrewMember memPilot, ArrayList<CrewMember> pilotList) {
+				planetPieces = 1;
+				pilotList.clear();
+				memPilot.setActionCounter(memPilot.getActionCounter() - 1);
+				Random randAsteroid = new Random();
+				int n = randAsteroid.nextInt(2);
+				n += 1;
+				if (n == 1) {
+					random.asteroidBelt(ship);
+					if (ship.getShieldHealth() <= 0) {
+						System.out.println("The shield of your ship has depleted, and everyone on the crew has died!\n");
+						crew1.setNumPieces(100);
+						System.out.println("Game Over");
+					}
+				}
+				else {
+					System.out.println("You have sucessfully piloted the ship to a new planet.\n");
+				}
+         }  
 }
+
