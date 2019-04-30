@@ -670,5 +670,31 @@ class GameEnvironment {
 					System.out.println("You have sucessfully piloted the ship to a new planet.\n");
 				}
          }  
+
+                 
+     	public static int getRequiredPieces() {
+    		return requiredPieces;
+    	}
+    	public static void setRequiredPieces(int requiredPieces) {
+    		GameEnvironment.requiredPieces = requiredPieces;
+    	}
+    	public static int getDays() {
+    		return days;
+    	}
+    	public static void setDays(int days) {
+    		GameEnvironment.days = days;
+    	}
+    	public static Crew getCrew1() {
+    		return crew1;
+    	}
+    	public static void setCrew1(Crew crew1) {
+    		GameEnvironment.crew1 = crew1;
+    	}
+    	public static SpaceShip getShip() {
+    		return ship;
+    	}
+    	public static void setShip(SpaceShip ship) {
+    		GameEnvironment.ship = ship;
+    	}
 }
 
