@@ -262,6 +262,12 @@ public class SetupWindow extends GameEnvironment{
 		});
 		
 		JButton viewTypeStatsButt = new JButton("View Type Stats");
+		viewTypeStatsButt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new TypeStatsWindow();		// doesnt work
+			}
+			
+		});
 		viewTypeStatsButt.setBounds(28, 301, 135, 35);
 		frmGame.getContentPane().add(viewTypeStatsButt);
 		
