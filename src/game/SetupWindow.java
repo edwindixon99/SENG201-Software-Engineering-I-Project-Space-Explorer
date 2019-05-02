@@ -1,4 +1,4 @@
-package game;
+
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -11,7 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class SetupWindow extends GameEnvironment{
 
@@ -21,7 +24,13 @@ public class SetupWindow extends GameEnvironment{
 	private JTextField mem3txtField;
 	private JTextField mem2txtField;
 	private JTextField mem4txtField;
-
+	private JToggleButton confirmCrewMemButt = new JToggleButton("Confirm Crew Members");
+	private JToggleButton confirmNumOfCrewMemLockInButt = new JToggleButton("Confirm");
+	private String[] types = {"Type 1", "Type 2", "Type 3", "Type 4", "Type 5", "Type 6"}; 
+	private JComboBox typeCombo1 = new JComboBox(types);
+	private JComboBox typeCombo2 = new JComboBox(types);
+	private JComboBox typeCombo3 = new JComboBox(types);
+	private JComboBox typeCombo4 = new JComboBox(types);
 	/**
 	 * Launch the application.
 	 */
@@ -44,6 +53,37 @@ public class SetupWindow extends GameEnvironment{
 	public SetupWindow() {
 		initialize();
 	}
+	
+	public boolean gameReady() {
+		if (confirmCrewMemButt.isSelected() && confirmNumOfCrewMemLockInButt.isSelected()) {
+			return true;
+		}else {
+			return false;
+		}
+			
+	}
+	
+	public CrewMember createCrewMember(String type) {
+		if (type == "Type 1") {
+			Type1 newMember = new Type1("", 40, 2, 10);
+			return newMember;}
+		if (type == "Type 2") {
+			Type2 newMember = new Type2("", 10, 1, 25);
+			return newMember;}
+		if (type == "Type 3") {
+			Type3 newMember = new Type3("", 25, 4, 40);
+			return newMember;}
+		if (type == "Type 4") {
+			Type4 newMember = new Type4("", 25, 1, 25);
+			return newMember;}
+		if (type == "Type 5") {
+			Type5 newMember = new Type5("", 25, 2, 40);
+			return newMember;}
+		else {
+			Type6 newMember = new Type6("", 40, 2, 25);
+			return newMember;}
+
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -55,133 +95,151 @@ public class SetupWindow extends GameEnvironment{
 		frmGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGame.getContentPane().setLayout(null);
 		
-		JToggleButton shipNameButt = new JToggleButton("Lock In");
-		JToggleButton confirmCrewMemButt = new JToggleButton("Confirm Crew Members");
-		JToggleButton dayLockInButt = new JToggleButton("Lock In");
-		JToggleButton numOfCrewMemLockInButt = new JToggleButton("Lock In");
+		String[] types = {"Type 1", "Type 2", "Type 3", "Type 4", "Type 5", "Type 6"}; 
+		JComboBox[] comboBoxes = {typeCombo1, typeCombo2, typeCombo3, typeCombo4}; 
+
 		
 		JLabel dayLabel = new JLabel("How many days would you like to play?");
-		dayLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		dayLabel.setBounds(12, 53, 275, 35);
+		dayLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
+		dayLabel.setBounds(12, 133, 352, 35);
 		frmGame.getContentPane().add(dayLabel);
 		
 		JLabel crewMemLabel = new JLabel("How many crew Members would you like?");
-		crewMemLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		crewMemLabel.setBounds(12, 99, 291, 27);
+		crewMemLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
+		crewMemLabel.setBounds(12, 204, 378, 27);
 		frmGame.getContentPane().add(crewMemLabel);
 		
 		JLabel shipLabel = new JLabel("What would you like to name your Spaceship?");
-		shipLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		shipLabel.setBounds(12, 158, 323, 27);
+		shipLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
+		shipLabel.setBounds(12, 71, 352, 27);
 		frmGame.getContentPane().add(shipLabel);
 		
 		JSlider numOfCrewMemSlider = new JSlider();
-		numOfCrewMemSlider.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		numOfCrewMemSlider.setPaintTicks(true);
+		numOfCrewMemSlider.setFont(new Font("Dialog", Font.PLAIN, 15));
 		numOfCrewMemSlider.setPaintLabels(true);
 		numOfCrewMemSlider.setSnapToTicks(true);
-		numOfCrewMemSlider.setValue(3);
+		numOfCrewMemSlider.setValue(2);
 		numOfCrewMemSlider.setMajorTickSpacing(1);
 		numOfCrewMemSlider.setMaximum(4);
 		numOfCrewMemSlider.setMinimum(2);
-		numOfCrewMemSlider.setBounds(353, 96, 200, 51);
+		numOfCrewMemSlider.setBounds(467, 204, 249, 56);
 		frmGame.getContentPane().add(numOfCrewMemSlider);
 		
 		JSlider NumOfDaysSlider = new JSlider();
-		NumOfDaysSlider.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		NumOfDaysSlider.setMajorTickSpacing(1);
-		NumOfDaysSlider.setSnapToTicks(true);
+		NumOfDaysSlider.setBorder(null);
+		NumOfDaysSlider.setPaintTicks(true);
 		NumOfDaysSlider.setPaintLabels(true);
+		NumOfDaysSlider.setSnapToTicks(true);
+		NumOfDaysSlider.setFont(new Font("Dialog", Font.PLAIN, 15));
+		NumOfDaysSlider.setMajorTickSpacing(1);
 		NumOfDaysSlider.setMinimum(3);
 		NumOfDaysSlider.setMaximum(10);
-		NumOfDaysSlider.setValue(7);
-		NumOfDaysSlider.setBounds(353, 53, 200, 45);
+		NumOfDaysSlider.setValue(3);
+		NumOfDaysSlider.setBounds(467, 133, 249, 56);
 		frmGame.getContentPane().add(NumOfDaysSlider);
 		
 		JLabel titleLabel = new JLabel("Game Title");
-		titleLabel.setBounds(34, 12, 522, 33);
+		titleLabel.setBounds(30, 12, 305, 33);
 		frmGame.getContentPane().add(titleLabel);
 		titleLabel.setFont(new Font("Dialog", Font.BOLD, 27));
 		
 		JButton startGameButt = new JButton("Start Game!");
+		startGameButt.setFont(new Font("Dialog", Font.BOLD, 18));
 		startGameButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Will create the crew members by getting values from the comboboxes and textfield for type and name of each.
-				// will then close this window and open maingame window
+				ArrayList<CrewMember> crewMemberList = new ArrayList<CrewMember>();
+				for (int i = 0; i < numOfCrewMemSlider.getValue(); i++) {
+					String type = (String) comboBoxes[i].getSelectedItem();
+					CrewMember member = createCrewMember(type);
+					crewMemberList.add(member);
+				}
+				crewMemberList.get(0).setName(mem1txtField.getText());
+				crewMemberList.get(1).setName(mem2txtField.getText());
+				if (numOfCrewMemSlider.getValue() == 3) {
+					crewMemberList.get(2).setName(mem3txtField.getText());
+				}
+				if (numOfCrewMemSlider.getValue() == 4) {
+					crewMemberList.get(2).setName(mem3txtField.getText());
+					crewMemberList.get(3).setName(mem4txtField.getText());
+				}
+				crew1.setCrewMemberList(crewMemberList);
+				frmGame.dispose();
 				
+				//Needs to open new window(main game) 
 			}
 		});
 		startGameButt.setEnabled(false);
 		startGameButt.setBounds(201, 494, 323, 56);
 		frmGame.getContentPane().add(startGameButt);
 		
-		JLabel errorLabel = new JLabel("You must select crew member names and types before you can start the game!");
-		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		errorLabel.setBounds(78, 417, 635, 76);
-		frmGame.getContentPane().add(errorLabel);
-		
 		shipNametxtField = new JTextField();
-		shipNametxtField.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		shipNametxtField.setFont(new Font("Dialog", Font.PLAIN, 15));
 		shipNametxtField.setText("Ship");
-		shipNametxtField.setBounds(363, 160, 190, 23);
+		shipNametxtField.setBounds(482, 72, 234, 35);
 		frmGame.getContentPane().add(shipNametxtField);
 		shipNametxtField.setColumns(10);
 		
+
 		mem1txtField = new JTextField();
+		mem1txtField.setFont(new Font("Dialog", Font.PLAIN, 15));
 		mem1txtField.setText("Member 1");
-		mem1txtField.setBounds(34, 223, 171, 23);
+		mem1txtField.setBounds(30, 338, 171, 23);
 		frmGame.getContentPane().add(mem1txtField);
 		mem1txtField.setColumns(10);
 		
 		JLabel lblCrewMembers = new JLabel("Enter crew members' names and select their types");
-		lblCrewMembers.setBounds(156, 196, 336, 15);
+		lblCrewMembers.setFont(new Font("Dialog", Font.BOLD, 15));
+		lblCrewMembers.setBounds(157, 290, 462, 36);
 		frmGame.getContentPane().add(lblCrewMembers);
 		
 		mem3txtField = new JTextField();
+		mem3txtField.setFont(new Font("Dialog", Font.PLAIN, 15));
 		mem3txtField.setText("Member 3");
 		mem3txtField.setColumns(10);
 		mem3txtField.setVisible(false);
-		mem3txtField.setBounds(34, 250, 171, 23);;
+		mem3txtField.setBounds(30, 379, 171, 23);;
 		frmGame.getContentPane().add(mem3txtField);
 		
 		mem2txtField = new JTextField();
+		mem2txtField.setFont(new Font("Dialog", Font.PLAIN, 15));
 		mem2txtField.setText("Member 2");
 		mem2txtField.setColumns(10);
-		mem2txtField.setBounds(382, 223, 171, 23);
+		mem2txtField.setBounds(372, 338, 171, 23);
 		frmGame.getContentPane().add(mem2txtField);
 		
 		mem4txtField = new JTextField();
+		mem4txtField.setFont(new Font("Dialog", Font.PLAIN, 15));
 		mem4txtField.setText("Member 4");
 		mem4txtField.setColumns(10);
 		mem4txtField.setVisible(false);
-		mem4txtField.setBounds(382, 251, 171, 23);
+		mem4txtField.setBounds(372, 379, 171, 23);
 		frmGame.getContentPane().add(mem4txtField);
 		
-		String[] types = {"Type 1", "Type 2", "Type 3", "Type 4", "Type 5", "Type 6"}; 
-		JComboBox typeCombo1 = new JComboBox(types);
-		typeCombo1.setFont(new Font("Courier New", Font.PLAIN, 13));
-		typeCombo1.setBounds(240, 223, 95, 23);
+
+		typeCombo1.setFont(new Font("Dialog", Font.PLAIN, 15));
+		typeCombo1.setBounds(240, 338, 95, 23);
 		frmGame.getContentPane().add(typeCombo1);
 		
-		JComboBox typeCombo3 = new JComboBox(types);
-		typeCombo3.setFont(new Font("Courier New", Font.PLAIN, 13));
-		typeCombo3.setBounds(240, 251, 95, 23);
+		typeCombo3.setFont(new Font("Dialog", Font.PLAIN, 15));
+		typeCombo3.setBounds(240, 379, 95, 23);
 		typeCombo3.setVisible(false);
 		frmGame.getContentPane().add(typeCombo3);
 		
-		JComboBox typeCombo2 = new JComboBox(types);
-		typeCombo2.setFont(new Font("Courier New", Font.PLAIN, 13));
-		typeCombo2.setBounds(582, 223, 95, 23);
+		typeCombo2.setFont(new Font("Dialog", Font.PLAIN, 15));
+		typeCombo2.setBounds(582, 338, 95, 23);
 		frmGame.getContentPane().add(typeCombo2);
 		
-		JComboBox typeCombo4 = new JComboBox(types);
-		typeCombo4.setFont(new Font("Courier New", Font.PLAIN, 13));
-		typeCombo4.setBounds(582, 249, 95, 23);
+		typeCombo4.setFont(new Font("Dialog", Font.PLAIN, 15));
+		typeCombo4.setBounds(582, 379, 95, 23);
 		typeCombo4.setVisible(false);
 		frmGame.getContentPane().add(typeCombo4);
+		confirmCrewMemButt.setFont(new Font("Dialog", Font.BOLD, 16));
 		
-		
+		confirmCrewMemButt.setVisible(false);
 		confirmCrewMemButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				startGameButt.setEnabled(gameReady());
 				if (!confirmCrewMemButt.isSelected()) {
 					mem1txtField.setEnabled(true);
 					mem2txtField.setEnabled(true);
@@ -203,29 +261,27 @@ public class SetupWindow extends GameEnvironment{
 				}	
 				}
 		});
-		confirmCrewMemButt.setBounds(251, 301, 210, 35);
+		confirmCrewMemButt.setBounds(240, 430, 273, 35);
 		frmGame.getContentPane().add(confirmCrewMemButt);
+		confirmNumOfCrewMemLockInButt.setFont(new Font("Dialog", Font.BOLD, 15));
 		
 		
-		dayLockInButt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (!dayLockInButt.isSelected()) {
-					NumOfDaysSlider.setEnabled(true);
-				}else {
-					NumOfDaysSlider.setEnabled(false);
-					GameEnvironment.setDays(NumOfDaysSlider.getValue());
-				}
-			}
-		});
-		dayLockInButt.setBounds(592, 60, 121, 23);
-		frmGame.getContentPane().add(dayLockInButt);
-		
-		
-		numOfCrewMemLockInButt.addActionListener(new ActionListener() {
+		confirmNumOfCrewMemLockInButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					if (!numOfCrewMemLockInButt.isSelected()) {
+					startGameButt.setEnabled(gameReady());
+					if (!confirmNumOfCrewMemLockInButt.isSelected()) {
+						confirmCrewMemButt.setVisible(false);
 						numOfCrewMemSlider.setEnabled(true);
+						shipNametxtField.setEnabled(true);
+						NumOfDaysSlider.setEnabled(true);
+						
 					}else {
+						shipNametxtField.setEnabled(false);
+						ship.setShipName(shipNametxtField.getText());
+						NumOfDaysSlider.setEnabled(false);
+						GameEnvironment.setDays(NumOfDaysSlider.getValue());
+						crew1.setDays(NumOfDaysSlider.getValue());
+						confirmCrewMemButt.setVisible(true);
 						numOfCrewMemSlider.setEnabled(false);
 						mem3txtField.setVisible(false);
 						mem4txtField.setVisible(false);
@@ -244,31 +300,18 @@ public class SetupWindow extends GameEnvironment{
 					}
 			}
 		});
-		numOfCrewMemLockInButt.setBounds(592, 108, 121, 23);
-		frmGame.getContentPane().add(numOfCrewMemLockInButt);
-		
-		
-		
-		shipNameButt.setBounds(592, 160, 121, 23);
-		frmGame.getContentPane().add(shipNameButt);
-		shipNameButt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					if (!shipNameButt.isSelected()) {
-						shipNametxtField.setEnabled(true);
-					}else {
-						shipNametxtField.setEnabled(false);
-						ship.setShipName(shipNametxtField.getText());
-			}}
-		});
+		confirmNumOfCrewMemLockInButt.setBounds(301, 253, 121, 35);
+		frmGame.getContentPane().add(confirmNumOfCrewMemLockInButt);
 		
 		JButton viewTypeStatsButt = new JButton("View Type Stats");
 		viewTypeStatsButt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new TypeStatsWindow();		// doesnt work
+			public void actionPerformed(ActionEvent arg0) {
+				// Open stats Window
+				// should open more than one of these windows at a time
 			}
-			
 		});
-		viewTypeStatsButt.setBounds(28, 301, 135, 35);
+		viewTypeStatsButt.setFont(new Font("Dialog", Font.BOLD, 15));
+		viewTypeStatsButt.setBounds(30, 431, 177, 35);
 		frmGame.getContentPane().add(viewTypeStatsButt);
 		
 	}	
