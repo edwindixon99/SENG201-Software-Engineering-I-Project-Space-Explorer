@@ -1,3 +1,5 @@
+package game;
+
 
 
 import java.awt.EventQueue;
@@ -99,6 +101,7 @@ public class SetupWindow extends GameEnvironment{
 		JComboBox[] comboBoxes = {typeCombo1, typeCombo2, typeCombo3, typeCombo4}; 
 
 		
+		TypeStatsFrame stats = new TypeStatsFrame();
 		JLabel dayLabel = new JLabel("How many days would you like to play?");
 		dayLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
 		dayLabel.setBounds(12, 133, 352, 35);
@@ -306,6 +309,8 @@ public class SetupWindow extends GameEnvironment{
 		JButton viewTypeStatsButt = new JButton("View Type Stats");
 		viewTypeStatsButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				TypeStatsFrame stats = new TypeStatsFrame();
+				stats.setVisible(true);
 				// Open stats Window
 				// should open more than one of these windows at a time
 			}
