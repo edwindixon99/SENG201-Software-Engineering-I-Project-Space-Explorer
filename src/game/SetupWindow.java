@@ -1,5 +1,3 @@
-package game;
-
 
 
 import java.awt.EventQueue;
@@ -18,7 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 
-public class SetupWindow extends GameEnvironment{
+public class SetupWindow {
 
 	private JFrame frmGame;
 	private JTextField shipNametxtField;
@@ -101,7 +99,6 @@ public class SetupWindow extends GameEnvironment{
 		JComboBox[] comboBoxes = {typeCombo1, typeCombo2, typeCombo3, typeCombo4}; 
 
 		
-		TypeStatsFrame stats = new TypeStatsFrame();
 		JLabel dayLabel = new JLabel("How many days would you like to play?");
 		dayLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
 		dayLabel.setBounds(12, 133, 352, 35);
@@ -153,11 +150,11 @@ public class SetupWindow extends GameEnvironment{
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<CrewMember> crewMemberList = new ArrayList<CrewMember>();
 				for (int i = 0; i < numOfCrewMemSlider.getValue(); i++) {
-					String type = (String) comboBoxes[i].getSelectedItem();
-					CrewMember member = createCrewMember(type);
+					String type = (String) comboBoxes[i].getSelectedItem();		// iterates through the combo boxes and gets the inputs.
+					CrewMember member = createCrewMember(type);					// createCrewMember(type) is a method which creates the type based on combobox input.
 					crewMemberList.add(member);
 				}
-				crewMemberList.get(0).setName(mem1txtField.getText());
+				crewMemberList.get(0).setName(mem1txtField.getText());			// sets names of each crew member
 				crewMemberList.get(1).setName(mem2txtField.getText());
 				if (numOfCrewMemSlider.getValue() == 3) {
 					crewMemberList.get(2).setName(mem3txtField.getText());
@@ -166,7 +163,7 @@ public class SetupWindow extends GameEnvironment{
 					crewMemberList.get(2).setName(mem3txtField.getText());
 					crewMemberList.get(3).setName(mem4txtField.getText());
 				}
-				crew1.setCrewMemberList(crewMemberList);
+//				crew1.setCrewMemberList(crewMemberList);
 				frmGame.dispose();
 				
 				//Needs to open new window(main game) 
@@ -242,9 +239,9 @@ public class SetupWindow extends GameEnvironment{
 		confirmCrewMemButt.setVisible(false);
 		confirmCrewMemButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				startGameButt.setEnabled(gameReady());
+				startGameButt.setEnabled(gameReady());						// start game button enabled
 				if (!confirmCrewMemButt.isSelected()) {
-					mem1txtField.setEnabled(true);
+					mem1txtField.setEnabled(true);							// if button is not selected enables all name text boxes and combo boxes
 					mem2txtField.setEnabled(true);
 					mem3txtField.setEnabled(true);
 					mem4txtField.setEnabled(true);
@@ -253,7 +250,7 @@ public class SetupWindow extends GameEnvironment{
 					typeCombo3.setEnabled(true);
 					typeCombo4.setEnabled(true);
 				}else {
-					mem1txtField.setEnabled(false);
+					mem1txtField.setEnabled(false);							// if button is selected disables all name text boxes and combo boxes
 					mem2txtField.setEnabled(false);
 					mem3txtField.setEnabled(false);
 					mem4txtField.setEnabled(false);
@@ -272,30 +269,32 @@ public class SetupWindow extends GameEnvironment{
 		confirmNumOfCrewMemLockInButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					startGameButt.setEnabled(gameReady());
-					if (!confirmNumOfCrewMemLockInButt.isSelected()) {
-						confirmCrewMemButt.setVisible(false);
-						numOfCrewMemSlider.setEnabled(true);
+					if (!confirmNumOfCrewMemLockInButt.isSelected()) {		// if button is not selected
+						confirmCrewMemButt.setVisible(false);				// confirmCrewMemButt is not shown
+						numOfCrewMemSlider.setEnabled(true);				// both sliders and ship textbox are enabled
 						shipNametxtField.setEnabled(true);
 						NumOfDaysSlider.setEnabled(true);
 						
-					}else {
-						shipNametxtField.setEnabled(false);
-						ship.setShipName(shipNametxtField.getText());
+					}else {														
+						shipNametxtField.setEnabled(false);						//disables sliders and ship textbox
 						NumOfDaysSlider.setEnabled(false);
-						GameEnvironment.setDays(NumOfDaysSlider.getValue());
-						crew1.setDays(NumOfDaysSlider.getValue());
-						confirmCrewMemButt.setVisible(true);
-						numOfCrewMemSlider.setEnabled(false);
+						numOfCrewMemSlider.setEnabled(false);					
+						
+//						ship.setShipName(shipNametxtField.getText());				 // gets the inputs from sliders and ship text box and sets them.
+//						GameEnvironment.setDays(NumOfDaysSlider.getValue());	
+//						crew1.setDays(NumOfDaysSlider.getValue());
+//						
+						confirmCrewMemButt.setVisible(true);			// shows the confirm crew member button and hides extra member combo boxes and text boxes
 						mem3txtField.setVisible(false);
 						mem4txtField.setVisible(false);
 						typeCombo3.setVisible(false);
 						typeCombo4.setVisible(false);
 					}
-					if (numOfCrewMemSlider.getValue() == 3) {
+					if (numOfCrewMemSlider.getValue() == 3) {			//shows 3 textboxes and comboboxes for members
 						mem3txtField.setVisible(true);
 						typeCombo3.setVisible(true);
 					}
-					if (numOfCrewMemSlider.getValue() == 4) {
+					if (numOfCrewMemSlider.getValue() == 4) {			//shows 3 textboxes and comboboxes for members
 						mem3txtField.setVisible(true);
 						typeCombo3.setVisible(true);
 						mem4txtField.setVisible(true);
@@ -307,12 +306,12 @@ public class SetupWindow extends GameEnvironment{
 		frmGame.getContentPane().add(confirmNumOfCrewMemLockInButt);
 		
 		JButton viewTypeStatsButt = new JButton("View Type Stats");
+		TypeStatsFrame stats = new TypeStatsFrame();
 		viewTypeStatsButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				TypeStatsFrame stats = new TypeStatsFrame();
 				stats.setVisible(true);
+				stats.setDefaultCloseOperation(stats.DISPOSE_ON_CLOSE);
 				// Open stats Window
-				// should open more than one of these windows at a time
 			}
 		});
 		viewTypeStatsButt.setFont(new Font("Dialog", Font.BOLD, 15));
