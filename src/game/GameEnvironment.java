@@ -20,14 +20,14 @@ class GameEnvironment {
 	private boolean gameIsOver = false; 
 	private int days;
 	private RandomEvents random = new RandomEvents();  
-	private Crew crew1 = new Crew(); 
-	private SpaceShip ship = new SpaceShip();
+	public Crew crew1 = new Crew(); 
+	public SpaceShip ship = new SpaceShip();
 	private SpaceOutpost outpost = new SpaceOutpost();
 	private Scanner input0 = new Scanner(System.in);
-	
+
 	public GameEnvironment() {
 	}
-	
+
 
 	public static void main(String[] args) {
 		GameEnvironment game = new GameEnvironment();
@@ -37,7 +37,7 @@ class GameEnvironment {
 		game.launchSetupWindow();
 	    game.playGame();
 	 }
-	 
+
 	 public void playGame() {
     	Scanner input = new Scanner(System.in);
     	outpost.setItemsForSale();
@@ -56,14 +56,14 @@ class GameEnvironment {
         	int number = getValidInput(input0, 1, 10, question);
         	if (number == 1) {
         		for (CrewMember member: crew1.getCrewMemberList()) {
-        			member.viewStatus();
+        			System.out.println(member.viewStatus());
         		}	
         	}
         	/*option 2 is to check the shields stats ie just the shield level
         	 * 
         	 */
         	if (number == 2) {
-        		checkShipShield();
+        		System.out.println(checkShipShield());
         	}
         	if (number == 3) {
         		boolean leaveOutPost = false;
@@ -105,14 +105,14 @@ class GameEnvironment {
         	 */
         	if (number == 9) {
         		flyToNewPlanet();
-        		
+
         	}
         	if (number == 10) {
         		nextDay();
         	}
     	}
 	 }
-	 
+
 	 public int getNumOfDays(Scanner input) {
 		int days = 0;
 		String question = "How many days would you like to play?";
@@ -156,7 +156,7 @@ class GameEnvironment {
 			}
     	return crewList;
     }
-		
+
 	public String getInput() {						// so can have more than 1 word in input 
 	    Scanner input = new Scanner(System.in);
 	    return input.nextLine();
@@ -167,10 +167,9 @@ class GameEnvironment {
     	ship.setShipName(shipName);
     	System.out.println("The game will now begin. To win, you will have to collect " + requiredPieces + " of your space ships missing pieces in " + days + " days.\n");
 	}
-	
-	public void checkShipShield() {
-		System.out.println("\n" + ship.getShipName() + "'s status:");
-		System.out.println("Shield: " + ship.getShieldHealth() + "\n");
+
+	public String checkShipShield() {
+		return ("\n" + ship.getShipName() + "'s status:\nShield: " + ship.getShieldHealth() + "\n");
 	}
     public int getValidInput(Scanner input, int lowerBound, int upperBound, String question) {
     	int inputedNumber = 0; 
@@ -199,7 +198,7 @@ class GameEnvironment {
 		System.out.println("Type 5:\nHunger degrade: medium\nHealth degrade: medium\nTiredness Degrade: high\nSpecial ability: Higher chance of finding a spaceship piece when searching a planet\n");
 		System.out.println("Type 6:\nHunger degrade: high\nHealth degrade: medium\nTiredness Degrade: medium\nSpecial ability: Fully repair the ships shield\n");
 	}	
-	
+
 	public void nextDay() {
 		crew1.setDays(crew1.getDays() + 1);
     	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
@@ -233,7 +232,7 @@ class GameEnvironment {
 		}
 	}
 	}
-	
+
 	 public void flyToNewPlanet() {
 		ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
 		boolean donePilot = false;
@@ -336,7 +335,7 @@ class GameEnvironment {
              			doneSearch = true;
              			memSearch.setActionCounter(memSearch.getActionCounter() - 1);
          			}
-         			
+
          		}
  			}
  		}
@@ -378,7 +377,7 @@ class GameEnvironment {
                  		doneRepair = true;
      				}
      			}
-         		
+
      		}
  		}
      }
@@ -409,7 +408,7 @@ class GameEnvironment {
              		System.out.println(memSleep.getName() + " has gone to sleep.\n");
              		doneSleeping = true;
      			}
-         		
+
      		}
  		}
      }
@@ -481,7 +480,7 @@ class GameEnvironment {
          			}
          		}
      		}
-     		
+
  		}
      }
      public void visitOutpost(boolean leaveOutPost) {
@@ -556,7 +555,7 @@ class GameEnvironment {
          			if (num == 1) {
          				Food food = new Food("Apple", 15, 7);
          				crew1.buy(foodList, medicalList, food);
-         				
+
          			}
          			if (num == 2) {
          				Food food = new Food("Sandwich", 25, 12);
@@ -655,7 +654,7 @@ class GameEnvironment {
      		}
  		}
      } 
-     
+
      public void getRandomEvent() {
     	Random dayEvent = new Random();
 		int n = dayEvent.nextInt(3);
@@ -687,18 +686,9 @@ class GameEnvironment {
 			}
      }  
 
-                 
+
  	public int getRequiredPieces() {
-		return requiredPieces;
-	}
-	public void setRequiredPieces(int requiredPieces1) {
-		requiredPieces = requiredPieces1;
-	}
-	public int getDays() {
-		return days;
-	}
-	public void setDays(int days1) {
-		days = days1;
+		return (requiredPieces);
 	}
 	public Crew getCrew1() {
 		return crew1;
@@ -712,25 +702,21 @@ class GameEnvironment {
 	public void setShip(SpaceShip ship1) {
 		ship = ship1;
 	}
-
-	
 	public void closeSetupScreen(SetupWindow setupWindow) {
 		setupWindow.closeWindow();
 		launchMainScreen(); 
 		}
-	  
 	public void launchMainScreen() { 
-		MainScreen mainWindow = new MainScreen(this);
+		MainWindow mainScreen = new MainWindow(this);
 	  }
-	  
-	public void closeMainScreen(MainScreen main) { 
+	public void closeMainScreen(MainWindow main) { 
 		main.closeWindow();
 	}
 
-	  
+
 	  public void launchSetupWindow() { 
 		  SetupWindow setup = new SetupWindow(this); 
 	 }
-	  
+
 }
 
