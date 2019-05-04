@@ -1,3 +1,5 @@
+package game;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,12 +13,12 @@ import java.awt.event.ActionListener;
 public class MainScreen extends GameEnvironment{
 
 	private JFrame frame;
-
+	private GameEnvironment game;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -31,9 +33,20 @@ public class MainScreen extends GameEnvironment{
 
 	/**
 	 * Create the application.
+	 * @param newGameEnvironment 
 	 */
-	public MainScreen() {
+	public MainScreen(GameEnvironment gameEnvironment) {
+		game = gameEnvironment;
 		initialize();
+		frame.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeMainScreen(this);
 	}
 
 	/**
@@ -56,8 +69,8 @@ public class MainScreen extends GameEnvironment{
 		JButton btnNewButton = new JButton("Clcik this");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CrewMemberStats panel = new CrewMemberStats();
-				panel.setVisible(false);
+				//CrewMemberStats panel = new CrewMemberStats();
+				//panel.setVisible(false);
 			}
 		});
 		btnNewButton.setBounds(33, 602, 300, 97);

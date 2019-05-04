@@ -1,4 +1,4 @@
-
+package game;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -31,9 +31,11 @@ public class SetupWindow {
 	private JComboBox typeCombo2 = new JComboBox(types);
 	private JComboBox typeCombo3 = new JComboBox(types);
 	private JComboBox typeCombo4 = new JComboBox(types);
+	private GameEnvironment game;
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,8 +52,22 @@ public class SetupWindow {
 	/**
 	 * Create the application.
 	 */
-	public SetupWindow() {
+	public SetupWindow() {	
 		initialize();
+	}
+	
+	public SetupWindow(GameEnvironment newGame) {
+		game = newGame;
+		initialize();
+		frmGame.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		frmGame.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeSetupScreen(this);
 	}
 	
 	public boolean gameReady() {
@@ -163,8 +179,9 @@ public class SetupWindow {
 					crewMemberList.get(2).setName(mem3txtField.getText());
 					crewMemberList.get(3).setName(mem4txtField.getText());
 				}
-//				crew1.setCrewMemberList(crewMemberList);
-				frmGame.dispose();
+				//System.out.println(game);						//This bit is causing errors trying to set the crewmemberlist of the crew in the game to the one created just before.
+				//System.out.println();
+				finishedWindow();
 				
 				//Needs to open new window(main game) 
 			}
