@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 
-public class SetupWindow {
+public class SetupWindow extends GameEnvironment{
 
 	private JFrame frmGame;
 	private JTextField shipNametxtField;
@@ -161,6 +161,7 @@ public class SetupWindow {
 		titleLabel.setFont(new Font("Dialog", Font.BOLD, 27));
 		
 		JButton startGameButt = new JButton("Start Game!");
+		MainWindow mainWin = new MainWindow();
 		startGameButt.setFont(new Font("Dialog", Font.BOLD, 18));
 		startGameButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -179,6 +180,7 @@ public class SetupWindow {
 					crewMemberList.get(2).setName(mem3txtField.getText());
 					crewMemberList.get(3).setName(mem4txtField.getText());
 				}
+				crew1.setCrewMemberList(crewMemberList);
 				//System.out.println(game);						//This bit is causing errors trying to set the crewmemberlist of the crew in the game to the one created just before.
 				//System.out.println();
 				finishedWindow();
@@ -297,10 +299,9 @@ public class SetupWindow {
 						NumOfDaysSlider.setEnabled(false);
 						numOfCrewMemSlider.setEnabled(false);					
 						
-//						ship.setShipName(shipNametxtField.getText());				 // gets the inputs from sliders and ship text box and sets them.
-//						GameEnvironment.setDays(NumOfDaysSlider.getValue());	
-//						crew1.setDays(NumOfDaysSlider.getValue());
-//						
+						ship.setShipName(shipNametxtField.getText());				 // gets the inputs from sliders and ship text box and sets them.
+						crew1.setDays(NumOfDaysSlider.getValue());
+						
 						confirmCrewMemButt.setVisible(true);			// shows the confirm crew member button and hides extra member combo boxes and text boxes
 						mem3txtField.setVisible(false);
 						mem4txtField.setVisible(false);
