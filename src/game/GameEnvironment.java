@@ -14,13 +14,12 @@ import java.util.TreeSet;
 
 
 class GameEnvironment {
-	private int requiredPieces;
 	private int planetPieces = 1;
 	private int daysProgressedThrough = 1;
 	private boolean gameIsOver = false; 
 	private int days;
 	private RandomEvents random = new RandomEvents();  
-	public Crew crew1 = new Crew(); 
+	public static Crew crew1 = new Crew(); 
 	public SpaceShip ship = new SpaceShip();
 	private SpaceOutpost outpost = new SpaceOutpost();
 	private Scanner input0 = new Scanner(System.in);
@@ -38,20 +37,18 @@ class GameEnvironment {
 	    game.playGame();
 	 }
 
-	 public void playGame() {
+	public void playGame() {
     	Scanner input = new Scanner(System.in);
     	outpost.setItemsForSale();
     	days = getNumOfDays(input);
     	crew1.setDays(days);
-    	requiredPieces = days * 2/3;
     	crew1.setCrewMemberList(getCrewList(input));
-    	getShipName();
 
     	/*
     	 * This is where the main game loop starts, obviously it is not done yet, there are still many features to add
     	 * It starts by asking what the player wants to do, with the first option being to check the crews stats.
     	 */
-    	while (crew1.getNumPieces() < requiredPieces) {
+    	while (crew1.getNumPieces() < crew1.getRequiredPieces()) {
     		String question = "\nPick what you want to do: \n1. View the crew members status.\n2. View your space ships status\n3. Visit nearest outpost.\n4. Eat a food item.\n5. Heal a Crew Member\n6. Get a crew member to sleep\n7. Repair the ship\n8. Search the nearest planet.\n9. Pilot ship to another planet\n10. Next Day";
         	int number = getValidInput(input0, 1, 10, question);
         	if (number == 1) {
@@ -63,8 +60,9 @@ class GameEnvironment {
         	 * 
         	 */
         	if (number == 2) {
-        		System.out.println(checkShipShield());
+        		System.out.println(ship.checkShipShield());
         	}
+        
         	if (number == 3) {
         		boolean leaveOutPost = false;
         		visitOutpost(leaveOutPost);
@@ -161,16 +159,7 @@ class GameEnvironment {
 	    Scanner input = new Scanner(System.in);
 	    return input.nextLine();
 	}
-	public void getShipName() {
-		System.out.println("What would you like to name your Spaceship");
-    	String shipName = getInput();
-    	ship.setShipName(shipName);
-    	System.out.println("The game will now begin. To win, you will have to collect " + requiredPieces + " of your space ships missing pieces in " + days + " days.\n");
-	}
 
-	public String checkShipShield() {
-		return ("\n" + ship.getShipName() + "'s status:\nShield: " + ship.getShieldHealth() + "\n");
-	}
     public int getValidInput(Scanner input, int lowerBound, int upperBound, String question) {
     	int inputedNumber = 0; 
 		do {
@@ -687,9 +676,7 @@ class GameEnvironment {
      }  
 
 
- 	public int getRequiredPieces() {
-		return (requiredPieces);
-	}
+
 	public Crew getCrew1() {
 		return crew1;
 	}
@@ -719,4 +706,3 @@ class GameEnvironment {
 	 }
 
 }
-
