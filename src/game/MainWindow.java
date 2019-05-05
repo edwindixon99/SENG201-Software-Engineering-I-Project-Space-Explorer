@@ -116,12 +116,12 @@ public class MainWindow extends GameEnvironment{
 		btnRepairShip.setBounds(20, 95, 177, 35);
 		frame.getContentPane().add(btnRepairShip);
 		
-		JLabel lblDaysLeft = new JLabel("Days: " + crew1.getDays());
+		JLabel lblDaysLeft = new JLabel("Days left: " + Crew.getDays());
 		lblDaysLeft.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lblDaysLeft.setBounds(20, 204, 107, 27);
 		frame.getContentPane().add(lblDaysLeft);
 		
-		JLabel lblRemainingPieces = new JLabel("Remaining pieces: " + getRequiredPieces());
+		JLabel lblRemainingPieces = new JLabel("Remaining pieces: " + Crew.getRequiredPieces());
 		lblRemainingPieces.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lblRemainingPieces.setBounds(20, 242, 158, 35);
 		frame.getContentPane().add(lblRemainingPieces);
@@ -163,7 +163,7 @@ public class MainWindow extends GameEnvironment{
 			label_3.setText(convertToMultiline(Crew.getCrewMemberList().get(3).viewStatus()));
 		}
 		
-		JLabel label_4 = new JLabel(convertToMultiline(checkShipShield()));
+		JLabel label_4 = new JLabel(convertToMultiline(SpaceShip.checkShipShield()));
 		label_4.setForeground(Color.BLACK);
 		label_4.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label_4.setBackground(Color.WHITE);
