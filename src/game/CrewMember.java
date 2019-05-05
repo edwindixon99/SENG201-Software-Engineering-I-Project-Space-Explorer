@@ -100,9 +100,8 @@ public class CrewMember {
 		}
 	}
 	
-	public void viewStatus() {
-		System.out.println(name + "'s status:");
-		System.out.println("Health level: " + healthLevel + "\nHunger level: " + hungerLevel + "\nTirdness: " + tiredness + "\nSpacePlague: " + spacePlague + "\nActions left: " + actionCounter + "\n");	
+	public String viewStatus() {
+		return (name + "'s status: \nHealth level: " + healthLevel + "\nHunger level: " + hungerLevel + "\nTirdness: " + tiredness + "\nSpacePlague: " + spacePlague + "\nActions left: " + actionCounter + "\n");	
 	}
 	
 	public boolean isDead() {
