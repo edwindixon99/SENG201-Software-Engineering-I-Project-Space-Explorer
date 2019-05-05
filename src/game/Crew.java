@@ -6,14 +6,15 @@ import java.util.ArrayList;
 
 public class Crew {
 	private SpaceShip ship;
-	private ArrayList<CrewMember> crewMemberList = new ArrayList<CrewMember>();
+	private static ArrayList<CrewMember> crewMemberList = new ArrayList<CrewMember>();
 	private ArrayList<Food> foodItems = new ArrayList<Food>();
 	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
 	private ArrayList<Item> Items = new ArrayList<Item>();
 	private double money = 0;
 	private int numPieces = 0;
 	private ArrayList<CrewMember> pilotCount = new ArrayList<CrewMember>();
-	private int days = 1;
+	private static int days = 1;
+	private static int requiredPieces = (days * 2/3);
 	
 
 	public void buy(ArrayList<Food> foodList, ArrayList<MedicalItem> medList, Item item) {
@@ -62,7 +63,13 @@ public class Crew {
 	 * money
 	 * days
 	 */
-	public int getDays() {
+	 public static int getRequiredPieces() {
+		return requiredPieces;
+	}
+	 public void setRequiredPieces(int days) {
+	 	this.requiredPieces = (days * 2/3);
+	 	}
+	public static int getDays() {
 		return days;
 	}
 	public void setDays(int day) {
@@ -108,7 +115,7 @@ public class Crew {
 		this.foodItems = foodItems;
 	}
 	
-	public ArrayList<CrewMember> getCrewMemberList() {
+	public static ArrayList<CrewMember> getCrewMemberList() {
 		return crewMemberList;
 	}
 	public void setCrewMemberList(ArrayList<CrewMember> crewMemberList) {
