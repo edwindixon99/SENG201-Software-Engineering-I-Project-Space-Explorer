@@ -3,11 +3,14 @@ package game;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
 
 public class SearchPlanet extends JFrame {
 	private GameEnvironment game;
@@ -34,16 +37,22 @@ public class SearchPlanet extends JFrame {
 	 */
 	public SearchPlanet(GameEnvironment game) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 703, 564);
+		setBounds(100, 100, 853, 219);
 		getContentPane().setLayout(null);
 		
+		JLabel lblNewLabel = new JLabel(game.getSearchMessage());
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(10, 11, 817, 60);
+		getContentPane().add(lblNewLabel);
 		
-		
-		
-		JButton goBackBttn = new JButton("Go Back");
-		goBackBttn.setFont(new Font("Dialog", Font.BOLD, 15));
-		goBackBttn.setBounds(433, 458, 177, 35);
-		getContentPane().add(goBackBttn);
+		JButton btnContinue = new JButton("Continue");
+		btnContinue.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnContinue.setBounds(10, 82, 165, 35);
+		getContentPane().add(btnContinue);
+		btnContinue.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				game.launchMainScreen();
+			}
+		});
 	}
-
 }
