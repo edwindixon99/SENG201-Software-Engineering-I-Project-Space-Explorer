@@ -711,7 +711,23 @@ class GameEnvironment {
 	 }
 
 	public void launchsearchPlanet() {
-		SearchPlanet searchPlanet = new SearchPlanet(this);	
-		searchPlanet.setVisible(true);
+		MemberSelection memberSelection = new MemberSelection(this);
+		memberSelection.setVisible(true);
+//		SearchPlanet searchPlanet = new SearchPlanet(this);	
+//		searchPlanet.setVisible(true);
+	}
+	
+	public String convertToMultiline(String orig) {
+	    return "<html>" + orig.replaceAll("\n", "<br>");
+	}
+	
+	public void launchCrewMemberSelection() {
+		MemberSelection memberSelection = new MemberSelection(this);
+		
+	}
+
+
+	public void closeMemberSelection(MemberSelection memberSelection) {
+		memberSelection.closeWindow();
 	}
 }

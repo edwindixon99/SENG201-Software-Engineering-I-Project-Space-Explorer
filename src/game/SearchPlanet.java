@@ -2,14 +2,14 @@ package game;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class SearchPlanet extends JFrame {
-
-	private JPanel contentPane;
 	private GameEnvironment game;
 
 	/**
@@ -35,10 +35,15 @@ public class SearchPlanet extends JFrame {
 	public SearchPlanet(GameEnvironment game) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 703, 564);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		getContentPane().setLayout(null);
+		
+		
+		
+		
+		JButton goBackBttn = new JButton("Go Back");
+		goBackBttn.setFont(new Font("Dialog", Font.BOLD, 15));
+		goBackBttn.setBounds(433, 458, 177, 35);
+		getContentPane().add(goBackBttn);
 	}
 
 }

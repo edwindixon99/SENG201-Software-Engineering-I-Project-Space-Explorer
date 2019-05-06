@@ -134,7 +134,7 @@ public class MainWindow {
 		label.setBounds(20, 288, 158, 142);
 		frame.getContentPane().add(label);
 		if (game.getCrew1().getCrewMemberList().size() >= 1) {
-			label.setText(convertToMultiline(game.getCrew1().getCrewMemberList().get(0).viewStatus()));
+			label.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(0).viewStatus()));
 		}
 		
 		JLabel label_1 = new JLabel("");
@@ -142,7 +142,7 @@ public class MainWindow {
 		label_1.setBounds(188, 288, 155, 142);
 		frame.getContentPane().add(label_1);
 		if (game.getCrew1().getCrewMemberList().size() >= 2) {
-			label_1.setText(convertToMultiline(game.getCrew1().getCrewMemberList().get(1).viewStatus()));
+			label_1.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(1).viewStatus()));
 		}
 		
 		JLabel label_2 = new JLabel("");
@@ -151,7 +151,7 @@ public class MainWindow {
 		label_2.setBounds(353, 288, 155, 142);
 		frame.getContentPane().add(label_2);
 		if (game.getCrew1().getCrewMemberList().size() >= 3) {
-			label_2.setText(convertToMultiline(game.getCrew1().getCrewMemberList().get(2).viewStatus()));
+			label_2.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(2).viewStatus()));
 		}
 		
 		JLabel label_3 = new JLabel("");
@@ -161,10 +161,10 @@ public class MainWindow {
 		label_3.setBounds(500, 288, 158, 142);
 		frame.getContentPane().add(label_3);
 		if (game.getCrew1().getCrewMemberList().size() >= 4) {
-			label_3.setText(convertToMultiline(game.getCrew1().getCrewMemberList().get(3).viewStatus()));
+			label_3.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(3).viewStatus()));
 		}
 		
-		JLabel label_4 = new JLabel(convertToMultiline(SpaceShip.checkShipShield()));
+		JLabel label_4 = new JLabel(game.convertToMultiline(SpaceShip.checkShipShield()));
 		label_4.setForeground(Color.BLACK);
 		label_4.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label_4.setBackground(Color.WHITE);
@@ -194,8 +194,6 @@ public class MainWindow {
 	}
 	
 	
-	public static String convertToMultiline(String orig) {
-	    return "<html>" + orig.replaceAll("\n", "<br>");
-	}
+
 }
 
