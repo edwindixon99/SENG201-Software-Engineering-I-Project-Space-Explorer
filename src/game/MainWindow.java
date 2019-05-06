@@ -93,6 +93,7 @@ public class MainWindow {
 		frame.getContentPane().add(SearchPlanetbtn);
 		SearchPlanetbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				game.setActTaken("search");
 				searchPlanet();
 			}
 		});
@@ -117,7 +118,7 @@ public class MainWindow {
 		frame.getContentPane().add(btnRepairShip);
 		
 		System.out.println(game);
-		JLabel lblDaysLeft = new JLabel("Days left: " + game.getCrew1().getDays());
+		JLabel lblDaysLeft = new JLabel("Day: " + game.getCrew1().getDays());
 		lblDaysLeft.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lblDaysLeft.setBounds(20, 204, 107, 27);
 		frame.getContentPane().add(lblDaysLeft);
@@ -196,4 +197,3 @@ public class MainWindow {
 	
 
 }
-
