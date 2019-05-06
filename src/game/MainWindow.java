@@ -1,5 +1,6 @@
 package game;
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -15,7 +16,7 @@ import javax.swing.JLabel;
 import java.awt.Color;
 
 
-public class MainWindow extends GameEnvironment{
+public class MainWindow {
 	private JFrame frame;
 	private GameEnvironment game;
 
@@ -26,7 +27,8 @@ public class MainWindow extends GameEnvironment{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow window = new MainWindow();
+					GameEnvironment game = new GameEnvironment();
+					MainWindow window = new MainWindow(game);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,9 +43,7 @@ public class MainWindow extends GameEnvironment{
 	 * @return 
 	 * @return 
 	 */
-	public MainWindow() {	
-		initialize();
-	}
+
 	public MainWindow(GameEnvironment gameEnvironment) { 
 	game = gameEnvironment;
 	initialize();
@@ -116,12 +116,13 @@ public class MainWindow extends GameEnvironment{
 		btnRepairShip.setBounds(20, 95, 177, 35);
 		frame.getContentPane().add(btnRepairShip);
 		
-		JLabel lblDaysLeft = new JLabel("Days left: " + Crew.getDays());
+		System.out.println(game);
+		JLabel lblDaysLeft = new JLabel("Days left: " + game.getCrew1().getDays());
 		lblDaysLeft.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lblDaysLeft.setBounds(20, 204, 107, 27);
 		frame.getContentPane().add(lblDaysLeft);
 		
-		JLabel lblRemainingPieces = new JLabel("Remaining pieces: " + Crew.getRequiredPieces());
+		JLabel lblRemainingPieces = new JLabel("Remaining pieces: " + game.getCrew1().getRequiredPieces());
 		lblRemainingPieces.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lblRemainingPieces.setBounds(20, 242, 158, 35);
 		frame.getContentPane().add(lblRemainingPieces);
@@ -132,16 +133,16 @@ public class MainWindow extends GameEnvironment{
 		label.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label.setBounds(20, 288, 158, 142);
 		frame.getContentPane().add(label);
-		if (Crew.getCrewMemberList().size() >= 1) {
-			label.setText(convertToMultiline(Crew.getCrewMemberList().get(0).viewStatus()));
+		if (game.getCrew1().getCrewMemberList().size() >= 1) {
+			label.setText(convertToMultiline(game.getCrew1().getCrewMemberList().get(0).viewStatus()));
 		}
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label_1.setBounds(188, 288, 155, 142);
 		frame.getContentPane().add(label_1);
-		if (Crew.getCrewMemberList().size() >= 2) {
-			label_1.setText(convertToMultiline(Crew.getCrewMemberList().get(1).viewStatus()));
+		if (game.getCrew1().getCrewMemberList().size() >= 2) {
+			label_1.setText(convertToMultiline(game.getCrew1().getCrewMemberList().get(1).viewStatus()));
 		}
 		
 		JLabel label_2 = new JLabel("");
@@ -149,8 +150,8 @@ public class MainWindow extends GameEnvironment{
 		label_2.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label_2.setBounds(353, 288, 155, 142);
 		frame.getContentPane().add(label_2);
-		if (Crew.getCrewMemberList().size() >= 3) {
-			label_2.setText(convertToMultiline(Crew.getCrewMemberList().get(2).viewStatus()));
+		if (game.getCrew1().getCrewMemberList().size() >= 3) {
+			label_2.setText(convertToMultiline(game.getCrew1().getCrewMemberList().get(2).viewStatus()));
 		}
 		
 		JLabel label_3 = new JLabel("");
@@ -159,8 +160,8 @@ public class MainWindow extends GameEnvironment{
 		label_3.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label_3.setBounds(500, 288, 158, 142);
 		frame.getContentPane().add(label_3);
-		if (Crew.getCrewMemberList().size() >= 4) {
-			label_3.setText(convertToMultiline(Crew.getCrewMemberList().get(3).viewStatus()));
+		if (game.getCrew1().getCrewMemberList().size() >= 4) {
+			label_3.setText(convertToMultiline(game.getCrew1().getCrewMemberList().get(3).viewStatus()));
 		}
 		
 		JLabel label_4 = new JLabel(convertToMultiline(SpaceShip.checkShipShield()));
@@ -180,7 +181,21 @@ public class MainWindow extends GameEnvironment{
 			}
 		});
 	}
+	
+	private void nextDay() {
+		game.nextDay();
+		game.closeMainScreen(this);
+		game.launchMainScreen();
+	}
+	
+	private void searchPlanet() {
+		game.closeMainScreen(this);
+		game.launchsearchPlanet();
+	}
+	
+	
 	public static String convertToMultiline(String orig) {
 	    return "<html>" + orig.replaceAll("\n", "<br>");
 	}
 }
+

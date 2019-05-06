@@ -19,7 +19,7 @@ class GameEnvironment {
 	private boolean gameIsOver = false; 
 	private int days;
 	private RandomEvents random = new RandomEvents();  
-	public static Crew crew1 = new Crew(); 
+	private Crew crew1 = new Crew(); 
 	public SpaceShip ship = new SpaceShip();
 	private SpaceOutpost outpost = new SpaceOutpost();
 	private Scanner input0 = new Scanner(System.in);
@@ -117,6 +117,12 @@ class GameEnvironment {
 		days = getValidInput(input, 3, 10, question);
 		return days;
 	}
+	 
+	public void setDays(int day) {
+		this.days = day;
+	}
+	
+	
 	public int getNumCrew(Scanner input) {
 		int numCrew = 0;
 		String question = "How many crew Members would you like?";
@@ -700,9 +706,12 @@ class GameEnvironment {
 		main.closeWindow();
 	}
 
-
-	  public void launchSetupWindow() { 
+	public void launchSetupWindow() { 
 		  SetupWindow setup = new SetupWindow(this); 
 	 }
 
+	public void launchsearchPlanet() {
+		SearchPlanet searchPlanet = new SearchPlanet(this);	
+		searchPlanet.setVisible(true);
+	}
 }
