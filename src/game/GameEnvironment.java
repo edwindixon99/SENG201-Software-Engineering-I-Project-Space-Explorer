@@ -15,7 +15,7 @@ import java.util.TreeSet;
 
 class GameEnvironment {
 	private int planetPieces = 1;
-	private String message;
+	private String message = "";
 	private String actionTaken;
 	private int daysProgressedThrough = 1;
 	private boolean gameIsOver = false; 
@@ -472,10 +472,7 @@ class GameEnvironment {
          				doneShopping = true;
          			}
      			}
-     		}
-     		if (postNumber == 3) {
-     			leaveOutPost = true;
-     		}
+
  		}
      public String viewOwnedFood() {
     	String finalString = "";
@@ -724,6 +721,17 @@ class GameEnvironment {
 	public void launchSpaceOutpost() {
 		SpaceOutpostWindow outpost = new SpaceOutpostWindow(this);		
 	}
+
+
+	public void closeItemsForSale(ItemsForSale itemsForSale) {
+		itemsForSale.closeWindow();
+	}
+	public void launchItemsForSale() {
+		ItemsForSale itemsForSale = new ItemsForSale(this);
+		itemsForSale.setVisible(true);
+	}
+
+	
 
 
 

@@ -59,6 +59,11 @@ public class SpaceOutpostWindow {
 		frame.getContentPane().add(bttnViewOwned);
 		
 		JButton btnViewForSale = new JButton("View Items for sale");
+		btnViewForSale.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				launchViewItemsForSale();
+			}
+		});
 		btnViewForSale.setBounds(330, 307, 123, 51);
 		frame.getContentPane().add(btnViewForSale);
 		
@@ -71,6 +76,13 @@ public class SpaceOutpostWindow {
 		btnGoBack.setBounds(597, 307, 123, 51);
 		frame.getContentPane().add(btnGoBack);
 	}
+	private void launchViewItemsForSale() {
+		game.closeSpaceOutpost(this);
+		game.launchItemsForSale();
+		
+		
+	}
+
 	private void goBack() {
 		game.closeSpaceOutpost(this);
 		game.launchMainScreen();

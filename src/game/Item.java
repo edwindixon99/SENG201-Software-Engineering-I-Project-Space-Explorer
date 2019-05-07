@@ -10,8 +10,6 @@ public class Item {
 	 * name
 	 * price
 	 */
-	
-	
 	public String getName() {
 		return name;
 	}

@@ -15,29 +15,6 @@ public class SpaceOutpost {
 	 * view(Item item)
 	 */
 
-	public void view(Item item, int i){
-		String name = item.getName();
-		double price = item.getPrice();
-		if (item instanceof Food) {                    // Creates a println for Food
-			Food foodItem = (Food) item;				// casts item to food to use Food's methods
-			int hungerRemoved = foodItem.getHungerRemoved();
-			System.out.println(i + ". Food: " + name + "\nPrice: " + Double.toString(price) + "\nRemoved Hunger: " +  Integer.toString(hungerRemoved) + "\n");
-		}
-		else {											// Creates a println for MedicalItem
-			MedicalItem medicalItem = (MedicalItem) item;		// casts medicalItem to food to use MedicalItems's methods
-			int healingAmount = medicalItem.getHealingAmount();
-			String spacePlagueCure = "No";
-			if (medicalItem.isSpacePlagueCure()) {
-				spacePlagueCure = "Yes";
-			}
-			System.out.println(i + ". Medicine: " + name + "\nPrice: " + Double.toString(price) + "\nHealing Amount: " +  Integer.toString(healingAmount) + "\nSpace Plague Cure: " + spacePlagueCure + "\n");
-		}
-		
-	}
-	
-	
-	
-	
 	
 	/*
 	 * Getter and Setters for 

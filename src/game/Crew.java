@@ -17,18 +17,21 @@ public class Crew {
 	private int requiredPieces = (days * 2/3);
 	
 
-	public void buy(ArrayList<Food> foodList, ArrayList<MedicalItem> medList, Item item) {
+	public String buy(ArrayList<Food> foodList, ArrayList<MedicalItem> medList, Item item) {
+		String finalString = "";
 		if (item.getPrice() > getMoney()) {
-			System.out.println("Not enough money for purchase");
+			finalString += "Not enough money for purchase";
 		}else {
 			setMoney(getMoney() - item.getPrice());
-			System.out.println("Successful Purchase of " + item.getName());
+			finalString += "Successful Purchase of " + item.getName();
 			if (item instanceof Food) {
 				buyFood(foodList, (Food) item);  		// casts item to food then calls buyFood() to add to foodList
 			}else {
 				buyMedicalItem(medList, (MedicalItem) item); 		// casts item to medicalItem "" "" "" "" "" medicalItemList
-			}
-	}}
+			}		
+		}
+		return finalString;
+	}
 	
 	
 	public void buyFood(ArrayList<Food> foodList, Food item) {   

@@ -10,6 +10,10 @@ public class Food extends Item{
 		setPrice(tempPrice);
 	}
 	
+	public String toString() {	
+		return "Food: " + getName() + "\nPrice: " + Double.toString(getPrice()) + "\nRemoved Hunger: " +  Integer.toString(hungerRemoved) + "\n\n	Buy " + getName();
+		}
+	
 	
 	
 	

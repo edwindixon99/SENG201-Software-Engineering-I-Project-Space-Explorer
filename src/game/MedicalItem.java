@@ -13,6 +13,13 @@ public class MedicalItem extends Item {
 		setPrice(tempPrice);
 	}
 	
+	public String toString() {					
+		String spacePlagueCure = "No";
+		if (isSpacePlagueCure()) {
+			spacePlagueCure = "Yes";
+		}
+		return "Medicine: " + getName() + "\nPrice: " + Double.toString(getPrice()) + "\nHealing Amount: " +  Integer.toString(healingAmount) + "\nSpace Plague Cure: " + spacePlagueCure + "\n\n	Buy " + getName();
+	}
 	
 	
 	
