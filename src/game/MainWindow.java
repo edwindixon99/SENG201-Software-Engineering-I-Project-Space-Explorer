@@ -1,3 +1,5 @@
+package game;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -91,7 +93,7 @@ public class MainWindow {
 		SearchPlanetbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				game.setActTaken("search");
-				searchPlanet();
+				chooseMember();
 			}
 		});
 		
@@ -110,15 +112,16 @@ public class MainWindow {
 		frame.getContentPane().add(btnVisitOutpost);
 		
 		JButton btnRepairShip = new JButton("Repair Ship");
+		btnRepairShip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setActTaken("Repairship");
+				chooseMember();
+			}
+		});
 		btnRepairShip.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnRepairShip.setBounds(20, 95, 177, 35);
 		frame.getContentPane().add(btnRepairShip);
-		btnRepairShip.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				game.setActTaken("Repairship");
-				repairShip();
-			}
-		});
+
 		
 		System.out.println(game);
 		JLabel lblDaysLeft = new JLabel("Day: " + game.getCrew1().getDays());
@@ -168,7 +171,7 @@ public class MainWindow {
 			label_3.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(3).viewStatus()));
 		}
 		
-		JLabel label_4 = new JLabel(game.convertToMultiline(SpaceShip.checkShipShield()));
+		JLabel label_4 = new JLabel(game.convertToMultiline(game.getShip().checkShipShield()));
 		label_4.setForeground(Color.BLACK);
 		label_4.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label_4.setBackground(Color.WHITE);
@@ -192,14 +195,14 @@ public class MainWindow {
 		game.launchMainScreen();
 	}
 	
-	private void searchPlanet() {
+	private void chooseMember() {
 		game.closeMainScreen(this);
-		game.launchsearchPlanet();
+		game.launchMemberSelection();
 	}
 	
 	private void repairShip() {
 		game.closeMainScreen(this);
-		game.launchRepairShip();
+		game.launchMemberSelection();
 	}
 	
 	

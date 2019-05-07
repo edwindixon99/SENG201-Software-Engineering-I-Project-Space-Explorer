@@ -1,8 +1,8 @@
 package game;
 
 public class SpaceShip {
-	private static int shieldHealth = 100;
-	private static String shipName;
+	private int shieldHealth = 100;
+	private String shipName;
 	
 	/* Getter and Setter for 
 	 * shieldHealth, shipName
@@ -15,7 +15,7 @@ public class SpaceShip {
 	public void setShieldHealth(int shieldHealth) {
 		this.shieldHealth = shieldHealth;
 	}
-	public static String getShipName(){
+	public String getShipName(){
 		return shipName;
 	}
 	public void setShipName(String name) {
@@ -27,7 +27,7 @@ public class SpaceShip {
 			shieldHealth = 100;
 		}
 	}
-	public static String checkShipShield() {
+	public String checkShipShield() {
 		System.out.println(getShipName());
 		return ("\n" + shipName + "'s status:\nShield: " + shieldHealth + "\n");
 	}

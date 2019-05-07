@@ -1,3 +1,5 @@
+package game;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +15,7 @@ import java.util.TreeSet;
 
 class GameEnvironment {
 	private int planetPieces = 1;
-	private String searchMessage;
+	private String message;
 	private String actionTaken;
 	private int daysProgressedThrough = 1;
 	private boolean gameIsOver = false; 
@@ -21,10 +23,9 @@ class GameEnvironment {
 	private CrewMember pickedMember;
 	private RandomEvents random = new RandomEvents();  
 	private Crew crew1 = new Crew(); 
-	public SpaceShip ship = new SpaceShip();
+	private SpaceShip ship = new SpaceShip();
 	private SpaceOutpost outpost = new SpaceOutpost();
 	private Scanner input0 = new Scanner(System.in);
-	private String repairMessage = "xgdhgfdhggfngdjhtfhdfhjf";
 
 	public GameEnvironment() {
 	}
@@ -34,7 +35,8 @@ class GameEnvironment {
 		GameEnvironment game = new GameEnvironment();
 		Crew crew1 = game.getCrew1();
 		System.out.println(crew1);
-		System.out.println();
+		SpaceShip ship = game.getShip();
+		ship.setShieldHealth(10);
 		game.launchSetupWindow();
 	    game.playGame();
 	 }
@@ -270,67 +272,62 @@ class GameEnvironment {
  			}
  		}
      }
-	 public void searchPlanet(CrewMember member) {
-     	boolean doneSearch = false;
- 		int i = 0;
- 		while (doneSearch == false){
- 			if (planetPieces == 0) {
- 				setSearchMessage("All the spaceship pieces on this planet have been found, your crew will need to fly to another planet to find more.\n");
- 				doneSearch = true;
- 			}
- 			else {
- 				CrewMember memSearch;
-         			memSearch = member;
-         			if (memSearch.getActionCounter() == 0) {
-         				System.out.println("This crewmember does not have enough action points to go searching\n");
-         				doneSearch = true;
+	 public String searchPlanet(CrewMember member) {
+		if (planetPieces == 0) {
+			return "All the spaceship pieces on this planet have been found, your crew will need to fly to another planet to find more.\n";
+		}
+		else {
+			CrewMember memSearch;
+     			memSearch = member;
+     			if (memSearch.getActionCounter() == 0) {
+     				return "This crewmember does not have enough action points to go searching";
+     			}
+     			else {
+     				memSearch.setActionCounter(memSearch.getActionCounter() - 1);
+     				int search = memSearch.search(memSearch);
+         			if (search == 1) {
+         				crew1.setMoney((crew1.getMoney() + 100));
+         				return "You have found $100.";
          			}
-         			else {
-         				int search = memSearch.search(memSearch);
-             			if (search == 1) {
-             				crew1.setMoney((crew1.getMoney() + 100));
-             				setSearchMessage("You have found $100.");
-             			}
-             			if (search == 2) {
-             				crew1.setNumPieces((crew1.getNumPieces() + 1));
-             				planetPieces -= 1;
-             				setSearchMessage("You have found one of the missing pieces.\n");
-             			}
-             			if (search == 3) {
-             				Random rand = new Random();
-             				ArrayList<Food> foodList = crew1.getFoodItems();
-             				ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
-             				int randItem = rand.nextInt(outpost.getItemsForSale().size());
-             				setSearchMessage("You have found a " + (outpost.getItemsForSale().get(randItem)).getName() + "\n");
-             				if ((outpost.getItemsForSale().get(randItem)) instanceof Food) {
-                 				foodList.add((Food) outpost.getItemsForSale().get(randItem));
-             				}
-             				else {
-                 				medicalList.add((MedicalItem) outpost.getItemsForSale().get(randItem));
-
-             				}
-             			}
-             			doneSearch = true;
-             			memSearch.setActionCounter(memSearch.getActionCounter() - 1);
+         			if (search == 2) {
+         				crew1.setNumPieces((crew1.getNumPieces() + 1));
+         				planetPieces -= 1;
+         				return "You have found one of the missing pieces.";
          			}
- 			}
- 		}
+         			if (search == 3) {
+         				Random rand = new Random();
+         				ArrayList<Food> foodList = crew1.getFoodItems();
+         				ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
+         				int randItem = rand.nextInt(outpost.getItemsForSale().size());
+         				if ((outpost.getItemsForSale().get(randItem)) instanceof Food) {
+             				foodList.add((Food) outpost.getItemsForSale().get(randItem));
+         				}
+         				else {
+             				medicalList.add((MedicalItem) outpost.getItemsForSale().get(randItem));
+         				}
+         				return "You have found a " + (outpost.getItemsForSale().get(randItem)).getName();
+         			}
+     			}
+		}
+		return "";
      }
-     public void repairShip(CrewMember memRepair) {
+     public String repairShip(CrewMember memRepair) {
+    	if (ship.getShieldHealth() == 100) {
+    		return ship.getShipName() + " already has full shield!";
+    	}
 	 	if (memRepair.getActionCounter() == 0){
-	 		setRepairMessage(memRepair.getName() + " doesn't have enough action points to repair the ship.\n");
+	 		return memRepair.getName() + " doesn't have enough action points to repair " + ship.getShipName();
 		}
 		else {
 			if (memRepair instanceof Type6) {
 				ship.repairShip(100);
          		memRepair.setActionCounter(memRepair.getActionCounter() - 1);
-         		setRepairMessage(memRepair.getName() + " has fully repaired the ships shield!\n");
+         		return memRepair.getName() + " has fully repaired the " + ship.getShipName() + "\'s shield!";
 			}
 			else {
  				ship.repairShip(40);
          		memRepair.setActionCounter(memRepair.getActionCounter() - 1);
-         		setRepairMessage(memRepair.getName() + " has repaired the ship by 40.\n The ships shield is now at " + ship.getShieldHealth());
-         		System.out.println(repairMessage);
+         		return memRepair.getName() + " has repaired the ship by 40. The " + ship.getShipName() + "\'s shield is now at " + ship.getShieldHealth();
 			}
 		}
      }
@@ -652,18 +649,13 @@ class GameEnvironment {
     public void setPickedMember(CrewMember pickedMember1) {
     	pickedMember = pickedMember1;
     }
-    public void setSearchMessage(String message) {
-    	searchMessage = message;
+    public void setMessage(String message) {
+    	this.message = message;
     }
-    public String getSearchMessage() {
-    	return searchMessage;
+    public String getMessage() {
+    	return message;
     }
-    public void setRepairMessage(String message) {
-    	repairMessage = message;
-    }
-    public String getRepairMessage() {
-    	return repairMessage;
-    }
+
     
     
 	public Crew getCrew1() {
@@ -693,11 +685,9 @@ class GameEnvironment {
 		  SetupWindow setup = new SetupWindow(this); 
 	 }
 
-	public void launchsearchPlanet() {
+	public void launchMemberSelection() {
 		MemberSelection memberSelection = new MemberSelection(this);
 		memberSelection.setVisible(true);
-//		SearchPlanet searchPlanet = new SearchPlanet(this);	
-//		searchPlanet.setVisible(true);
 	}
 	
 	public String convertToMultiline(String orig) {
@@ -706,7 +696,7 @@ class GameEnvironment {
 	
 	public void launchCrewMemberSelection() {
 		MemberSelection memberSelection = new MemberSelection(this);
-		
+		memberSelection.setVisible(true);
 	}
 
 
@@ -717,12 +707,6 @@ class GameEnvironment {
 		  SearchPlanet search = new SearchPlanet(this);
 		  search.setVisible(true);
 	 }
-
-
-	public void launchRepairShip() {
-		MemberSelection memberSelection = new MemberSelection(this);
-		memberSelection.setVisible(true);
-	}
 	public void launchRepairWindow() {
 		SearchPlanet search = new SearchPlanet(this);
 		 search.setVisible(true);

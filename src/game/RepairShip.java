@@ -1,3 +1,6 @@
+package game;
+
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -38,10 +41,6 @@ public class RepairShip extends JFrame {
 		setBounds(100, 100, 853, 219);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(game.getRepairMessage());
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(12, 12, 817, 106);
-		getContentPane().add(lblNewLabel);
 		
 		JButton btnContinue = new JButton("Continue");
 		btnContinue.setFont(new Font("Dialog", Font.BOLD, 15));
@@ -51,8 +50,12 @@ public class RepairShip extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				game.launchMainScreen();
+		JLabel lblNewLabel = new JLabel(game.getMessage());
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(12, 12, 817, 106);
+		getContentPane().add(lblNewLabel);
+
 			}
 		});
 	}
-
 }

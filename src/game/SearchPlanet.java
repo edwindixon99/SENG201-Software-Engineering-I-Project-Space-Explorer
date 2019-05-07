@@ -40,7 +40,7 @@ public class SearchPlanet extends JFrame {
 		setBounds(100, 100, 853, 219);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(game.getSearchMessage());
+		JLabel lblNewLabel = new JLabel(game.getMessage());
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setBounds(10, 11, 817, 60);
 		getContentPane().add(lblNewLabel);
@@ -51,6 +51,7 @@ public class SearchPlanet extends JFrame {
 		getContentPane().add(btnContinue);
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				dispose();
 				game.launchMainScreen();
 			}
 		});

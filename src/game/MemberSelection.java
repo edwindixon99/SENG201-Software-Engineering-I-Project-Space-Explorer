@@ -1,3 +1,5 @@
+package game;
+
 
 
 import java.awt.BorderLayout;
@@ -195,11 +197,13 @@ public class MemberSelection extends JFrame {
 		btnconfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (game.getActTaken() == "search") {
-					game.searchPlanet(game.getPickedMember());
+					String message = game.searchPlanet(game.getPickedMember());
+					game.setMessage(message);
 					goSearchWindow();
 				}
-				if(game.getActTaken() == "Repair") {
-					game.repairShip(game.getPickedMember());
+				if(game.getActTaken() == "Repairship") {
+					String message = game.repairShip(game.getPickedMember());
+					game.setMessage(message);
 					goRepairShip();
 				}
 				
