@@ -26,6 +26,7 @@ class GameEnvironment {
 	private SpaceShip ship = new SpaceShip();
 	private SpaceOutpost outpost = new SpaceOutpost();
 	private Scanner input0 = new Scanner(System.in);
+	private String secondMessage;
 
 	public GameEnvironment() {
 	}
@@ -36,7 +37,6 @@ class GameEnvironment {
 		Crew crew1 = game.getCrew1();
 		System.out.println(crew1);
 		SpaceShip ship = game.getShip();
-		ship.setShieldHealth(10);
 		game.launchSetupWindow();
 	    game.playGame();
 	 }
@@ -99,7 +99,7 @@ class GameEnvironment {
         	 * this allows the player to fly to a new planet, but only if two crew members do so
         	 */
         	if (number == 9) {
-        		flyToNewPlanet();
+//        		flyToNewPlanet();
 
         	}
         	if (number == 10) {
@@ -225,52 +225,33 @@ class GameEnvironment {
 	}
 	}
 
-	 public void flyToNewPlanet() {
-		ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
-		boolean donePilot = false;
- 		int i = 0;
- 		CrewMember memPilot;
- 		System.out.println("Pick the crew member you want to pilot the ship to the next planet.\n");
+	 public String flyToNewPlanet(CrewMember memPilot) {
+		String finalString = "";
  		ArrayList<CrewMember> pilotList = crew1.getPilotCount();
- 		for (CrewMember member: crewList) {
- 			i++;
- 			System.out.println(i + ". " + member.getName());
- 		}
- 		System.out.println((i + 1) + ". Go back to menu.\n");
- 		String question9 = "Pick the crew member you want to pilot the ship to the next planet.\n";
- 		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question9);	
- 		if (crewNum == (i+1)) {
- 			donePilot = true;
- 		}
- 		else {
- 			memPilot = crewList.get(crewNum - 1);
- 				if (memPilot.getActionCounter() == 0){
-     				System.out.println("This crew member does not have enough action points to pilot the ship!\n");
-     				donePilot = true;
-     			}
-     			else {
-         			if (memPilot instanceof Type4) {
-         				successfulFlight(memPilot, pilotList);
-         			}
-         			else {
-         				if (pilotList.contains(memPilot)) {
-     						System.out.println("This crew member is already piloting the ship, to reach another planet you need one more crew member to pilot with them\n");
-     						donePilot = true;
-         				}
-         				else {
-         					if (pilotList.size() == 1) {
-         						successfulFlight(memPilot, pilotList);
-         					}
-         					else {
-         						pilotList.add(memPilot);
-             					System.out.println("You now have one crew member ready to pilot the ship, but you'll need one more if you want to fly the ship to a new planet\n");
-             					memPilot.setActionCounter(memPilot.getActionCounter() - 1);
-             					donePilot = true;
-         					}
-         				}
-     				}	
+		if (memPilot.getActionCounter() == 0){
+			finalString += "This crew member does not have enough action points to pilot the ship!\n";
+		}
+		else {
+ 			if (memPilot instanceof Type4) {
+ 				finalString += successfulFlight(memPilot, pilotList);
  			}
- 		}
+ 			else {
+ 				if (pilotList.contains(memPilot)) {
+ 					finalString += "This crew member is already piloting the ship, to reach another planet you need one more crew member to pilot with them\n";
+ 				}
+ 				else {
+ 					if (pilotList.size() == 1) {
+ 						finalString += successfulFlight(memPilot, pilotList);
+ 					}
+ 					else {
+ 						pilotList.add(memPilot);
+ 						finalString += "You now have one crew member ready to pilot the ship, but you'll need one more if you want to fly the ship to a new planet\n";
+     					memPilot.setActionCounter(memPilot.getActionCounter() - 1);
+ 					}
+ 				}
+			}	
+		}
+ 		return finalString;
      }
 	 public String searchPlanet(CrewMember member) {
 		if (planetPieces == 0) {
@@ -436,44 +417,8 @@ class GameEnvironment {
      public void visitOutpost(boolean leaveOutPost) {
     	ArrayList<Food> foodList = crew1.getFoodItems();
     	ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
- 		while (leaveOutPost == false) {
-     		String question1 = ("Welcome to the space outpost, please choose what you would like to do: \n1. View owned items\n2. View Items for sale\n3. Go back\n");
-     		int postNumber = getValidInput(input0, 1, 3, question1);
-     		if (postNumber == 1) {
-     			if (foodList.isEmpty() == true) {
-     				System.out.println("You have no Food items\n");
-     			}
-     			else {
-     				TreeSet<String> stringFood;
-     				ArrayList<String> stringFoodList;
-     				stringFoodList = new ArrayList<String>();
-     				stringFood = new TreeSet<String>();
-     				for (Food food: foodList) {
-     					stringFood.add(food.getName());
-     					stringFoodList.add(food.getName());
-     				}
-     				System.out.println("Your Food items are:");
-     	  			for (String food: stringFood) {
-         				System.out.println(food + "(" + (Collections.frequency(stringFoodList, food)) + ")");	
-     	  			}
-     			}
-     			if (medicalList.isEmpty() == true) {
-     				System.out.println("You have no medical items\n");
-     			}
-     			else {
-     				TreeSet<String> stringMed;
-     				ArrayList<String> stringMedList;
-     				stringMedList = new ArrayList<String>();
-     				stringMed = new TreeSet<String>();
-     				for (MedicalItem med: medicalList) {
-     					stringMed.add(med.getName());
-     					stringMedList.add(med.getName());
-     				}
-     				System.out.println("Your medical items are:");
-     	  			for (String med: stringMed) {
-         				System.out.println(med + "(" + (Collections.frequency(stringMedList, med)) + ")");	
-     	  			}
-     			}
+ 		if (postNumber == 1) {
+
      		}
      		if (postNumber == 2) {
      			boolean doneShopping = false;
@@ -531,7 +476,52 @@ class GameEnvironment {
      		if (postNumber == 3) {
      			leaveOutPost = true;
      		}
- 		}}
+ 		}
+     public String viewOwnedFood() {
+    	String finalString = "";
+    	ArrayList<Food> foodList = crew1.getFoodItems();
+		if (foodList.isEmpty() == true) {
+			finalString += "You have no Food items\n";
+		}
+		else {
+			TreeSet<String> stringFood;
+			ArrayList<String> stringFoodList;
+			stringFoodList = new ArrayList<String>();
+			stringFood = new TreeSet<String>();
+			for (Food food: foodList) {
+				stringFood.add(food.getName());
+				stringFoodList.add(food.getName());
+			}
+			finalString += "Your Food items are:\n";
+  			for (String food: stringFood) {
+  				finalString += food + "(" + (Collections.frequency(stringFoodList, food)) + ")\n";	
+  			}
+		}
+		return finalString;
+     }
+     public String viewOwnedMedicalItems() {
+    	 String finalString = "";
+    	 ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
+    	 if (medicalList.isEmpty() == true) {
+ 			finalString += "You have no medical items\n";
+ 		}
+ 		else {
+ 			TreeSet<String> stringMed;
+ 			ArrayList<String> stringMedList;
+ 			stringMedList = new ArrayList<String>();
+ 			stringMed = new TreeSet<String>();
+ 			for (MedicalItem med: medicalList) {
+ 				stringMed.add(med.getName());
+ 				stringMedList.add(med.getName());
+ 			}
+ 			finalString += "Your medical items are:";
+   			for (String med: stringMed) {
+   				finalString += med + "(" + (Collections.frequency(stringMedList, med)) + ")\n";	
+   			}
+ 		}
+    	 return finalString;
+     }
+
      public void eat() {
     	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
     	ArrayList<Food> foodList = crew1.getFoodItems();
@@ -616,24 +606,26 @@ class GameEnvironment {
 			random.spacePlague(crew1);
 		}
 		}
-     public void successfulFlight(CrewMember memPilot, ArrayList<CrewMember> pilotList) {
-			planetPieces = 1;
-			pilotList.clear();
-			memPilot.setActionCounter(memPilot.getActionCounter() - 1);
-			Random randAsteroid = new Random();
-			int n = randAsteroid.nextInt(2);
-			n += 1;
-			if (n == 1) {
-				random.asteroidBelt(ship);
-				if (ship.getShieldHealth() <= 0) {
-					System.out.println("The shield of your ship has depleted, and everyone on the crew has died!\n");
-					crew1.setNumPieces(100);
-					System.out.println("Game Over");
-				}
+     public String successfulFlight(CrewMember memPilot, ArrayList<CrewMember> pilotList) {
+    	String finalString = "";
+		planetPieces = 1;
+		pilotList.clear();
+		memPilot.setActionCounter(memPilot.getActionCounter() - 1);
+		Random randAsteroid = new Random();
+		int n = randAsteroid.nextInt(2);
+		n += 1;
+		if (n == 1) {
+			finalString += random.asteroidBelt(ship);
+			if (ship.getShieldHealth() <= 0) {
+				return "The shield of your ship has depleted, and everyone on the crew has died!";
+			}else {
+				finalString += "You have sucessfully piloted the ship to a new planet.\n";
 			}
-			else {
-				System.out.println("You have sucessfully piloted the ship to a new planet.\n");
-			}
+		}
+		else {
+			finalString += "You have sucessfully piloted the ship to a new planet.\n";
+		}
+		return finalString;
      }  
 
 
@@ -707,9 +699,32 @@ class GameEnvironment {
 		  SearchPlanet search = new SearchPlanet(this);
 		  search.setVisible(true);
 	 }
-	public void launchRepairWindow() {
-		SearchPlanet search = new SearchPlanet(this);
-		 search.setVisible(true);
+	public void launchFlyToNewPlanetWindow() {
+		FlyToNewPlanetWindow pilot = new FlyToNewPlanetWindow(this);
+		pilot.setVisible(true);
+	}
+
+
+	public void closeSpaceOutpost(SpaceOutpostWindow spaceOutpostWindow) {
+		spaceOutpostWindow.closeWindow();
 		
 	}
+
+
+	public String getsecondMessage() {
+		return secondMessage;
+	}
+
+
+	public void setsecondMessage(String secondMessage) {
+		this.secondMessage = secondMessage;
+	}
+
+
+	public void launchSpaceOutpost() {
+		SpaceOutpostWindow outpost = new SpaceOutpostWindow(this);		
+	}
+
+
+
 }

@@ -98,6 +98,12 @@ public class MainWindow {
 		});
 		
 		JButton btnPilotShip = new JButton("Pilot ship");
+		btnPilotShip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				game.setActTaken("Pilot");
+				chooseMember();
+			}
+		});
 		btnPilotShip.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnPilotShip.setBounds(224, 95, 177, 35);
 		frame.getContentPane().add(btnPilotShip);
@@ -105,6 +111,7 @@ public class MainWindow {
 		JButton btnVisitOutpost = new JButton("Visit Outpost");
 		btnVisitOutpost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				launchSpaceOutpost();
 			}
 		});
 		btnVisitOutpost.setFont(new Font("Dialog", Font.BOLD, 15));
@@ -189,6 +196,12 @@ public class MainWindow {
 		});
 	}
 	
+	private void launchSpaceOutpost() {
+		game.closeMainScreen(this);
+		game.launchSpaceOutpost();
+		
+	}
+
 	private void nextDay() {
 		game.nextDay();
 		game.closeMainScreen(this);
@@ -200,11 +213,4 @@ public class MainWindow {
 		game.launchMemberSelection();
 	}
 	
-	private void repairShip() {
-		game.closeMainScreen(this);
-		game.launchMemberSelection();
-	}
-	
-	
-
 }

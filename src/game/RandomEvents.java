@@ -55,7 +55,7 @@ public class RandomEvents {
 	}
 			
 			
-	public void asteroidBelt(SpaceShip ship) {
+	public String asteroidBelt(SpaceShip ship) {
 		int damageTaken;
 		if (ship.getShieldHealth() < 25) {
 			damageTaken = 10;
@@ -63,6 +63,6 @@ public class RandomEvents {
 			damageTaken = (int) (ship.getShieldHealth() / 2.5);
 		}
 		ship.setShieldHealth(ship.getShieldHealth() - damageTaken);
-		System.out.println("Space Ship " + ship.getShipName() + " is going through an Asteroid Belt!\n" + ship.getShipName() + " suffered " + Integer.toString(damageTaken) + " damage to the shield health\nThe shield health is now " + Integer.toString(ship.getShieldHealth()) + "%");
+		return "Space Ship " + ship.getShipName() + " is going through an Asteroid Belt!\n" + ship.getShipName() + " suffered " + Integer.toString(damageTaken) + " damage to the shield health\nThe shield health is now " + Integer.toString(ship.getShieldHealth()) + "%\n";
 	}
 }

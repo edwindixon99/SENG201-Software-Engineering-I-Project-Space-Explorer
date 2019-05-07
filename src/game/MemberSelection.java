@@ -204,9 +204,13 @@ public class MemberSelection extends JFrame {
 				if(game.getActTaken() == "Repairship") {
 					String message = game.repairShip(game.getPickedMember());
 					game.setMessage(message);
-					goRepairShip();
+					goSearchWindow(); 			// The two windows are same dimensions same layout only difference is the message.
 				}
-				
+				if(game.getActTaken() == "Pilot") {
+					String message = game.flyToNewPlanet(game.getPickedMember());
+					game.setMessage(message);
+					goPilotWindow();
+				}
 			}
 
 
@@ -214,9 +218,9 @@ public class MemberSelection extends JFrame {
 		btnconfirm.setBounds(20, 445, 190, 69);
 		frame.getContentPane().add(btnconfirm);
 	}
-	private void goRepairShip() {
+	private void goPilotWindow() {
 		game.closeMemberSelection(this);
-		game.launchRepairWindow();
+		game.launchFlyToNewPlanetWindow();
 		
 	}
 	private void goSearchWindow() {
