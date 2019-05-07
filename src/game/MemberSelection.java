@@ -60,6 +60,16 @@ public class MemberSelection extends JFrame {
 		frame.setBounds(100, 100, 703, 564);
 		frame.getContentPane().setLayout(null);
 		
+		
+		CrewMember member1 = game.getCrew1().getCrewMemberList().get(0);
+		
+		JButton btnconfirm = new JButton("Confirm");
+		btnconfirm.setEnabled(false);
+		JToggleButton btnNewButton = new JToggleButton(member1.getName());
+		JToggleButton btnMember20 = new JToggleButton("");
+		JToggleButton btnMember_1 = new JToggleButton("");
+		JToggleButton btnMember_2 = new JToggleButton("");
+		
 		JLabel label = new JLabel("");
 		label.setForeground(Color.BLACK);
 		label.setBackground(Color.WHITE);
@@ -67,14 +77,20 @@ public class MemberSelection extends JFrame {
 		label.setBounds(21, 140, 158, 142);
 		frame.getContentPane().add(label);
 		if (game.getCrew1().getCrewMemberList().size() >= 2) {
-			CrewMember member1 = game.getCrew1().getCrewMemberList().get(0);
 			label.setText(game.convertToMultiline(member1.viewStatus()));
-			JToggleButton btnNewButton = new JToggleButton(game.getCrew1().getCrewMemberList().get(0).getName());
 			btnNewButton.setBounds(21, 338, 147, 58);
 			frame.getContentPane().add(btnNewButton);
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					game.setPickedMember(member1);
+					if (!btnNewButton.isSelected()) {
+						btnconfirm.setEnabled(false);
+					}else {
+						btnMember20.setSelected(false);
+						btnMember_1.setSelected(false);
+						btnMember_2.setSelected(false);
+						btnconfirm.setEnabled(true);
+						game.setPickedMember(member1);
+					}
 				}
 			});
 		}
@@ -86,12 +102,21 @@ public class MemberSelection extends JFrame {
 		if (game.getCrew1().getCrewMemberList().size() >= 2) {
 			CrewMember member2 = game.getCrew1().getCrewMemberList().get(1);
 			label_1.setText(game.convertToMultiline(member2.viewStatus()));
-			JToggleButton btnMember20 = new JToggleButton(member2.getName());
+			btnMember20.setText(member2.getName());
+			btnMember20.setVisible(true);
 			btnMember20.setBounds(188, 338, 147, 58);
 			frame.getContentPane().add(btnMember20);
 			btnMember20.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					game.setPickedMember(member2);
+					if (!btnMember20.isSelected()) {
+						btnconfirm.setEnabled(false);
+					}else {
+						btnNewButton.setSelected(false);
+						btnMember_1.setSelected(false);
+						btnMember_2.setSelected(false);
+						btnconfirm.setEnabled(true);
+						game.setPickedMember(member2);
+					}
 				}
 			});
 		}
@@ -104,13 +129,22 @@ public class MemberSelection extends JFrame {
 		if (game.getCrew1().getCrewMemberList().size() >= 3) {
 			CrewMember member3 = game.getCrew1().getCrewMemberList().get(2);
 			label_2.setText(game.convertToMultiline(member3.viewStatus()));
-			JToggleButton btnMember_1 = new JToggleButton(member3.getName());
+			btnMember_1.setText(member3.getName());
+			btnMember_1.setVisible(true);
 			btnMember_1.setBounds(353, 338, 147, 58);
 			frame.getContentPane().add(btnMember_1);
 			btnMember_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					game.setPickedMember(member3);
+					if (!btnMember_1.isSelected()) {
+						btnconfirm.setEnabled(false);
+					}else {
+						btnNewButton.setSelected(false);
+						btnMember20.setSelected(false);
+						btnMember_2.setSelected(false);
+						btnconfirm.setEnabled(true);
+						game.setPickedMember(member3);
 				}
+			}
 			});
 		}
 		
@@ -123,13 +157,22 @@ public class MemberSelection extends JFrame {
 		if (game.getCrew1().getCrewMemberList().size() >= 4) {
 			CrewMember member4 = game.getCrew1().getCrewMemberList().get(3);
 			label_3.setText(game.convertToMultiline(member4.viewStatus()));
-			JToggleButton btnMember_2 = new JToggleButton(member4.getName());
+			btnMember_2.setText(member4.getName());
+			btnMember_2.setVisible(true);
 			btnMember_2.setBounds(510, 338, 147, 58);
 			frame.getContentPane().add(btnMember_2);
 			btnMember_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					game.setPickedMember(member4);
+					if (!btnMember_2.isSelected()) {
+						btnconfirm.setEnabled(false);
+					}else {
+						btnNewButton.setSelected(false);
+						btnMember20.setSelected(false);
+						btnMember_1.setSelected(false);
+						btnconfirm.setEnabled(true);
+						game.setPickedMember(member4);
 				}
+			}
 			});
 		}
 
@@ -148,13 +191,14 @@ public class MemberSelection extends JFrame {
 		btnGoBack.setBounds(456, 445, 190, 69);
 		frame.getContentPane().add(btnGoBack);
 		
-		JButton btnconfirm = new JButton("Confirm");
+		
 		btnconfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (game.getActTaken() == "search") {
 					game.searchPlanet(game.getPickedMember());
+					goSearchWindow();
 				}
-				goSearchWindow();
+				
 			}
 		});
 		btnconfirm.setBounds(20, 445, 190, 69);
