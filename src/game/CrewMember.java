@@ -1,4 +1,4 @@
-package game;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -101,7 +101,7 @@ public class CrewMember {
 	}
 	
 	public String viewStatus() {
-		return (name + "'s status: \nHealth level: " + healthLevel + "\nHunger level: " + hungerLevel + "\nTirdness: " + tiredness + "\nSpacePlague: " + spacePlague + "\nActions left: " + actionCounter + "\n");	
+		return (name + "'s status: \nHealth level: " + healthLevel + "\nHunger level: " + hungerLevel + "\nTiredness: " + tiredness + "\nSpacePlague: " + spacePlague + "\nActions left: " + actionCounter + "\n");	
 	}
 	
 	public boolean isDead() {

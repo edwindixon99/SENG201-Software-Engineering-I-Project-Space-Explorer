@@ -1,5 +1,3 @@
-package game;
-
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +24,7 @@ class GameEnvironment {
 	public SpaceShip ship = new SpaceShip();
 	private SpaceOutpost outpost = new SpaceOutpost();
 	private Scanner input0 = new Scanner(System.in);
+	private String repairMessage = "xgdhgfdhggfngdjhtfhdfhjf";
 
 	public GameEnvironment() {
 	}
@@ -83,7 +82,7 @@ class GameEnvironment {
         		heal();
         	}
         	/*
-        	 * This function allows a crew member to sleep, copletly replenishing their tirdness
+        	 * This function allows a crew member to sleep, completely replenishing their tiredness
         	 */
         	if (number == 6) {
         		sleep();
@@ -92,7 +91,7 @@ class GameEnvironment {
         	 * this function allows a crew member to repair the ships shield it max again
         	 */
         	if (number == 7) {
-        		repairShip();
+        		//repairShip();
         	}
         	/*
         	 * this allows the player to fly to a new planet, but only if two crew members do so
@@ -272,7 +271,6 @@ class GameEnvironment {
  		}
      }
 	 public void searchPlanet(CrewMember member) {
-		ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
      	boolean doneSearch = false;
  		int i = 0;
  		while (doneSearch == false){
@@ -318,46 +316,23 @@ class GameEnvironment {
  			}
  		}
      }
-     public void repairShip() {
-    	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
-     	boolean doneRepair = false;
- 		int i = 0;
- 		while (doneRepair == false){
- 			CrewMember memRepair;
-     		System.out.println("Pick the crew member you want to Repair the ship\n");
-     		for (CrewMember member: crewList) {
-     			i++;
-     			System.out.println(i + ". " + member.getName());
-     		}
-     		System.out.println((i + 1) + ". Go back to menu.\n");
-     		String question7 = "Pick the crew member you want to Repair the ship\n";
-     		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question7);	
-     		if (crewNum == (i+1)) {
-     			doneRepair = true;
-     		}
-     		else {
-     			memRepair = crewList.get(crewNum - 1);
-     			if (memRepair.getActionCounter() == 0){
-     				System.out.println("This crew member doesn't have enough action points to repair the ship.\n");
-     				doneRepair = true;
-     			}
-     			else {
-     				if (memRepair instanceof Type6) {
-     					ship.repairShip(100);
-                 		System.out.println(memRepair.getName() + " has fully repaired the ships shield!\n");
-                 		memRepair.setActionCounter(memRepair.getActionCounter() - 1);
-                 		doneRepair = true;
-     				}
-     				else {
-         				ship.repairShip(40);
-                 		System.out.println(memRepair.getName() + " has repaired the ship by 40.\n The ships shield is now at " + ship.getShieldHealth());
-                 		memRepair.setActionCounter(memRepair.getActionCounter() - 1);
-                 		doneRepair = true;
-     				}
-     			}
-
-     		}
- 		}
+     public void repairShip(CrewMember memRepair) {
+	 	if (memRepair.getActionCounter() == 0){
+	 		setRepairMessage(memRepair.getName() + " doesn't have enough action points to repair the ship.\n");
+		}
+		else {
+			if (memRepair instanceof Type6) {
+				ship.repairShip(100);
+         		memRepair.setActionCounter(memRepair.getActionCounter() - 1);
+         		setRepairMessage(memRepair.getName() + " has fully repaired the ships shield!\n");
+			}
+			else {
+ 				ship.repairShip(40);
+         		memRepair.setActionCounter(memRepair.getActionCounter() - 1);
+         		setRepairMessage(memRepair.getName() + " has repaired the ship by 40.\n The ships shield is now at " + ship.getShieldHealth());
+         		System.out.println(repairMessage);
+			}
+		}
      }
      public void sleep() {
     	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
@@ -683,6 +658,12 @@ class GameEnvironment {
     public String getSearchMessage() {
     	return searchMessage;
     }
+    public void setRepairMessage(String message) {
+    	repairMessage = message;
+    }
+    public String getRepairMessage() {
+    	return repairMessage;
+    }
     
     
 	public Crew getCrew1() {
@@ -736,4 +717,15 @@ class GameEnvironment {
 		  SearchPlanet search = new SearchPlanet(this);
 		  search.setVisible(true);
 	 }
+
+
+	public void launchRepairShip() {
+		MemberSelection memberSelection = new MemberSelection(this);
+		memberSelection.setVisible(true);
+	}
+	public void launchRepairWindow() {
+		SearchPlanet search = new SearchPlanet(this);
+		 search.setVisible(true);
+		
+	}
 }

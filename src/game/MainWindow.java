@@ -1,6 +1,3 @@
-package game;
-
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -116,6 +113,12 @@ public class MainWindow {
 		btnRepairShip.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnRepairShip.setBounds(20, 95, 177, 35);
 		frame.getContentPane().add(btnRepairShip);
+		btnRepairShip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				game.setActTaken("Repairship");
+				repairShip();
+			}
+		});
 		
 		System.out.println(game);
 		JLabel lblDaysLeft = new JLabel("Day: " + game.getCrew1().getDays());
@@ -192,6 +195,11 @@ public class MainWindow {
 	private void searchPlanet() {
 		game.closeMainScreen(this);
 		game.launchsearchPlanet();
+	}
+	
+	private void repairShip() {
+		game.closeMainScreen(this);
+		game.launchRepairShip();
 	}
 	
 	

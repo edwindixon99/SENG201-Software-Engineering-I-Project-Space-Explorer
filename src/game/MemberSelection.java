@@ -1,4 +1,4 @@
-package game;
+
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -198,11 +198,22 @@ public class MemberSelection extends JFrame {
 					game.searchPlanet(game.getPickedMember());
 					goSearchWindow();
 				}
+				if(game.getActTaken() == "Repair") {
+					game.repairShip(game.getPickedMember());
+					goRepairShip();
+				}
 				
 			}
+
+
 		});
 		btnconfirm.setBounds(20, 445, 190, 69);
 		frame.getContentPane().add(btnconfirm);
+	}
+	private void goRepairShip() {
+		game.closeMemberSelection(this);
+		game.launchRepairWindow();
+		
 	}
 	private void goSearchWindow() {
 		game.closeMemberSelection(this);
