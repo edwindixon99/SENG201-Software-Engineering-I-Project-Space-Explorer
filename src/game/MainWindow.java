@@ -86,6 +86,12 @@ public class MainWindow {
 		btnHeal.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnHeal.setBounds(20, 49, 177, 35);
 		frame.getContentPane().add(btnHeal);
+		btnHeal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				game.setActTaken("Heal");
+				chooseMember();
+			}
+		});
 		
 		JButton btnSleep = new JButton("Sleep");
 		btnSleep.setFont(new Font("Dialog", Font.BOLD, 15));
