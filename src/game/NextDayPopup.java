@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-public class SalePopup extends JFrame {
+public class NextDayPopup extends JFrame {
 
 	/**
 	 * Launch the application.
@@ -21,17 +21,16 @@ public class SalePopup extends JFrame {
  
 	}
 	private GameEnvironment game;
-	private ItemsForSale itemsForSale;
-
+	private MainWindow main;
 
 	/**
 	 * Create the frame.
 	 */
-	public SalePopup(GameEnvironment game, ItemsForSale itemsForSale) {
-		this.game = game;
-		this.itemsForSale = itemsForSale;
+	public NextDayPopup(GameEnvironment game, MainWindow main) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 200);
+		this.game = game;
+		this.main = main;
+		setBounds(100, 100, 600, 296);
 		getContentPane().setLayout(null);
 		
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -40,6 +39,8 @@ public class SalePopup extends JFrame {
 		    	close();
             }
         });
+
+		
 		
 		JButton btnClose = new JButton("Close");
 		btnClose.addActionListener(new ActionListener() {
@@ -47,19 +48,19 @@ public class SalePopup extends JFrame {
 				close();
 			}
 		});
-		btnClose.setBounds(203, 109, 119, 41);
+		btnClose.setBounds(206, 205, 119, 41);
 		getContentPane().add(btnClose);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setText(game.getMessage());
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(10, 11, 564, 83);
+		lblNewLabel.setText(game.convertToMultiline(game.getMessage()));
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel.setBounds(10, 11, 564, 183);
 		getContentPane().add(lblNewLabel);
 	}
 	private void close() {
 		dispose();
-		game.closeItemsForSale(itemsForSale);
-		game.launchItemsForSale();
+		game.closeMainScreen(main);
+		game.launchMainScreen();
 	}
 
 }

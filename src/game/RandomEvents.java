@@ -6,7 +6,8 @@ import java.util.Random;
 
 public class RandomEvents {
 	
-	public void alienPirates(Crew crew) {
+	public String alienPirates(Crew crew) {
+		String finalString = "";
 		Random rand = new Random();
 		ArrayList<Item> items = new ArrayList<Item>();
 		ArrayList<Food> foods = crew.getFoodItems();
@@ -23,15 +24,17 @@ public class RandomEvents {
 				medicalItems.remove(randomItem);
 				crew.setMedicalItems(medicalItems);
 			}
-		System.out.println("Alien Pirates have boared the ship!\nThey have stolen the following item: " + randomItem.getName() + "\nThe Alien Pirates have disembarked.");
+			finalString += "Alien Pirates have boared the ship!\nThey have stolen the following item: " + randomItem.getName() + "\nThe Alien Pirates have disembarked.";
 		}else {
-			System.out.println("Alien Pirates have boared the ship!\n\nThe alien Pirates have disembarked");  		// crew item lists empty
+			finalString += "Alien Pirates have boared the ship!\n\nThe alien Pirates have disembarked";  		// crew item lists empty
 			
 		}
+		return finalString;
 	}
 		
 		
-	public void spacePlague(Crew crew) {
+	public String spacePlague(Crew crew) {
+		String finalString = "";
 		Random rand = new Random();
 		int CrewMemberListSize = crew.getCrewMemberList().size();
 		if (crew.getCrewMemberList().size() > 0) {
@@ -41,17 +44,18 @@ public class RandomEvents {
 				randomNumbers.add(new Integer(i));
 			}
 			Collections.shuffle(randomNumbers);
-			System.out.println("Members of the crew has been affected by Space Plague! \nCrew members affected will remain sick and loses more health each day until they take medicine for the space plague."); // Change this 
+			finalString += "Members of the crew has been affected by Space Plague! \nCrew members affected will remain sick and loses more health each day until they take medicine for the space plague.\n"; // Change this 
 			for (int i = 0; i<=n; i++) {
 				CrewMember crewMember = crew.getCrewMemberList().get(i);
 				if (!crewMember.hasSpacePlague()) {
 					crewMember.setSpacePlague(true);  
 					int healthLost = crewMember.getHealthLevel() / 5;			// 5 could be changed to different number depending on amount health lost
 					crewMember.setHealthLevel(crewMember.getHealthLevel() - healthLost);
-					System.out.println(crewMember.getName() + " has lost " + Integer.toString(healthLost) + "HP and has contracted Space Plague!");
+					finalString +=  crewMember.getName() + " has lost " + Integer.toString(healthLost) + "HP and has contracted Space Plague!\n";
 				}
 			}
 		}
+		return finalString;
 	}
 			
 			

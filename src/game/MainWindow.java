@@ -18,6 +18,7 @@ import java.awt.Color;
 public class MainWindow {
 	private JFrame frame;
 	private GameEnvironment game;
+	private NextDayPopup popup;
 
 	/**
 	 * Launch the application.
@@ -209,7 +210,8 @@ public class MainWindow {
 		frame.getContentPane().add(btnNextDay);
 		btnNextDay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				nextDay();
+				game.setMessage(game.nextDay());
+				launchNextDayPopup();
 			}
 		});
 	}
@@ -219,16 +221,20 @@ public class MainWindow {
 		game.launchSpaceOutpost();
 		
 	}
-
-	private void nextDay() {
-		game.nextDay();
-		game.closeMainScreen(this);
-		game.launchMainScreen();
-	}
 	
 	private void chooseMember() {
 		game.closeMainScreen(this);
 		game.launchMemberSelection();
 	}
-	
+ 	
+	private void launchNextDayPopup() {
+		if (popup == null) {
+			popup = new NextDayPopup(game, this);
+		}
+		popup.dispose();
+		popup = new NextDayPopup(game, this);
+		popup.setVisible(true);
+		popup.setDefaultCloseOperation(popup.DISPOSE_ON_CLOSE);
+ 	}
+
 }

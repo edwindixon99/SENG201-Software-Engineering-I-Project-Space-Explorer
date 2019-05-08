@@ -165,14 +165,15 @@ class GameEnvironment {
      		System.out.println("Type 6:\nHunger degrade: high\nHealth degrade: medium\nTiredness Degrade: medium\nSpecial ability: Fully repair the ships shield\n");
      	}	
 
-     	public void nextDay() {
+     	public String nextDay() {
+     		String finalString = "";
      		crew1.setDays(crew1.getDays() + 1);
          	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
      		daysProgressedThrough += 1;
      		if (days < daysProgressedThrough) {
      			gameIsOver = true;
      			crew1.setNumPieces(100);
-     			System.out.println("Ran out of days!\nGame Over!");
+     			finalString += "Ran out of days!\nGame Over!";
      		}
      		for (CrewMember member: crewList) {
      			member.newDay();
@@ -185,7 +186,7 @@ class GameEnvironment {
      					if (crewList.size() == 0) {
      						gameIsOver = true;
      						crew1.setNumPieces(100);
-     						System.out.println("Ran out of crew members!\nGame Over!");
+     						finalString += "Ran out of crew members!\nGame Over!";
      				}
      			}
      			crew1.setCrewMemberList(crewList);
@@ -193,10 +194,11 @@ class GameEnvironment {
      		}
      		if (!gameIsOver) {
      			if (crewList.size() > 0) {
-     				getRandomEvent();
-     				System.out.println("\nYou have moved on to day " + Integer.toString(daysProgressedThrough) + "\n*********************************************************** Day " + Integer.toString(daysProgressedThrough) + " ***********************************************************");
+     				finalString += getRandomEvent();
+     				finalString += "\nYou have moved on to day " + Integer.toString(daysProgressedThrough);
      		}
      	}
+     		return finalString;
      	}
 
      	 public String flyToNewPlanet(CrewMember memPilot) {
@@ -390,16 +392,18 @@ class GameEnvironment {
         	  return (member.getName() + " has healed using " + med.getName());
           }
 
-          public void getRandomEvent() {
+          public String getRandomEvent() {
+        	String finalString = "";
          	Random dayEvent = new Random();
      		int n = dayEvent.nextInt(3);
      		n += 1;
      		if (n == 1) {
-     			random.alienPirates(crew1);	
+     			finalString += random.alienPirates(crew1);	
      		}
      		if (n == 2) {
-     			random.spacePlague(crew1);
+     			finalString += random.spacePlague(crew1);
      		}
+     		return finalString;
      		}
           public String successfulFlight(CrewMember memPilot, ArrayList<CrewMember> pilotList) {
          	String finalString = "";
@@ -543,7 +547,6 @@ class GameEnvironment {
      		itemsForSale.setVisible(true);
      	}
 
-     	
 
 
 

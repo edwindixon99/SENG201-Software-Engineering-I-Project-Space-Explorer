@@ -60,41 +60,89 @@ public class ItemsForSale extends JFrame {
 		
 		Food sandwich = new Food("Sandwich", 25, 12);
 		JButton button_5 = new JButton(game.convertToMultiline(sandwich.toString()));
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setMessage(game.getCrew1().buy(foodList, medicalList, sandwich));
+				itemBought();
+			}
+		});
 		button_5.setBounds(546, 91, 179, 135);
 		getContentPane().add(button_5);
 		
 		Food biscuit = new Food("Biscut", 10, 5);
 		JButton button_7 = new JButton(game.convertToMultiline(biscuit.toString()));
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setMessage(game.getCrew1().buy(foodList, medicalList, biscuit));
+				itemBought();
+			}
+		});
 		button_7.setBounds(546, 250, 179, 135);
 		getContentPane().add(button_7);
 		
 		Food pie = new Food("Pie", 30, 15);
 		JButton button_8 = new JButton(game.convertToMultiline(pie.toString()));
+		button_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setMessage(game.getCrew1().buy(foodList, medicalList, pie));
+				itemBought();
+			}
+		});
 		button_8.setBounds(298, 250, 179, 135);
 		getContentPane().add(button_8);
 		
 		MedicalItem spc = new MedicalItem("Space plague cure", true, 0, 15);
 		JButton button = new JButton(game.convertToMultiline(spc.toString()));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setMessage(game.getCrew1().buy(foodList, medicalList, spc));
+				itemBought();
+			}
+		});
 		button.setBounds(546, 415, 179, 135);
 		getContentPane().add(button);
 		
 		Food burger = new Food("Burger", 40, 20);
 		JButton button_2 = new JButton(game.convertToMultiline(burger.toString()));
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setMessage(game.getCrew1().buy(foodList, medicalList, burger));
+				itemBought();
+			}
+		});
 		button_2.setBounds(298, 91, 179, 135);
 		getContentPane().add(button_2);
 		
 		MedicalItem bHealing = new MedicalItem("Big Healing", false, 40, 20);
 		JButton button_3 = new JButton(game.convertToMultiline(bHealing.toString()));
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setMessage(game.getCrew1().buy(foodList, medicalList, bHealing));
+				itemBought();
+			}
+		});
 		button_3.setBounds(298, 415, 179, 135);
 		getContentPane().add(button_3);
 		
 		MedicalItem sHealing = new MedicalItem("SmallHealing", false, 10, 5);
 		JButton button_4 = new JButton(game.convertToMultiline(sHealing.toString()));
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setMessage(game.getCrew1().buy(foodList, medicalList, sHealing));
+				itemBought();
+			}
+		});
 		button_4.setBounds(46, 415, 179, 135);
 		getContentPane().add(button_4);
 		
 		Food pizza = new Food("Pizza", 50, 25);
 		JButton button_6 = new JButton(game.convertToMultiline(pizza.toString()));
+		button_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setMessage(game.getCrew1().buy(foodList, medicalList, pizza));
+				itemBought();
+			}
+		});
 		button_6.setBounds(46, 250, 179, 135);
 		getContentPane().add(button_6);
 		
