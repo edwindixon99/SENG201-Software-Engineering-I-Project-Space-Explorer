@@ -75,6 +75,12 @@ public class MainWindow {
 		btnEat.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnEat.setBounds(224, 49, 177, 35);
 		frame.getContentPane().add(btnEat);
+		btnEat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				game.setActTaken("Eat");
+				chooseMember();
+			}
+		});
 		
 		JButton btnHeal = new JButton("Heal");
 		btnHeal.setFont(new Font("Dialog", Font.BOLD, 15));
@@ -85,6 +91,12 @@ public class MainWindow {
 		btnSleep.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnSleep.setBounds(433, 49, 177, 35);
 		frame.getContentPane().add(btnSleep);
+		btnSleep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setActTaken("Sleep");
+				chooseMember();
+			}
+		});
 		
 		JButton SearchPlanetbtn = new JButton("Search Planet");
 		SearchPlanetbtn.setFont(new Font("Dialog", Font.BOLD, 15));
