@@ -227,6 +227,17 @@ public class MemberSelection extends JFrame {
 					game.setMessage(message);
 					goSearchWindow();
 				}
+				if(game.getActTaken() == "Heal") {
+					String message = game.heal(game.getPickedMember());
+					game.setMessage(message);
+					if (game.getMessage() == "") {
+						goHealWindow(game.getPickedMember());
+					}
+					else {
+						goSearchWindow();
+					}
+					
+				}
 			}
 
 
@@ -242,6 +253,10 @@ public class MemberSelection extends JFrame {
 	private void goEatWindow(CrewMember member) {
 		game.closeMemberSelection(this);
 		game.launchEatWindow(member);
+	}
+	private void goHealWindow(CrewMember member) {
+		game.closeMemberSelection(this);
+		game.launchHealWindow(member);
 	}
 	private void goSearchWindow() {
 		game.closeMemberSelection(this);
