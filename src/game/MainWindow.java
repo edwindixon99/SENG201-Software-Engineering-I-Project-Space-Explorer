@@ -211,11 +211,21 @@ public class MainWindow {
 		btnNextDay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				game.setMessage(game.nextDay());
+				if(game.isGameIsOver()) {
+					goGameOverScreen();
+				}else {
 				launchNextDayPopup();
+				}
 			}
 		});
 	}
 	
+	private void goGameOverScreen() {
+		game.closeMainScreen(this);
+		game.launchGameOverWindow();
+		
+	}
+
 	private void launchSpaceOutpost() {
 		game.closeMainScreen(this);
 		game.launchSpaceOutpost();

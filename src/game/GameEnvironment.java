@@ -19,7 +19,7 @@ class GameEnvironment {
      	private String actionTaken;
      	private int daysProgressedThrough = 1;
      	private boolean gameIsOver = false; 
-     	private int days;
+		private int days;
      	private CrewMember pickedMember;
      	private RandomEvents random = new RandomEvents();  
      	private Crew crew1 = new Crew(); 
@@ -182,6 +182,7 @@ class GameEnvironment {
      		if (!gameIsOver) {
      			for (CrewMember member: crew1.getCrewMemberList()) {
      				if (member.isDead()) {
+     					finalString += member.getName() + "  has died, due to their health level dropping to 0.";
      					crewList.remove(member);
      					if (crewList.size() == 0) {
      						gameIsOver = true;
@@ -446,7 +447,7 @@ class GameEnvironment {
          public String getMessage() {
          	return message;
          }
-
+         
          
          
      	public Crew getCrew1() {
@@ -537,6 +538,10 @@ class GameEnvironment {
      	public void launchSpaceOutpost() {
      		SpaceOutpostWindow outpost = new SpaceOutpostWindow(this);		
      	}
+     	public void launchGameOverWindow() {
+     		GameOverWindow gameover = new GameOverWindow(this);
+     		gameover.setVisible(true);
+     	}
 
 
      	public void closeItemsForSale(ItemsForSale itemsForSale) {
@@ -546,7 +551,14 @@ class GameEnvironment {
      		ItemsForSale itemsForSale = new ItemsForSale(this);
      		itemsForSale.setVisible(true);
      	}
+     	public boolean isGameIsOver() {
+			return gameIsOver;
+		}
 
+
+		public void setGameIsOver(boolean gameIsOver) {
+			this.gameIsOver = gameIsOver;
+		}
 
 
 
