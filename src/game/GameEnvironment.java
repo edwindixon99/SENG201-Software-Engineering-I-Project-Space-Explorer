@@ -66,9 +66,6 @@ class GameEnvironment {
              	if (number == 2) {
              		System.out.println(ship.checkShipShield());
              	}
-             	if (number == 5) {
-             		heal();
-             	}
              	if (number == 7) {
              		//repairShip();
              	}
@@ -306,77 +303,7 @@ class GameEnvironment {
            	}
            }
            
-          public void heal() {
-         	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
-         	ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
-          	boolean doneHealing = false;
-      		while (doneHealing == false) {
-      			int i = 0;
-          		int i2 = 0;
-          		CrewMember memHeal; 
-          		for (CrewMember member: crewList) {
-          			i++;
-          			System.out.println(i + ". " + member.getName());
-          		}
-          		System.out.println((i + 1) + ". Go back to menu.\n");
-          		String question4 = "Type the number corresponding to the crewmember that you want to heal.\n";
-          		int crewNum = getValidInput(input0, 1, (crewList.size()+1), question4);	            		
-          		if (crewNum == (i+1)) {
-          			doneHealing = true;
-          		}
-          		else {
-          			memHeal = crewList.get(crewNum - 1);
-              		if (memHeal.getActionCounter() == 0) {
-              			System.out.println("You don't have enough action counter points remaining!\n");
-              		}
-              		else {
-              			if (medicalList.isEmpty() == true) {
-              				System.out.println("You have no Healing items\n");
-              			}
-              			else {
-              				ArrayList<String> stringHealList2;
-              				ArrayList<MedicalItem> finalHealList;
-              				ArrayList<String> finalHealList2;
-              				stringHealList2 = new ArrayList<String>();
-              				finalHealList = new ArrayList<MedicalItem>();
-              				finalHealList2 = new ArrayList<String>();
-              				for (MedicalItem med: medicalList) {
-              					stringHealList2.add(med.getName());
-              				}
-              				System.out.println("Your medical items are:");
-              				Set<MedicalItem> s = new LinkedHashSet<>(medicalList);
-              				for (MedicalItem set: s) {
-              					if (finalHealList2.contains(set.getName())) {}
-              					else {
-              						finalHealList.add(set);
-              						finalHealList2.add(set.getName());
-              					}
-              				}
-              	  			for (MedicalItem med: finalHealList) {
-              	  				i2++;
-                  				System.out.println(i2 + ". " + med.getName() + "(" + (Collections.frequency(stringHealList2, med.getName())) + ")");
-              	  			}
-              	  			System.out.println((i2 + 1) + ". Go back to menu\n");
-              	  			String question5 = "Select what medical item you want " + memHeal.getName() + " to use.\n";
-      	            		int medNum = getValidInput(input0, 1, (finalHealList.size()+1), question5);	
-                      		if (medNum == (i2+1)) {
-                      			doneHealing = true;
-                      		}
-                      		else {
-                      			MedicalItem chosenMed;
-                          		chosenMed = finalHealList.get(medNum - 1);
-                          		memHeal.heal(finalHealList.get(medNum - 1));
-                          		medicalList.remove(chosenMed);
-                          		System.out.println(memHeal.getName() + " used a " + chosenMed.getName() + "\n");
-                          		memHeal.setActionCounter((memHeal.getActionCounter() - 1));
-                          		doneHealing = true;
-                      		}
-              			}
-              		}
-          		}
 
-      		}
-          }
           public String viewOwnedFood() {
          	String finalString = "";
          	ArrayList<Food> foodList = crew1.getFoodItems();
@@ -421,14 +348,23 @@ class GameEnvironment {
       		}
          	 return finalString;
           }
+          public String heal(CrewMember member) {
+         	ArrayList<MedicalItem> healList = crew1.getMedicalItems();
+          	CrewMember memHeal = member; 
+            if (memHeal.getActionCounter() == 0) {
+            	return("You don't have enough action counter points remaining!\n");
+            }
+            else {
+            	if (healList.isEmpty() == true) {
+            		return("You have no medical items\n");
+                }
+            }
+			return ("");
+           	}
 
           public String eat(CrewMember member) {
-         	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
          	ArrayList<Food> foodList = crew1.getFoodItems();
-      		int i = 0;
-          	int i2 = 0;
-          	CrewMember memEat; 
-          	memEat = member;
+          	CrewMember memEat = member; 
             if (memEat.getActionCounter() == 0) {
             	return("You don't have enough action counter points remaining!\n");
             }
@@ -445,6 +381,13 @@ class GameEnvironment {
         	  member.setActionCounter(member.getActionCounter() - 1);
         	  foodList.remove(index);
         	  return (member.getName() + " has eaten a " + food.getName());
+          }
+          public String healMethod(CrewMember member, MedicalItem med, int index) {
+        	  ArrayList<MedicalItem> healList = crew1.getMedicalItems();
+        	  member.heal(med);
+        	  member.setActionCounter(member.getActionCounter() - 1);
+        	  healList.remove(index);
+        	  return (member.getName() + " has healed using " + med.getName());
           }
 
           public void getRandomEvent() {
@@ -521,6 +464,9 @@ class GameEnvironment {
      	public void closeEat(Eat eat) {
      		eat.closeWindow();
      	}
+     	public void closeHeal(Heal heal) {
+     		heal.closeWindow();
+     	}
      	public void launchMainScreen() { 
      		MainWindow mainScreen = new MainWindow(this);
      	  }
@@ -534,6 +480,10 @@ class GameEnvironment {
      	public void launchEatWindow(CrewMember member) {
      		Eat eat = new Eat(this, member);
      		eat.setVisible(true);
+     	}
+     	public void launchHealWindow(CrewMember member) {
+     		Heal heal = new Heal(this, member);
+     		heal.setVisible(true);
      	}
 
      	public void launchMemberSelection() {
