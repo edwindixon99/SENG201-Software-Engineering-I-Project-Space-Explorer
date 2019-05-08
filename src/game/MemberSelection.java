@@ -211,6 +211,22 @@ public class MemberSelection extends JFrame {
 					game.setMessage(message);
 					goPilotWindow();
 				}
+				if(game.getActTaken() == "Eat") {
+					String message = game.eat(game.getPickedMember());
+					game.setMessage(message);
+					if (game.getMessage() == "") {
+						goEatWindow(game.getPickedMember());
+					}
+					else {
+						goSearchWindow();
+					}
+					
+				}
+				if(game.getActTaken() == "Sleep") {
+					String message = game.sleep(game.getPickedMember());
+					game.setMessage(message);
+					goSearchWindow();
+				}
 			}
 
 
@@ -222,6 +238,10 @@ public class MemberSelection extends JFrame {
 		game.closeMemberSelection(this);
 		game.launchFlyToNewPlanetWindow();
 		
+	}
+	private void goEatWindow(CrewMember member) {
+		game.closeMemberSelection(this);
+		game.launchEatWindow(member);
 	}
 	private void goSearchWindow() {
 		game.closeMemberSelection(this);
