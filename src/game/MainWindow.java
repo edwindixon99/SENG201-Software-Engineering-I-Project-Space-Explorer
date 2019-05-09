@@ -148,16 +148,15 @@ public class MainWindow {
 		btnRepairShip.setBounds(20, 95, 177, 35);
 		frame.getContentPane().add(btnRepairShip);
 
-		
-		System.out.println(game);
+	
 		JLabel lblDaysLeft = new JLabel("Day: " + game.getCrew1().getDays());
 		lblDaysLeft.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lblDaysLeft.setBounds(20, 204, 107, 27);
 		frame.getContentPane().add(lblDaysLeft);
 		
-		JLabel lblRemainingPieces = new JLabel("Remaining pieces: " + game.getCrew1().getRequiredPieces());
+		JLabel lblRemainingPieces = new JLabel("Remaining pieces left to find: " + game.getCrew1().getRequiredPieces());
 		lblRemainingPieces.setFont(new Font("Dialog", Font.PLAIN, 15));
-		lblRemainingPieces.setBounds(20, 242, 158, 35);
+		lblRemainingPieces.setBounds(20, 242, 361, 35);
 		frame.getContentPane().add(lblRemainingPieces);
 		
 		JLabel label = new JLabel("");
@@ -208,13 +207,18 @@ public class MainWindow {
 		btnNextDay.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnNextDay.setBounds(433, 458, 177, 35);
 		frame.getContentPane().add(btnNextDay);
+		
+		JLabel lblMoney = new JLabel("Crew Money: $ " + Double.toString(game.getCrew1().getMoney()));
+		lblMoney.setFont(new Font("Dialog", Font.PLAIN, 15));
+		lblMoney.setBounds(433, 11, 244, 27);
+		frame.getContentPane().add(lblMoney);
 		btnNextDay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				game.setMessage(game.nextDay());
 				if(game.isGameIsOver()) {
 					goGameOverScreen();
 				}else {
-				launchNextDayPopup();
+					launchNextDayPopup();
 				}
 			}
 		});
@@ -246,5 +250,4 @@ public class MainWindow {
 		popup.setVisible(true);
 		popup.setDefaultCloseOperation(popup.DISPOSE_ON_CLOSE);
  	}
-
 }

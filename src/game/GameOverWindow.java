@@ -26,7 +26,7 @@ public class GameOverWindow extends JFrame {
 		setBounds(100, 100, 703, 564);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(game.convertToMultiline(game.getMessage()));
+		JLabel lblNewLabel = new JLabel(game.convertToMultiline("Game Over!\n" + game.getMessage()));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(23, 11, 654, 503);
 		getContentPane().add(lblNewLabel);

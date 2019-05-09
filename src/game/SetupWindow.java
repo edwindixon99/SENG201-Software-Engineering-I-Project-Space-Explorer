@@ -300,7 +300,7 @@ public class SetupWindow {
 						
 						game.getShip().setShipName(shipNametxtField.getText());				 // gets the inputs from sliders and ship text box and sets them.
 						game.setDays(NumOfDaysSlider.getValue());
-						game.getCrew1().setRequiredPieces(NumOfDaysSlider.getValue());
+						game.getCrew1().setRequiredPieces((NumOfDaysSlider.getValue() *2)/3);
 						
 						confirmCrewMemButt.setVisible(true);			// shows the confirm crew member button and hides extra member combo boxes and text boxes
 						mem3txtField.setVisible(false);

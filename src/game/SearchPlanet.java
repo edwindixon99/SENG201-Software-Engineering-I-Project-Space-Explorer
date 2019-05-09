@@ -51,8 +51,14 @@ public class SearchPlanet extends JFrame {
 		getContentPane().add(btnContinue);
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				game.launchMainScreen();
+				if (game.isGameIsOver()) {
+					dispose();
+					game.launchWinnerWindow();
+				}
+				else {
+					dispose();
+					game.launchMainScreen();
+				}
 			}
 		});
 	}

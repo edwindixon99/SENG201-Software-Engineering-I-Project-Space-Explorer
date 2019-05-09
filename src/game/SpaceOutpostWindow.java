@@ -43,6 +43,7 @@ public class SpaceOutpostWindow {
 		frame.getContentPane().add(lblSpaceoutpost);
 		
 		JButton bttnViewOwned = new JButton("View owned items");
+		bttnViewOwned.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		bttnViewOwned.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String foods = game.viewOwnedFood();
@@ -55,7 +56,7 @@ public class SpaceOutpostWindow {
 			}
 		});
 		
-		bttnViewOwned.setBounds(92, 307, 123, 51);
+		bttnViewOwned.setBounds(50, 307, 177, 88);
 		frame.getContentPane().add(bttnViewOwned);
 		
 		JButton btnViewForSale = new JButton("View Items for sale");
@@ -64,7 +65,7 @@ public class SpaceOutpostWindow {
 				launchViewItemsForSale();
 			}
 		});
-		btnViewForSale.setBounds(330, 307, 123, 51);
+		btnViewForSale.setBounds(289, 307, 199, 88);
 		frame.getContentPane().add(btnViewForSale);
 		
 		JButton btnGoBack = new JButton("Go Back");
@@ -73,7 +74,7 @@ public class SpaceOutpostWindow {
 				goBack();
 			}
 		});
-		btnGoBack.setBounds(597, 307, 123, 51);
+		btnGoBack.setBounds(579, 307, 177, 88);
 		frame.getContentPane().add(btnGoBack);
 	}
 	private void launchViewItemsForSale() {

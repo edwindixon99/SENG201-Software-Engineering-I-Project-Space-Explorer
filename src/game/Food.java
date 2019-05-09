@@ -11,7 +11,7 @@ public class Food extends Item{
 	}
 	
 	public String toString() {	
-		return "Food: " + getName() + "\nPrice: " + Double.toString(getPrice()) + "\nRemoved Hunger: " +  Integer.toString(hungerRemoved) + "\n\n	Buy " + getName();
+		return "Food: " + getName() + "\nPrice: " + Double.toString(getPrice()) + "\nRemoved Hunger: " +  Integer.toString(hungerRemoved);
 		}
 	
 	

@@ -35,7 +35,6 @@ class GameEnvironment {
      	public static void main(String[] args) {
      		GameEnvironment game = new GameEnvironment();
      		Crew crew1 = game.getCrew1();
-     		System.out.println(crew1);
      		SpaceShip ship = game.getShip();
      		game.launchSetupWindow();
      	    game.playGame();
@@ -172,41 +171,39 @@ class GameEnvironment {
      		daysProgressedThrough += 1;
      		if (days < daysProgressedThrough) {
      			gameIsOver = true;
-     			crew1.setNumPieces(100);
-     			finalString += "Ran out of days!\nGame Over!";
+     			finalString += "Ran out of days!";
      		}
      		for (CrewMember member: crewList) {
      			member.newDay();
      		}
      		crew1.setCrewMemberList(crewList);
      		if (!gameIsOver) {
-     			for (CrewMember member: crew1.getCrewMemberList()) {
+     			for (int i = 0; i < crewList.size(); i++) {
+     				CrewMember member = crewList.get(i);
      				if (member.isDead()) {
-     					finalString += member.getName() + "  has died, due to their health level dropping to 0.";
+     					finalString += member.getName() + "  has died, due to their health level dropping to 0.\n";
+     					System.out.println(finalString);
      					crewList.remove(member);
-     					if (crewList.size() == 0) {
-     						gameIsOver = true;
-     						crew1.setNumPieces(100);
-     						finalString += "Ran out of crew members!\nGame Over!";
+     					System.out.println(crewList);
      				}
      			}
-     			crew1.setCrewMemberList(crewList);
      		}
+     		if (crewList.size() == 0) {
+     			gameIsOver = true;
+     			finalString += "Ran out of crew members!";
      		}
      		if (!gameIsOver) {
-     			if (crewList.size() > 0) {
-     				finalString += getRandomEvent();
-     				finalString += "\nYou have moved on to day " + Integer.toString(daysProgressedThrough);
+     			finalString += getRandomEvent();
+     			finalString += "\nYou have moved on to day " + Integer.toString(daysProgressedThrough);	
      		}
-     	}
-     		return finalString;
+     	return finalString;
      	}
 
      	 public String flyToNewPlanet(CrewMember memPilot) {
      		String finalString = "";
       		ArrayList<CrewMember> pilotList = crew1.getPilotCount();
      		if (memPilot.getActionCounter() == 0){
-     			finalString += "This crew member does not have enough action points to pilot the ship!\n";
+     			finalString += "This crew member does not have enough action points to pilot the ship!\nTo get more action points proceed to next day.\n";
      		}
      		else {
       			if (memPilot instanceof Type4) {
@@ -231,26 +228,32 @@ class GameEnvironment {
       		return finalString;
           }
      	 public String searchPlanet(CrewMember member) {
+     		String finalString = "";
      		if (planetPieces == 0) {
-     			return "All the spaceship pieces on this planet have been found, your crew will need to fly to another planet to find more.\n";
+     			finalString += "All the spaceship pieces on this planet have been found, your crew will need to fly to another planet to find more.\nYou cannot find anything else useful.";
      		}
      		else {
      			CrewMember memSearch;
           			memSearch = member;
           			if (memSearch.getActionCounter() == 0) {
-          				return "This crewmember does not have enough action points to go searching";
+          				finalString += "This crewmember does not have enough action points to go searching.\nTo get more action points proceed to next day.\n";
           			}
           			else {
           				memSearch.setActionCounter(memSearch.getActionCounter() - 1);
           				int search = memSearch.search(memSearch);
               			if (search == 1) {
-              				crew1.setMoney((crew1.getMoney() + 100));
-              				return "You have found $100.";
+              				Random randMoney = new Random();
+              				int amount = randMoney.nextInt(70) + 20;
+              				crew1.setMoney((crew1.getMoney() + amount));
+              				finalString += "You have found $" + Integer.toString(amount) + ".";
               			}
               			if (search == 2) {
-              				crew1.setNumPieces((crew1.getNumPieces() + 1));
+              				int pieces = crew1.getRequiredPieces();
+              				System.out.println(crew1.getRequiredPieces());
+              				crew1.setRequiredPieces((pieces - 1));
+              				System.out.println(crew1.getRequiredPieces());
               				planetPieces -= 1;
-              				return "You have found one of the missing pieces.";
+              				finalString += "You have found one of the missing pieces.";
               			}
               			if (search == 3) {
               				Random rand = new Random();
@@ -263,18 +266,25 @@ class GameEnvironment {
               				else {
                   				medicalList.add((MedicalItem) outpost.getItemsForSale().get(randItem));
               				}
-              				return "You have found a " + (outpost.getItemsForSale().get(randItem)).getName();
+              				finalString += "You have found a " + (outpost.getItemsForSale().get(randItem)).getName();
               			}
           			}
      		}
-     		return "";
+     		System.out.println(crew1.getRequiredPieces());
+     		if (crew1.getRequiredPieces() <= 0) {
+     			gameIsOver = true;
+     		}
+     		return finalString;
           }
-          public String repairShip(CrewMember memRepair) {
+
+
+
+		public String repairShip(CrewMember memRepair) {
          	if (ship.getShieldHealth() == 100) {
          		return ship.getShipName() + " already has full shield!";
          	}
      	 	if (memRepair.getActionCounter() == 0){
-     	 		return memRepair.getName() + " doesn't have enough action points to repair " + ship.getShipName();
+     	 		return memRepair.getName() + " doesn't have enough action points to repair " + ship.getShipName() + ".\nTo get more action points proceed to next day.\n";
      		}
      		else {
      			if (memRepair instanceof Type6) {
@@ -298,7 +308,7 @@ class GameEnvironment {
            		return ("This Crew member does not need to sleep.");
            	}
            	if (memSleep.getActionCounter() == 0){
-           		return ("This crew member doesn't have enough action points to sleep\n");
+           		return ("This crew member doesn't have enough action points to sleep.\nTo get more action points proceed to next day.\n");
            	}
            	else {
            		memSleep.sleep();
@@ -344,7 +354,7 @@ class GameEnvironment {
       				stringMed.add(med.getName());
       				stringMedList.add(med.getName());
       			}
-      			finalString += "Your medical items are:";
+      			finalString += "Your medical items are:\n";
         			for (String med: stringMed) {
         				finalString += med + "(" + (Collections.frequency(stringMedList, med)) + ")\n";	
         			}
@@ -355,7 +365,7 @@ class GameEnvironment {
          	ArrayList<MedicalItem> healList = crew1.getMedicalItems();
           	CrewMember memHeal = member; 
             if (memHeal.getActionCounter() == 0) {
-            	return("You don't have enough action counter points remaining!\n");
+            	return("You don't have enough action counter points remaining!\nTo get more action points proceed to next day.\n");
             }
             else {
             	if (healList.isEmpty() == true) {
@@ -369,7 +379,7 @@ class GameEnvironment {
          	ArrayList<Food> foodList = crew1.getFoodItems();
           	CrewMember memEat = member; 
             if (memEat.getActionCounter() == 0) {
-            	return("You don't have enough action counter points remaining!\n");
+            	return("You don't have enough action counter points remaining!\nTo get more action points proceed to next day.\n");
             }
             else {
             	if (foodList.isEmpty() == true) {
@@ -555,11 +565,13 @@ class GameEnvironment {
 			return gameIsOver;
 		}
 
-
 		public void setGameIsOver(boolean gameIsOver) {
 			this.gameIsOver = gameIsOver;
 		}
 
-
+        public void launchWinnerWindow() {
+			WinnerWindow winner = new WinnerWindow(this);
+			winner.setVisible(true);
+		}
 
      }

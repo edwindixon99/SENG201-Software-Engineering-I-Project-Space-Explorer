@@ -53,7 +53,7 @@ public class NextDayPopup extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setText(game.convertToMultiline(game.getMessage()));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lblNewLabel.setBounds(10, 11, 564, 183);
 		getContentPane().add(lblNewLabel);
 	}

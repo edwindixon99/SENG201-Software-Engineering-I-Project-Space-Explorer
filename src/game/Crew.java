@@ -14,7 +14,7 @@ public class Crew {
 	private int numPieces = 0;
 	private ArrayList<CrewMember> pilotCount = new ArrayList<CrewMember>();
 	private int days = 1;
-	private int requiredPieces = (days * 2/3);
+	private int requiredPieces;
 	
 
 	public String buy(ArrayList<Food> foodList, ArrayList<MedicalItem> medList, Item item) {
@@ -69,8 +69,8 @@ public class Crew {
 	 public int getRequiredPieces() {
 		return requiredPieces;
 	}
-	 public void setRequiredPieces(int days) {
-	 	this.requiredPieces = (days * 2/3);
+	 public void setRequiredPieces(int pieces) {
+	 	this.requiredPieces = pieces;
 	 	}
 	public int getDays() {
 		return days;

@@ -55,7 +55,7 @@ public class SpaceOutpost {
 		itemsForSale.add(SmallHealing);
 		Item BigHealing = new MedicalItem("Big Healing", false, 40, 20);
 		itemsForSale.add(BigHealing);
-		Item Spaceplaguecure = new MedicalItem("Space plague cure", true, 0, 15);
+		Item Spaceplaguecure = new MedicalItem("Space Plague Cure", true, 0, 15);
 		itemsForSale.add(Spaceplaguecure);
 	}
 	
