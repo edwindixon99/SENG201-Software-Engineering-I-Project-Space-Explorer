@@ -155,9 +155,9 @@ public class ItemsForSale extends JFrame {
 		button_6.setBounds(46, 341, 179, 44);
 		getContentPane().add(button_6);
 		
-		JLabel lblNewLabel = new JLabel("Pick an item that you want to buy. You have $ " + game.getCrew1().getMoney() + " to spend");
+		JLabel lblNewLabel = new JLabel(game.convertToMultiline("Pick an item that you want to buy. You have $ " + game.getCrew1().getMoney() + " to spend.\nYou can find money by searching planets."));
 		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 17));
-		lblNewLabel.setBounds(10, 11, 649, 64);
+		lblNewLabel.setBounds(10, -9, 649, 104);
 		getContentPane().add(lblNewLabel);
 		
 		JButton btnExitOutpostStore = new JButton("Exit Outpost Store");

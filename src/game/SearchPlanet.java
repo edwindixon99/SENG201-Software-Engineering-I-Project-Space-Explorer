@@ -40,14 +40,14 @@ public class SearchPlanet extends JFrame {
 		setBounds(100, 100, 853, 219);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(game.getMessage());
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(10, 11, 817, 60);
+		JLabel lblNewLabel = new JLabel(game.convertToMultiline(game.getMessage()));
+		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
+		lblNewLabel.setBounds(10, 11, 817, 124);
 		getContentPane().add(lblNewLabel);
 		
 		JButton btnContinue = new JButton("Continue");
 		btnContinue.setFont(new Font("Dialog", Font.BOLD, 15));
-		btnContinue.setBounds(10, 82, 165, 35);
+		btnContinue.setBounds(10, 134, 165, 35);
 		getContentPane().add(btnContinue);
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

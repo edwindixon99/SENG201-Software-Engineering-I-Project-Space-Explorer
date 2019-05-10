@@ -33,17 +33,17 @@ public class SpaceOutpostWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
+		frame.setBounds(100, 100, 800, 279);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblSpaceoutpost = new JLabel("Welcome to the space outpost, please choose what you would like to do");
-		lblSpaceoutpost.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSpaceoutpost.setBounds(76, 11, 610, 51);
+		lblSpaceoutpost.setFont(new Font("Dialog", Font.PLAIN, 18));
+		lblSpaceoutpost.setBounds(32, 11, 707, 51);
 		frame.getContentPane().add(lblSpaceoutpost);
 		
 		JButton bttnViewOwned = new JButton("View owned items");
-		bttnViewOwned.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		bttnViewOwned.setFont(new Font("Dialog", Font.PLAIN, 15));
 		bttnViewOwned.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String foods = game.viewOwnedFood();
@@ -56,25 +56,27 @@ public class SpaceOutpostWindow {
 			}
 		});
 		
-		bttnViewOwned.setBounds(50, 307, 177, 88);
+		bttnViewOwned.setBounds(32, 89, 177, 88);
 		frame.getContentPane().add(bttnViewOwned);
 		
 		JButton btnViewForSale = new JButton("View Items for sale");
+		btnViewForSale.setFont(new Font("Dialog", Font.PLAIN, 15));
 		btnViewForSale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				launchViewItemsForSale();
 			}
 		});
-		btnViewForSale.setBounds(289, 307, 199, 88);
+		btnViewForSale.setBounds(288, 89, 199, 88);
 		frame.getContentPane().add(btnViewForSale);
 		
 		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.setFont(new Font("Dialog", Font.PLAIN, 15));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				goBack();
 			}
 		});
-		btnGoBack.setBounds(579, 307, 177, 88);
+		btnGoBack.setBounds(562, 89, 177, 88);
 		frame.getContentPane().add(btnGoBack);
 	}
 	private void launchViewItemsForSale() {
