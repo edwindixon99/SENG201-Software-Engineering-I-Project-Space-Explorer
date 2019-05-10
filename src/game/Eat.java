@@ -172,7 +172,7 @@ public class Eat extends JFrame {
 			for (Food med: game.getCrew1().getFoodItems()) {
 				stringFoodList2.add(med.getName());
 			}
-			System.out.println("Your medical items are:");
+//			System.out.println("Your medical items are:");
 			Set<Food> s = new LinkedHashSet<>(game.getCrew1().getFoodItems());
 			for (Food set: s) {
 				if (finalFoodList2.contains(set.getName())) {}

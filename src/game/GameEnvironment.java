@@ -34,23 +34,27 @@ class GameEnvironment {
 
      	public static void main(String[] args) {
      		GameEnvironment game = new GameEnvironment();
-     		Crew crew1 = game.getCrew1();
-     		SpaceShip ship = game.getShip();
+//     		Crew crew1 = game.getCrew1();
+//     		SpaceShip ship = game.getShip();
+     		game.playGame();
      		game.launchSetupWindow();
-     	    game.playGame();
+  	    
      	 }
-
      	public void playGame() {
+     		outpost.setItemsForSale();
+     		crew1.setMoney(50000000);
+     	}
+     /*	public void playGame() {
          	Scanner input = new Scanner(System.in);
          	outpost.setItemsForSale();
          	days = getNumOfDays(input);
          	crew1.setDays(days);
          	crew1.setCrewMemberList(getCrewList(input));
 
-         	/*
+         	
          	 * This is where the main game loop starts, obviously it is not done yet, there are still many features to add
          	 * It starts by asking what the player wants to do, with the first option being to check the crews stats.
-         	 */
+         	 
          	while (crew1.getNumPieces() < crew1.getRequiredPieces()) {
          		String question = "\nPick what you want to do: \n1. View the crew members status.\n2. View your space ships status\n3. Visit nearest outpost.\n4. Eat a food item.\n5. Heal a Crew Member\n6. Get a crew member to sleep\n7. Repair the ship\n8. Search the nearest planet.\n9. Pilot ship to another planet\n10. Next Day";
              	int number = getValidInput(input0, 1, 10, question);
@@ -59,18 +63,18 @@ class GameEnvironment {
              			System.out.println(member.viewStatus());
              		}	
              	}
-             	/*option 2 is to check the shields stats ie just the shield level
+             	option 2 is to check the shields stats ie just the shield level
              	 * 
-             	 */
+             	 
              	if (number == 2) {
              		System.out.println(ship.checkShipShield());
              	}
              	if (number == 7) {
              		//repairShip();
              	}
-             	/*
+             	
              	 * this allows the player to fly to a new planet, but only if two crew members do so
-             	 */
+             	 
              	if (number == 9) {
 //             		flyToNewPlanet();
 
@@ -86,14 +90,14 @@ class GameEnvironment {
      		String question = "How many days would you like to play?";
      		days = getValidInput(input, 3, 10, question);
      		return days;
-     	}
+     	}*/
      	 
      	public void setDays(int day) {
      		this.days = day;
      	}
      	
      	
-     	public int getNumCrew(Scanner input) {
+ /*    	public int getNumCrew(Scanner input) {
      		int numCrew = 0;
      		String question = "How many crew Members would you like?";
      		numCrew = getValidInput(input, 2, 4, question);
@@ -163,7 +167,7 @@ class GameEnvironment {
      		System.out.println("Type 5:\nHunger degrade: medium\nHealth degrade: medium\nTiredness Degrade: high\nSpecial ability: Higher chance of finding a spaceship piece when searching a planet\n");
      		System.out.println("Type 6:\nHunger degrade: high\nHealth degrade: medium\nTiredness Degrade: medium\nSpecial ability: Fully repair the ships shield\n");
      	}	
-
+*/
      	public String nextDay() {
      		String finalString = "";
      		crew1.setDays(crew1.getDays() + 1);
@@ -182,9 +186,7 @@ class GameEnvironment {
      				CrewMember member = crewList.get(i);
      				if (member.isDead()) {
      					finalString += member.getName() + "  has died, due to their health level dropping to 0.\n";
-     					System.out.println(finalString);
      					crewList.remove(member);
-     					System.out.println(crewList);
      				}
      			}
      		}
@@ -243,15 +245,13 @@ class GameEnvironment {
           				int search = memSearch.search(memSearch);
               			if (search == 1) {
               				Random randMoney = new Random();
-              				int amount = randMoney.nextInt(70) + 20;
+              				int amount = randMoney.nextInt(70) + 40;
               				crew1.setMoney((crew1.getMoney() + amount));
               				finalString += "You have found $" + Integer.toString(amount) + ".";
               			}
               			if (search == 2) {
               				int pieces = crew1.getRequiredPieces();
-              				System.out.println(crew1.getRequiredPieces());
               				crew1.setRequiredPieces((pieces - 1));
-              				System.out.println(crew1.getRequiredPieces());
               				planetPieces -= 1;
               				finalString += "You have found one of the missing pieces.";
               			}
@@ -270,7 +270,6 @@ class GameEnvironment {
               			}
           			}
      		}
-     		System.out.println(crew1.getRequiredPieces());
      		if (crew1.getRequiredPieces() <= 0) {
      			gameIsOver = true;
      		}
@@ -503,7 +502,7 @@ class GameEnvironment {
 
      	public void launchMemberSelection() {
      		MemberSelection memberSelection = new MemberSelection(this);
-     		memberSelection.setVisible(true);
+//     		memberSelection.setVisible(true);
      	}
      	
      	public String convertToMultiline(String orig) {

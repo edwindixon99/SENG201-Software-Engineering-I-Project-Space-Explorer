@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class CrewMember {
 	private String name;
-	private int actionCounter = 2;
+	private int actionCounter = 200;
 	private int healthLevel = 100;
 	private int hungerLevel = 100;
 	private int tiredness = 100;

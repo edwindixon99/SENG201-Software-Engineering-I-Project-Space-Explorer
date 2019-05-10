@@ -28,7 +28,6 @@ public class SpaceShip {
 		}
 	}
 	public String checkShipShield() {
-		System.out.println(getShipName());
 		return ("\n" + shipName + "'s status:\nShield: " + shieldHealth + "\n");
 	}
 }
