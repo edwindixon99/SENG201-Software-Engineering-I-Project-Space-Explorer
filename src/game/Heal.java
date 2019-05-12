@@ -108,7 +108,7 @@ public class Heal extends JFrame {
 		lblNewLabel.setBounds(10, 11, 221, 61);
 		getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Go Back");
 		btnNewButton.setBounds(10, 314, 176, 45);
 		getContentPane().add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {

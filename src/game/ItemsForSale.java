@@ -208,8 +208,12 @@ public class ItemsForSale extends JFrame {
 
 	}
 	private void goBack() {
+		if (popup != null) {
+			popup.dispose();
+		}
 		closeWindow();
 		game.launchSpaceOutpost();
+		
 		
 	}
 	private void itemBought() {
