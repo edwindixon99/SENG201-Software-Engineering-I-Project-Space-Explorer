@@ -153,12 +153,21 @@ public class Eat extends JFrame {
 		
 		this.game = game;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 328, 600);
+		setBounds(100, 100, 328, 664);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Pick what food item you want to eat");
 		lblNewLabel.setBounds(10, 11, 176, 61);
 		getContentPane().add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("Go Back");
+		btnNewButton.setBounds(10, 494, 176, 45);
+		getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				goBack();
+			}
+		});
 
 		
 	}
@@ -186,6 +195,10 @@ public class Eat extends JFrame {
 	
 	public void closeWindow() {
 		dispose();
+	}
+	private void goBack() {
+		game.closeEat(this);
+		game.launchMainScreen(); 
 	}
 	private void goSearchWindow() {
 		game.closeEat(this);
