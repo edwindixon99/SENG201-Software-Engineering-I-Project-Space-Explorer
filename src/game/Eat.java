@@ -42,22 +42,27 @@ public class Eat extends JFrame {
 	 */
 	public Eat(GameEnvironment game, CrewMember member) {
 		Set<String> foodSet = new LinkedHashSet<>();
+		ArrayList<Food> foodArray = new ArrayList<>();
+		ArrayList<String> stringFoodArray = new ArrayList<>();
 		for (Food foodList1: game.getCrew1().getFoodItems()) {
+			if (foodSet.contains(foodList1.getName())) {}
+			else {
+				foodArray.add(foodList1);
+			}
 			foodSet.add(foodList1.getName());
+			stringFoodArray.add(foodList1.getName());
 		}
-		ArrayList foodArray = new ArrayList<>(foodSet);
-		String string0 = food_string(game, game.getCrew1().getFoodItems().get(0));
 		getContentPane().setLayout(null);
 		JButton button = new JButton((String) null);
 		button.setBounds(10, 101, 176, 45);
 		getContentPane().add(button);
 		button.setVisible(false);
-		if (foodSet.size() >= 1) {
+		if (foodArray.size() >= 1) {
 			button.setVisible(true);
-			button.setText(foodArray.get(0) + string0);
+			button.setText(foodArray.get(0).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(0).getName())) + ")"));
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String message = game.eat_food(member, game.getCrew1().getFoodItems().get(0), 0);
+					String message = game.eat_food(member, foodArray.get(0), 0);
 					game.setMessage(message);
 					dispose();
 					goSearchWindow();
@@ -68,13 +73,12 @@ public class Eat extends JFrame {
 		button_1.setBounds(10, 176, 176, 45);
 		getContentPane().add(button_1);
 		button_1.setVisible(false);
-		if (foodSet.size() >= 2) {
-			String string1 = food_string(game, game.getCrew1().getFoodItems().get(1));
+		if (foodArray.size() >= 2) {
 			button_1.setVisible(true);
-			button_1.setText(foodArray.get(1) + string1);
+			button_1.setText(foodArray.get(1).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(1).getName())) + ")"));
 			button_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String message = game.eat_food(member, game.getCrew1().getFoodItems().get(1), 1);
+					String message = game.eat_food(member, foodArray.get(1), 1);
 					game.setMessage(message);
 					dispose();
 					goSearchWindow();
@@ -85,13 +89,12 @@ public class Eat extends JFrame {
 		button_2.setBounds(10, 244, 176, 45);
 		getContentPane().add(button_2);
 		button_2.setVisible(false);
-		if (foodSet.size() >= 3) {
-			String string2 = food_string(game, game.getCrew1().getFoodItems().get(2));
+		if (foodArray.size() >= 3) {
 			button_2.setVisible(true);
-			button_2.setText(foodArray.get(2) + string2);
+			button_2.setText(foodArray.get(2).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(2).getName())) + ")"));
 			button_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String message = game.eat_food(member, game.getCrew1().getFoodItems().get(2), 2);
+					String message = game.eat_food(member, foodArray.get(2), 2);
 					game.setMessage(message);
 					dispose();
 					goSearchWindow();
@@ -103,13 +106,12 @@ public class Eat extends JFrame {
 		button_3.setBounds(10, 310, 176, 45);
 		getContentPane().add(button_3);
 		button_3.setVisible(false);
-		if (foodSet.size() >= 4) {
-			String string3 = food_string(game, game.getCrew1().getFoodItems().get(3));
+		if (foodArray.size() >= 4) {
 			button_3.setVisible(true);
-			button_3.setText(foodArray.get(3) + string3);
+			button_3.setText(foodArray.get(3).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(3).getName())) + ")"));
 			button_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String message = game.eat_food(member, game.getCrew1().getFoodItems().get(3), 3);
+					String message = game.eat_food(member, foodArray.get(3), 3);
 					game.setMessage(message);
 					dispose();
 					goSearchWindow();
@@ -120,13 +122,12 @@ public class Eat extends JFrame {
 		button_4.setBounds(10, 373, 176, 45);
 		getContentPane().add(button_4);
 		button_4.setVisible(false);
-		if (foodSet.size() >= 5) {
-			String string4 = food_string(game, game.getCrew1().getFoodItems().get(4));
+		if (foodArray.size() >= 5) {
 			button_4.setVisible(true);
-			button_4.setText(foodArray.get(4) + string4);
+			button_4.setText(foodArray.get(4).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(4).getName())) + ")"));
 			button_4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String message = game.eat_food(member, game.getCrew1().getFoodItems().get(4), 4);
+					String message = game.eat_food(member, foodArray.get(4), 4);
 					game.setMessage(message);
 					dispose();
 					goSearchWindow();
@@ -137,13 +138,12 @@ public class Eat extends JFrame {
 		button_5.setBounds(10, 438, 176, 45);
 		getContentPane().add(button_5);
 		button_5.setVisible(false);
-		if (game.getCrew1().getFoodItems().size() >= 6) {
-			String string5 = food_string(game, game.getCrew1().getFoodItems().get(5));
+		if (foodArray.size() >= 6) {
 			button_5.setVisible(true);
-			button_5.setText(foodArray.get(5) + string5);
+			button_5.setText(foodArray.get(5).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(5).getName())) + ")"));
 			button_5.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String message = game.eat_food(member, game.getCrew1().getFoodItems().get(5), 5);
+					String message = game.eat_food(member, foodArray.get(5), 5);
 					game.setMessage(message);
 					dispose();
 					goSearchWindow();
@@ -171,27 +171,7 @@ public class Eat extends JFrame {
 
 		
 	}
-	public String food_string(GameEnvironment game, Food food) {
-			ArrayList<String> stringFoodList2;
-			ArrayList<Food> finalFoodList;
-			ArrayList<String> finalFoodList2;
-			stringFoodList2 = new ArrayList<String>();
-			finalFoodList = new ArrayList<Food>();
-			finalFoodList2 = new ArrayList<String>();
-			for (Food med: game.getCrew1().getFoodItems()) {
-				stringFoodList2.add(med.getName());
-			}
-//			System.out.println("Your medical items are:");
-			Set<Food> s = new LinkedHashSet<>(game.getCrew1().getFoodItems());
-			for (Food set: s) {
-				if (finalFoodList2.contains(set.getName())) {}
-				else {
-					finalFoodList.add(set);
-					finalFoodList2.add(set.getName());
-				}
-			}
-			return ("(" + (Collections.frequency(stringFoodList2, food.getName())) + ")");
-	}
+
 	
 	public void closeWindow() {
 		dispose();
