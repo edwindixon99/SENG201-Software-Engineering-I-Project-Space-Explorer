@@ -172,6 +172,7 @@ class GameEnvironment {
      		String finalString = "";
      		crew1.setDays(crew1.getDays() + 1);
          	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
+         	ArrayList<CrewMember> crewList2 = crew1.getCrewMemberList();
      		daysProgressedThrough += 1;
      		if (days < daysProgressedThrough) {
      			gameIsOver = true;
@@ -182,8 +183,8 @@ class GameEnvironment {
      		}
      		crew1.setCrewMemberList(crewList);
      		if (!gameIsOver) {
-     			for (int i = 0; i < crewList.size(); i++) {
-     				CrewMember member = crewList.get(i);
+     			for (int j = crewList.size()-1; j >= 0; j--) {
+     				CrewMember member = crewList2.get(j);
      				if (member.isDead()) {
      					finalString += member.getName() + "  has died, due to their health level dropping to 0.\n";
      					crewList.remove(member);
@@ -426,7 +427,7 @@ class GameEnvironment {
      		if (n == 1) {
      			finalString += random.asteroidBelt(ship);
      			if (ship.getShieldHealth() <= 0) {
-     				return "The shield of your ship has depleted, and everyone on the crew has died!";
+     				return "Fail";
      			}else {
      				finalString += "You have sucessfully piloted the ship to a new planet.\n";
      			}
