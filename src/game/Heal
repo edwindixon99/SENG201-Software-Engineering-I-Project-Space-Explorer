@@ -101,12 +101,22 @@ public class Heal extends JFrame {
 				
 		this.game = game;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 328, 600);
+		setBounds(100, 100, 328, 505);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Pick what healing item you want to use");
-		lblNewLabel.setBounds(10, 11, 176, 61);
+		lblNewLabel.setBounds(10, 11, 221, 61);
 		getContentPane().add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(10, 314, 176, 45);
+		getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				goBack();
+			}
+		});
+		
 
 		
 	}
@@ -133,6 +143,10 @@ public class Heal extends JFrame {
 	
 	public void closeWindow() {
 		dispose();
+	}
+	private void goBack() {
+		game.closeHeal(this);
+		game.launchMainScreen(); 
 	}
 	private void goSearchWindow() {
 		game.closeHeal(this);
