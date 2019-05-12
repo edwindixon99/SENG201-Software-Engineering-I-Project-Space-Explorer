@@ -392,7 +392,7 @@ class GameEnvironment {
         	  ArrayList<Food> foodList = crew1.getFoodItems();
         	  member.eat(food);
         	  member.setActionCounter(member.getActionCounter() - 1);
-        	  foodList.remove(index);
+        	  foodList.remove(food);
         	  return (member.getName() + " has eaten a " + food.getName());
           }
           public String healMethod(CrewMember member, MedicalItem med, int index) {
