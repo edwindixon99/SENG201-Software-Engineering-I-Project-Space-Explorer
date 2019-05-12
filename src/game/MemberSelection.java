@@ -208,8 +208,15 @@ public class MemberSelection extends JFrame {
 				}
 				if(game.getActTaken() == "Pilot") {
 					String message = game.flyToNewPlanet(game.getPickedMember());
-					game.setMessage(message);
-					goPilotWindow();
+					if (message == "Fail") {
+						message = ("The shield of your ship has depleted, and everyone on the crew has died!");
+						
+					}
+					else {
+						game.setMessage(message);
+						goPilotWindow();
+					}
+					
 				}
 				if(game.getActTaken() == "Eat") {
 					String message = game.eat(game.getPickedMember());
@@ -248,6 +255,11 @@ public class MemberSelection extends JFrame {
 	private void goPilotWindow() {
 		game.closeMemberSelection(this);
 		game.launchFlyToNewPlanetWindow();
+		
+	}
+	private void goGameOverWindow() {
+		game.closeMemberSelection(this);
+		game.launchGameOverWindow();
 		
 	}
 	private void goEatWindow(CrewMember member) {
