@@ -18,7 +18,7 @@ class GameEnvironment {
      	private String message = "";
      	private String actionTaken;
      	private int daysProgressedThrough = 1;
-     	private boolean gameIsOver = false; 
+		private boolean gameIsOver = false; 
 		private int days;
      	private CrewMember pickedMember;
      	private RandomEvents random = new RandomEvents();  
@@ -42,7 +42,7 @@ class GameEnvironment {
      	 }
      	public void playGame() {
      		outpost.setItemsForSale();
-     		crew1.setMoney(50000000);
+//     		crew1.setMoney(50000000);
      	}
      /*	public void playGame() {
          	Scanner input = new Scanner(System.in);
@@ -571,7 +571,13 @@ class GameEnvironment {
 
         public void launchWinnerWindow() {
 			WinnerWindow winner = new WinnerWindow(this);
+			
 			winner.setVisible(true);
 		}
+        
+     	public int getDaysProgressedThrough() {
+			return daysProgressedThrough;
+		}
+
 
      }

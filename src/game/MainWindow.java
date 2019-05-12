@@ -227,6 +227,9 @@ public class MainWindow {
 	private void goGameOverScreen() {
 		game.closeMainScreen(this);
 		game.launchGameOverWindow();
+		if (popup != null) {
+			popup.dispose();
+		}
 		
 	}
 
