@@ -32,20 +32,23 @@ public class GameOverWindow extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel(game.convertToMultiline("Game Over!\n" + game.getMessage()));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(10, 11, 654, 79);
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblNewLabel.setBounds(10, 11, 817, 116);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblYourShip = new JLabel("Your Ship: " + game.getShip().getShipName());
-		lblYourShip.setBounds(10, 101, 582, 43);
+		lblYourShip.setFont(new Font("Dialog", Font.PLAIN, 15));
+		lblYourShip.setBounds(10, 139, 582, 61);
 		getContentPane().add(lblYourShip);
 		
 		JLabel lblNumberOfDays = new JLabel("Number of Days played: " + game.getDaysProgressedThrough());
-		lblNumberOfDays.setBounds(10, 155, 582, 61);
+		lblNumberOfDays.setFont(new Font("Dialog", Font.PLAIN, 15));
+		lblNumberOfDays.setBounds(10, 198, 582, 61);
 		getContentPane().add(lblNumberOfDays);
 		
-		lblScore = new JLabel("Score: ");
-		lblScore.setBounds(10, 227, 582, 69);
+		lblScore = new JLabel("Score: " + Integer.toString(500*(game.getScore()/game.getDaysProgressedThrough())));
+		lblScore.setFont(new Font("Dialog", Font.PLAIN, 15));
+		lblScore.setBounds(10, 254, 582, 69);
 		getContentPane().add(lblScore);
 		
 		

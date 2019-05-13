@@ -27,8 +27,9 @@ class GameEnvironment {
      	private SpaceOutpost outpost = new SpaceOutpost();
      	private Scanner input0 = new Scanner(System.in);
      	private String secondMessage;
+     	private int score = 0;
 
-     	public GameEnvironment() {
+		public GameEnvironment() {
      	}
 
 
@@ -231,6 +232,7 @@ class GameEnvironment {
       		return finalString;
           }
      	 public String searchPlanet(CrewMember member) {
+     		score += 10;
      		String finalString = "";
      		if (planetPieces == 0) {
      			finalString += "All the spaceship pieces on this planet have been found, your crew will need to fly to another planet to find more.\nYou cannot find anything else useful.";
@@ -254,6 +256,7 @@ class GameEnvironment {
               				int pieces = crew1.getRequiredPieces();
               				crew1.setRequiredPieces((pieces - 1));
               				planetPieces -= 1;
+              				score += 70;
               				finalString += "You have found one of the missing pieces.";
               			}
               			if (search == 3) {
@@ -280,6 +283,7 @@ class GameEnvironment {
 
 
 		public String repairShip(CrewMember memRepair) {
+			score += 30;
          	if (ship.getShieldHealth() == 100) {
          		return ship.getShipName() + " already has full shield!";
          	}
@@ -300,6 +304,7 @@ class GameEnvironment {
      		}
           }
           public String sleep(CrewMember member) {
+        	score += 10;
           	ArrayList<CrewMember> crewList = crew1.getCrewMemberList();
        		int i = 0;
        		CrewMember memSleep;
@@ -389,6 +394,7 @@ class GameEnvironment {
 			return ("");
            	}
           public String eat_food(CrewMember member, Food food, int index) {
+        	  score += 10;
         	  ArrayList<Food> foodList = crew1.getFoodItems();
         	  member.eat(food);
         	  member.setActionCounter(member.getActionCounter() - 1);
@@ -396,6 +402,7 @@ class GameEnvironment {
         	  return (member.getName() + " has eaten a " + food.getName());
           }
           public String healMethod(CrewMember member, MedicalItem med, int index) {
+        	  score += 10;
         	  ArrayList<MedicalItem> healList = crew1.getMedicalItems();
         	  member.heal(med);
         	  member.setActionCounter(member.getActionCounter() - 1);
@@ -435,6 +442,7 @@ class GameEnvironment {
      		else {
      			finalString += "You have sucessfully piloted the ship to a new planet.\n";
      		}
+     		score += 20;
      		return finalString;
           }  
 
@@ -578,8 +586,18 @@ class GameEnvironment {
      	public int getDaysProgressedThrough() {
 			return daysProgressedThrough;
 		}
+     	
      	public void setDaysProgressedThrough(int daysProgressedThrough) {
 			this.daysProgressedThrough = daysProgressedThrough;
+		}
+     	
+     	public int getScore() {
+			return score;
+		}
+
+
+		public void setScore(int score) {
+			this.score = score;
 		}
 
 

@@ -54,7 +54,7 @@ public class Heal extends JFrame {
 		}
 		getContentPane().setLayout(null);
 		JButton button = new JButton((String) null);
-		button.setBounds(10, 101, 176, 45);
+		button.setBounds(10, 101, 292, 45);
 		getContentPane().add(button);
 		button.setVisible(false);
 		if (healArray.size() >= 1) {
@@ -70,7 +70,7 @@ public class Heal extends JFrame {
 			});
 		}
 		JButton button_1 = new JButton((String) null);
-		button_1.setBounds(10, 176, 176, 45);
+		button_1.setBounds(10, 176, 292, 45);
 		getContentPane().add(button_1);
 		button_1.setVisible(false);
 		if (healArray.size() >= 2) {
@@ -86,7 +86,7 @@ public class Heal extends JFrame {
 			});
 		}
 		JButton button_2 = new JButton((String) null);
-		button_2.setBounds(10, 244, 176, 45);
+		button_2.setBounds(10, 244, 292, 45);
 		getContentPane().add(button_2);
 		button_2.setVisible(false);
 		if (healArray.size() >= 3) {

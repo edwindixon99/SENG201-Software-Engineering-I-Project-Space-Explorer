@@ -31,18 +31,22 @@ public class WinnerWindow extends JFrame {
 		getContentPane().add(lblCongratulations);
 		
 		JLabel lblYourShip = new JLabel("Your Ship: " + game.getShip().getShipName());
-		lblYourShip.setBounds(10, 80, 582, 43);
+		lblYourShip.setFont(new Font("Dialog", Font.PLAIN, 15));
+		lblYourShip.setBounds(10, 80, 595, 61);
 		getContentPane().add(lblYourShip);
 		
 		JLabel lblNumberOfDays = new JLabel("Number of Days taken: " +  + game.getDaysProgressedThrough());
-		lblNumberOfDays.setBounds(10, 121, 582, 61);
+		lblNumberOfDays.setFont(new Font("Dialog", Font.PLAIN, 15));
+		lblNumberOfDays.setBounds(10, 153, 582, 61);
 		getContentPane().add(lblNumberOfDays);
 		
-		JLabel lblNewLabel = new JLabel("Score: ");
-		lblNewLabel.setBounds(10, 195, 582, 69);
+		JLabel lblNewLabel = new JLabel("Score: " + Integer.toString(1000*(game.getScore()/game.getDaysProgressedThrough())));
+		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
+		lblNewLabel.setBounds(10, 225, 582, 69);
 		getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Quit");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
