@@ -42,22 +42,27 @@ public class Heal extends JFrame {
 	 */
 	public Heal(GameEnvironment game, CrewMember member) {
 		Set<String> healSet = new LinkedHashSet<>();
+		ArrayList<MedicalItem> healArray = new ArrayList<>();
+		ArrayList<String> stringHealArray = new ArrayList<>();
 		for (MedicalItem healList1: game.getCrew1().getMedicalItems()) {
+			if (healSet.contains(healList1.getName())) {}
+			else {
+				healArray.add(healList1);
+			}
 			healSet.add(healList1.getName());
+			stringHealArray.add(healList1.getName());
 		}
-		ArrayList healArray = new ArrayList<>(healSet);
-		String string0 = heal_string(game, game.getCrew1().getMedicalItems().get(0));
 		getContentPane().setLayout(null);
 		JButton button = new JButton((String) null);
 		button.setBounds(10, 101, 176, 45);
 		getContentPane().add(button);
 		button.setVisible(false);
-		if (healSet.size() >= 1) {
+		if (healArray.size() >= 1) {
 			button.setVisible(true);
-			button.setText(healArray.get(0) + string0);
+			button.setText(healArray.get(0).getName() + ("(" + (Collections.frequency(stringHealArray, healArray.get(0).getName())) + ")"));
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String message = game.healMethod(member, game.getCrew1().getMedicalItems().get(0), 0);
+					String message = game.healMethod(member, healArray.get(0), 0);
 					game.setMessage(message);
 					dispose();
 					goSearchWindow();
@@ -68,13 +73,12 @@ public class Heal extends JFrame {
 		button_1.setBounds(10, 176, 176, 45);
 		getContentPane().add(button_1);
 		button_1.setVisible(false);
-		if (healSet.size() >= 2) {
-			String string1 = heal_string(game, game.getCrew1().getMedicalItems().get(1));
+		if (healArray.size() >= 2) {
 			button_1.setVisible(true);
-			button_1.setText(healArray.get(1) + string1);
+			button_1.setText(healArray.get(1).getName() + ("(" + (Collections.frequency(stringHealArray, healArray.get(1).getName())) + ")"));
 			button_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String message = game.healMethod(member, game.getCrew1().getMedicalItems().get(1), 1);
+					String message = game.healMethod(member, healArray.get(1), 1);
 					game.setMessage(message);
 					dispose();
 					goSearchWindow();
@@ -85,61 +89,40 @@ public class Heal extends JFrame {
 		button_2.setBounds(10, 244, 176, 45);
 		getContentPane().add(button_2);
 		button_2.setVisible(false);
-		if (healSet.size() >= 3) {
-			String string2 = heal_string(game, game.getCrew1().getMedicalItems().get(2));
+		if (healArray.size() >= 3) {
 			button_2.setVisible(true);
-			button_2.setText(healArray.get(2) + string2);
+			button_2.setText(healArray.get(2).getName() + ("(" + (Collections.frequency(stringHealArray, healArray.get(2).getName())) + ")"));
 			button_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String message = game.healMethod(member, game.getCrew1().getMedicalItems().get(2), 2);
+					String message = game.healMethod(member, healArray.get(2), 2);
 					game.setMessage(message);
 					dispose();
 					goSearchWindow();
 				}
 			});
 		}
-				
+		
 		this.game = game;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 328, 505);
+		setBounds(100, 100, 328, 664);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Pick what healing item you want to use");
-		lblNewLabel.setBounds(10, 11, 221, 61);
+		JLabel lblNewLabel = new JLabel("Pick what healing item you wnat to use");
+		lblNewLabel.setBounds(10, 11, 212, 61);
 		getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(10, 314, 176, 45);
+		JButton btnNewButton = new JButton("Go Back");
+		btnNewButton.setBounds(10, 494, 176, 45);
 		getContentPane().add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				goBack();
 			}
 		});
-		
 
 		
 	}
-	public String heal_string(GameEnvironment game, MedicalItem med) {
-			ArrayList<String> stringHealList2;
-			ArrayList<MedicalItem> finalHealList;
-			ArrayList<String> finalHealList2;
-			stringHealList2 = new ArrayList<String>();
-			finalHealList = new ArrayList<MedicalItem>();
-			finalHealList2 = new ArrayList<String>();
-			for (MedicalItem med1: game.getCrew1().getMedicalItems()) {
-				stringHealList2.add(med1.getName());
-			}
-			Set<MedicalItem> s = new LinkedHashSet<>(game.getCrew1().getMedicalItems());
-			for (MedicalItem set: s) {
-				if (finalHealList2.contains(set.getName())) {}
-				else {
-					finalHealList.add(set);
-					finalHealList2.add(set.getName());
-				}
-			}
-			return ("(" + (Collections.frequency(stringHealList2, med.getName())) + ")");
-	}
+
 	
 	public void closeWindow() {
 		dispose();
