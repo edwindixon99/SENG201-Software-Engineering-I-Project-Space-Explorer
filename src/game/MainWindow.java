@@ -69,7 +69,7 @@ public class MainWindow {
 		
 		JLabel lblWhatDoYou = new JLabel("What would you like your crew member(s) to do?");
 		lblWhatDoYou.setFont(new Font("Dialog", Font.PLAIN, 15));
-		lblWhatDoYou.setBounds(10, 11, 352, 27);
+		lblWhatDoYou.setBounds(10, 11, 411, 27);
 		frame.getContentPane().add(lblWhatDoYou);
 		
 		JButton btnEat = new JButton("Eat");
@@ -216,6 +216,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				game.setMessage(game.nextDay());
 				if(game.isGameIsOver()) {
+					game.setDaysProgressedThrough(game.getDaysProgressedThrough()-1);
 					goGameOverScreen();
 				}else {
 					launchNextDayPopup();

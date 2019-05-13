@@ -578,6 +578,9 @@ class GameEnvironment {
      	public int getDaysProgressedThrough() {
 			return daysProgressedThrough;
 		}
+     	public void setDaysProgressedThrough(int daysProgressedThrough) {
+			this.daysProgressedThrough = daysProgressedThrough;
+		}
 
 
      }

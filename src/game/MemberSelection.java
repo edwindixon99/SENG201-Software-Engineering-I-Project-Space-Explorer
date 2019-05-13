@@ -78,24 +78,22 @@ public class MemberSelection extends JFrame {
 		label.setFont(new Font("Dialog", Font.PLAIN, 15));
 		label.setBounds(21, 140, 158, 142);
 		frame.getContentPane().add(label);
-		if (game.getCrew1().getCrewMemberList().size() >= 2) {
-			label.setText(game.convertToMultiline(member1.viewStatus()));
-			btnNewButton.setBounds(21, 338, 147, 58);
-			frame.getContentPane().add(btnNewButton);
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					if (!btnNewButton.isSelected()) {
-						btnconfirm.setEnabled(false);
-					}else {
-						btnMember20.setSelected(false);
-						btnMember_1.setSelected(false);
-						btnMember_2.setSelected(false);
-						btnconfirm.setEnabled(true);
-						game.setPickedMember(member1);
-					}
+		label.setText(game.convertToMultiline(member1.viewStatus()));
+		btnNewButton.setBounds(21, 338, 147, 58);
+		frame.getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (!btnNewButton.isSelected()) {
+					btnconfirm.setEnabled(false);
+				}else {
+					btnMember20.setSelected(false);
+					btnMember_1.setSelected(false);
+					btnMember_2.setSelected(false);
+					btnconfirm.setEnabled(true);
+					game.setPickedMember(member1);
 				}
-			});
-		}
+			}
+		});
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setFont(new Font("Dialog", Font.PLAIN, 15));
