@@ -5,18 +5,47 @@ import java.util.ArrayList;
 
 
 public class Crew {
-	private SpaceShip ship;
+    /**
+	 * An arrayList containing all the crew members
+	 */
 	private ArrayList<CrewMember> crewMemberList = new ArrayList<CrewMember>();
+    /**
+	 * An arrayList containing all the food items the crew owns
+	 */
 	private ArrayList<Food> foodItems = new ArrayList<Food>();
+    /**
+	 * An arrayList containing all of the crew medical items
+	 */
 	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
-	private ArrayList<Item> Items = new ArrayList<Item>();
+    /**
+	 * The crews money
+	 */
 	private double money = 0;
+    /**
+	 * The number of transporter pieces that the crew have found
+	 */
 	private int numPieces = 0;
+    /**
+	 * An arrayList containing all the crew members that are ready to pilot the ship to a new planet
+	 */
 	private ArrayList<CrewMember> pilotCount = new ArrayList<CrewMember>();
+    /**
+	 * The number of days the game has been going
+	 */
 	private int days = 1;
+    /**
+	 * The required number of pieces the player has to find to win the game
+	 */
 	private int requiredPieces;
 	
-
+	/**
+	 * Checks whether the crew has enough money to buy an item, and if so buys it for them
+	 *
+	 * @param foodList		The list of food the crew owns
+	 * @param medList		The list of medicine the crew owns
+	 * @param item		The item that the crew wants to buy
+	 * @return 			A message signifying whether the crews purchase was succesful or not
+	 */
 	public String buy(ArrayList<Food> foodList, ArrayList<MedicalItem> medList, Item item) {
 		String finalString = "";
 		if (item.getPrice() > getMoney()) {
@@ -33,31 +62,25 @@ public class Crew {
 		return finalString;
 	}
 	
-	
+	/**
+	 * Adds the bought food item to the crews food list
+	 *
+	 * @param foodList		The list of food the crew owns
+	 * @param item		The Food item that the crew bought
+	 */
 	public void buyFood(ArrayList<Food> foodList, Food item) {   
 		foodList.add(item);
 	}
 	
-	
+	/**
+	 * Adds the bought medical item to the crews Medical items list
+	 *
+	 * @param medList		The list of medicine the crew owns
+	 * @param item		The Medical item that the crew bought
+	 */
 	public void buyMedicalItem(ArrayList<MedicalItem> medList, MedicalItem item) {             
 		medList.add(item);
 		}
-	
-	
-	 public static void main(String[] args) {  			// random testing
-		Crew team = new Crew();
-		System.out.println(team.getMoney());
-		System.out.println(team.getItems());
-		SpaceShip rocket = new SpaceShip();
-		System.out.println(rocket.getShieldHealth());
-		team.setShip(rocket);
-		Food apple = new Food("apple", 10, 2.5);
-		Food bapple = new Food("bapple", 22, 2.3);
-		ArrayList<Item> itemsForSale = new ArrayList<Item>();
-		itemsForSale.add(apple);
-		itemsForSale.add(bapple);
-	 }
-
 	/* Getters and Setters for 
 	 * ship
 	 * crewMemebrList
@@ -66,12 +89,13 @@ public class Crew {
 	 * money
 	 * days
 	 */
+	
 	 public int getRequiredPieces() {
 		return requiredPieces;
 	}
 	 public void setRequiredPieces(int pieces) {
 	 	this.requiredPieces = pieces;
-	 	}
+	}
 	public int getDays() {
 		return days;
 	}
@@ -90,14 +114,6 @@ public class Crew {
 	public void setNumPieces(int pieces) {
 		this.numPieces = pieces;
 	}
-	
-	public SpaceShip getShip() {
-		return ship;
-	}
-	public void setShip(SpaceShip ship) {
-		this.ship = ship;
-	}
-
 	public double getMoney() {
 		return money;
 	}
@@ -125,17 +141,6 @@ public class Crew {
 		this.crewMemberList = crewMemberList;
 	}
 
-
-
-	public ArrayList<Item> getItems() {
-		return Items;
-	}
-
-
-
-	public void setItems(ArrayList<Item> items) {
-		Items = items;
-	}
 	
 	
 	
