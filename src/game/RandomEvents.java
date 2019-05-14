@@ -3,9 +3,20 @@ package game;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+/**
+ * This class RandomEvents is used to form the three random events seen throughout the game. The methods in this class are the separate random events.  
+ * @author
+ * @version	14/05/19
+ * 
+ */
 
 public class RandomEvents {
-	
+	/**
+	 * The alien pirates random event. Alien pirates board the ship and steal an item. A random item is removed from the ship inventory.
+	 * 
+	 * @param crew			The crew. 
+	 * @return			returns a message that will be displayed by a NextDayPopup.
+	 */
 	public String alienPirates(Crew crew) {
 		String finalString = "";
 		Random rand = new Random();
@@ -32,7 +43,11 @@ public class RandomEvents {
 		return finalString;
 	}
 		
-		
+	/**
+	 * The space plague random event. One or more of the crew members comes down with space plague.
+	 * @param crew			The crew.
+	 * @return			Returns a message that will be displayed by a NextDayPopup.
+	 */	
 	public String spacePlague(Crew crew) {
 		String finalString = "";
 		Random rand = new Random();
@@ -58,7 +73,11 @@ public class RandomEvents {
 		return finalString;
 	}
 			
-			
+	/**
+	 * The asteroid belt random event. the space ship goes through an asteroid belt which causes damage to the ship, decreasing the shield level by a scaled amount based on the shield level of the ship.
+	 * @param ship			The crews space ship.
+	 * @return			Returns a message that will be displayed on a window.
+	 */			
 	public String asteroidBelt(SpaceShip ship) {
 		int damageTaken;
 		if (ship.getShieldHealth() < 25) {
