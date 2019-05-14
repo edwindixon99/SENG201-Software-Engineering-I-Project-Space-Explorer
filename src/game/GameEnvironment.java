@@ -96,8 +96,6 @@ class GameEnvironment {
  		outpost.setItemsForSale();
  	}
 	/**
-	 * Setter for days.
-	 *
 	 * @param day	Number of days
 	 */
  	public void setDays(int day) {
@@ -283,56 +281,13 @@ class GameEnvironment {
               return (memSleep.getName() + " has gone to sleep.\n");
        	}
        }
-  	/**
-  	 * Views the type and amounts of owned food the crew owns.
-  	 *
-  	 * @return 		A string that has 			
-  	 */ 
 
-      public String viewOwnedFood() {
-    	  String finalString = "";
-    	  ArrayList<Food> foodList = crew1.getFoodItems();
-    	  if (foodList.isEmpty() == true) {
-    		  finalString += "You have no Food items\n";
-    	  }
-    	  else {
-    		  TreeSet<String> stringFood;
-    		  ArrayList<String> stringFoodList;
-    		  stringFoodList = new ArrayList<String>();
-    		  stringFood = new TreeSet<String>();
-    		  for (Food food: foodList) {
-    			  stringFood.add(food.getName());
-    			  stringFoodList.add(food.getName());
-    		  }
-    		  finalString += "Your Food items are:\n";
-    		  for (String food: stringFood) {
-    			  finalString += food + "(" + (Collections.frequency(stringFoodList, food)) + ")\n";	
-    		  }
-    	  }
-    	  return finalString;
-      }
-      public String viewOwnedMedicalItems() {
-    	  String finalString = "";
-    	  ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
-    	  if (medicalList.isEmpty() == true) {
-    		  finalString += "You have no medical items\n";
-    	  }
-    	  else {
-    		  TreeSet<String> stringMed;
-    		  ArrayList<String> stringMedList;
-    		  stringMedList = new ArrayList<String>();
-    		  stringMed = new TreeSet<String>();
-    		  for (MedicalItem med: medicalList) {
-    			  stringMed.add(med.getName());
-    			  stringMedList.add(med.getName());
-    		  }
-    		  finalString += "Your medical items are:\n";
-    		  for (String med: stringMed) {
-    			  finalString += med + "(" + (Collections.frequency(stringMedList, med)) + ")\n";	
-    		  }
-    	  }
-    	  return finalString;
-      }
+  	/**
+  	 * Checks conditions of crew member and crew to determine if they can be healed.
+  	 *
+  	 * @param member		The crew member attempting to be healed.
+  	 * @return 		A message that will be either displayed on a window or an empty string which causes healMethod() to be called.		
+  	 */ 
       public String heal(CrewMember member) {
     	  ArrayList<MedicalItem> healList = crew1.getMedicalItems();
     	  CrewMember memHeal = member; 
@@ -347,6 +302,12 @@ class GameEnvironment {
     	  return ("");
       }
 
+    	/**
+    	 * Checks conditions of crew member and crew to determine if they can eat.
+    	 *
+    	 * @param member		The crew member attempting to eat.
+    	 * @return 		A message that will be either displayed on a window or an empty string which causes eat() to be called.		
+    	 */      
       public String eat(CrewMember member) {
     	  ArrayList<Food> foodList = crew1.getFoodItems();
     	  CrewMember memEat = member; 
@@ -360,6 +321,14 @@ class GameEnvironment {
     	  }
     	  return ("");
       }
+  	/**
+  	 * Crew member eats a food.
+  	 *
+  	 * @param member		The crew member who eats.
+  	 * @param food			The food that is consumed.
+  	 * @param index			The index of the food in the crews food items list.
+  	 * @return 		A message that will be either displayed on a window or an empty string which causes eat() to be called.		
+  	 */       
       public String eat_food(CrewMember member, Food food, int index) {
     	  score += 10;
     	  ArrayList<Food> foodList = crew1.getFoodItems();
@@ -368,6 +337,14 @@ class GameEnvironment {
     	  foodList.remove(food);
     	  return (member.getName() + " has eaten a " + food.getName());
       }
+    	/**
+    	 * Crew member heals with a medical item.
+    	 *
+    	 * @param member		The crew member who heals.
+    	 * @param med			The medical item used.
+    	 * @param index			The index of the medical item in the crews medical items list.
+    	 * @return 		A message that will be either displayed on a window or an empty string which causes eat() to be called.		
+    	 */          
       public String healMethod(CrewMember member, MedicalItem med, int index) {
     	  score += 10;
     	  ArrayList<MedicalItem> healList = crew1.getMedicalItems();
@@ -376,7 +353,12 @@ class GameEnvironment {
     	  healList.remove(index);
     	  return (member.getName() + " has healed using " + med.getName());
       }
+  	/**
+  	 * Causes there to be a random event. 1 in 3 chance of either alien pirates, space plague, nothing happening.
+  	 *
 
+  	 * @return 		a message of when random event occurred which will be displayed on a window.
+  	 */     
       public String getRandomEvent() {
     	  String finalString = "";
     	  Random dayEvent = new Random();
@@ -390,6 +372,14 @@ class GameEnvironment {
     	  }
     	  return finalString;
       }
+      
+  	/**
+  	 * Crew member successfully flies spaceship to new planet.
+  	 *
+  	 * @param memPilot		The crew member who pilots the spaceship.
+  	 * @param pilotList		an ArrayList of crew members that piloted the spaceship.
+  	 * @return 		A message that will be displayed on a window.	
+  	 */        
       public String successfulFlight(CrewMember memPilot, ArrayList<CrewMember> pilotList) {
     	  String finalString = "";
     	  planetPieces = 1;
@@ -413,7 +403,9 @@ class GameEnvironment {
     	  return finalString;
       }  
 
-
+  	/**
+  	 * @param actionTaken1		Action taken chosen in the MainWindow.
+  	 */
      public void setActTaken(String actionTaken1) {
      	actionTaken = actionTaken1;
      }
@@ -423,9 +415,15 @@ class GameEnvironment {
      public CrewMember getPickedMember() {
      	return pickedMember;
      }
+   	/**
+   	 * @param pickedMember1 			mCrew member selected to perform an action.
+   	 */
      public void setPickedMember(CrewMember pickedMember1) {
      	pickedMember = pickedMember1;
      }
+    	/**
+    	 * @param message 			A message which is used by other classes to display an output in windows.
+    	 */
      public void setMessage(String message) {
      	this.message = message;
      }
@@ -447,134 +445,206 @@ class GameEnvironment {
  	public void setShip(SpaceShip ship1) {
  		ship = ship1;
  	}
+ 	
+ 	
+  	/**
+  	 * Closes the setup window.
+  	 *
+  	 * @param setupWindow 			The window which makes the game based on users inputs.
+  	 */  
  	public void closeSetupScreen(SetupWindow setupWindow) {
  		setupWindow.closeWindow();
  		launchMainScreen(); 
  		}
+  	/**
+  	 * Closes the Eat window.
+  	 *
+  	 * @param eat			The window where user decides what food to eat.
+  	 */  
  	public void closeEat(Eat eat) {
  		eat.closeWindow();
  	}
+  	/**
+  	 * Closes the Heal window.
+  	 *
+  	 * @param heal			The window where user decides what medical item to use.
+  	 */  
  	public void closeHeal(Heal heal) {
  		heal.closeWindow();
  	}
+  	/**
+  	 * Launches the MainWindow.
+  	 *
+  	 */  
  	public void launchMainScreen() { 
  		MainWindow mainScreen = new MainWindow(this);
  	  }
+  	/**
+  	 * Closes the Main window
+  	 *
+  	 * @param main			The main window where all stats and action options.
+  	 */  
  	public void closeMainScreen(MainWindow main) { 
  		main.closeWindow();
  	}
-
+  	/**
+  	 * Launches the Setup Window
+  	 *
+  	 */  
  	public void launchSetupWindow() { 
  		  SetupWindow setup = new SetupWindow(this); 
  	 }
+ 	
+  	/**
+  	 * launches the Eat window.
+  	 * 
+  	 * @param The crew member that will eat.
+  	 */  
  	public void launchEatWindow(CrewMember member) {
  		Eat eat = new Eat(this, member);
  		eat.setVisible(true);
  	}
+ 	
+  	/**
+  	 * Launches the Heal window.
+  	 * 
+  	 * @param The crew member that will heal.
+  	 */  
  	public void launchHealWindow(CrewMember member) {
  		Heal heal = new Heal(this, member);
  		heal.setVisible(true);
  	}
-
+  	/**
+  	 * Launches the MemberSelection window.
+  	 * 
+  	 */  
  	public void launchMemberSelection() {
  		MemberSelection memberSelection = new MemberSelection(this);
      }
-     	
-     	public String convertToMultiline(String orig) {
-     	    return "<html>" + orig.replaceAll("\n", "<br>");
-     	}
-     	
-     	public void launchCrewMemberSelection() {
-     		MemberSelection memberSelection = new MemberSelection(this);
-     		memberSelection.setVisible(true);
-     	}
+     
+  	/**
+  	 * converts a string to a multiple line string for windows.
+  	 * 
+  	 * @param orig		 The original string. 
+  	 */  
+ 	public String convertToMultiline(String orig) {
+ 	    return "<html>" + orig.replaceAll("\n", "<br>");
+ 	}
+  	/**
+  	 * Launches the MemberSelection window.
+  	 * 
+  	 */ 
+ 	public void launchCrewMemberSelection() {
+ 		MemberSelection memberSelection = new MemberSelection(this);
+ 		memberSelection.setVisible(true);
+ 	}
+
+  	/**
+  	 * Closes the MemberSelection Window.
+  	 * 
+  	 * @param memberSelection		 The MemberSelection window. 
+  	 */  
+ 	public void closeMemberSelection(MemberSelection memberSelection) {
+ 		memberSelection.closeWindow();
+ 	}
+  	/**
+  	 * Launches the SearchPlanet window.
+  	 * 
+  	 */ 
+ 	public void launchSearchWindow() { 
+ 		  SearchPlanet search = new SearchPlanet(this);
+ 		  search.setVisible(true);
+ 	 }
+  	/**
+  	 * Launches the FlyToNewPlanet window.
+  	 * 
+  	 */ 
+ 	public void launchFlyToNewPlanetWindow() {
+ 		FlyToNewPlanetWindow pilot = new FlyToNewPlanetWindow(this);
+ 		pilot.setVisible(true);
+ 	}
 
 
-     	public void closeMemberSelection(MemberSelection memberSelection) {
-     		memberSelection.closeWindow();
-     	}
-     	public void launchSearchWindow() { 
-     		  SearchPlanet search = new SearchPlanet(this);
-     		  search.setVisible(true);
-     	 }
-     	public void launchFlyToNewPlanetWindow() {
-     		FlyToNewPlanetWindow pilot = new FlyToNewPlanetWindow(this);
-     		pilot.setVisible(true);
-     	}
+ 	public void closeSpaceOutpost(SpaceOutpostWindow spaceOutpostWindow) {
+ 		spaceOutpostWindow.closeWindow();
+ 		
+ 	}
 
 
-     	public void closeSpaceOutpost(SpaceOutpostWindow spaceOutpostWindow) {
-     		spaceOutpostWindow.closeWindow();
-     		
-     	}
+ 	public String getsecondMessage() {
+ 		return secondMessage;
+ 	}
 
 
-     	public String getsecondMessage() {
-     		return secondMessage;
-     	}
+ 	public void setsecondMessage(String secondMessage) {
+ 		this.secondMessage = secondMessage;
+ 	}
 
 
-     	public void setsecondMessage(String secondMessage) {
-     		this.secondMessage = secondMessage;
-     	}
+ 	public void launchSpaceOutpost() {
+ 		SpaceOutpostWindow outpost = new SpaceOutpostWindow(this);		
+ 	}
+ 	public void launchGameOverWindow() {
+ 		GameOverWindow gameover = new GameOverWindow(this);
+ 		gameover.setVisible(true);
+ 	}
 
 
-     	public void launchSpaceOutpost() {
-     		SpaceOutpostWindow outpost = new SpaceOutpostWindow(this);		
-     	}
-     	public void launchGameOverWindow() {
-     		GameOverWindow gameover = new GameOverWindow(this);
-     		gameover.setVisible(true);
-     	}
+ 	public void closeItemsForSale(ItemsForSale itemsForSale) {
+ 		itemsForSale.closeWindow();
+ 	}
+ 	public void launchItemsForSale() {
+ 		ItemsForSale itemsForSale = new ItemsForSale(this);
+ 		itemsForSale.setVisible(true);
+ 	}
+ 	public boolean isGameIsOver() {
+		return gameIsOver;
+	}
+
+	public void setGameIsOver(boolean gameIsOver) {
+		this.gameIsOver = gameIsOver;
+	}
+
+    public void launchWinnerWindow() {
+		WinnerWindow winner = new WinnerWindow(this);
+		
+		winner.setVisible(true);
+	}
+    
+ 	public int getDaysProgressedThrough() {
+		return daysProgressedThrough;
+	}
+ 	
+ 	public void setDaysProgressedThrough(int daysProgressedThrough) {
+		this.daysProgressedThrough = daysProgressedThrough;
+	}
+  	/**
+  	 *  
+  	 * @return		The game score.
+  	 */ 
+ 	public int getScore() {
+		return score;
+	}
 
 
-     	public void closeItemsForSale(ItemsForSale itemsForSale) {
-     		itemsForSale.closeWindow();
-     	}
-     	public void launchItemsForSale() {
-     		ItemsForSale itemsForSale = new ItemsForSale(this);
-     		itemsForSale.setVisible(true);
-     	}
-     	public boolean isGameIsOver() {
-			return gameIsOver;
+	public void setScore(int score) {
+		this.score = score;
+	}
+  	/**
+  	 * Makes a score that will be added to the total based on the crew members stats.
+  	 *  
+  	 * @return			score based on crew members stats.
+  	 */ 
+	public int getCrewMemberScores() {
+		int score = 50;
+		ArrayList<CrewMember> memberList = crew1.getCrewMemberList();
+		for (int i=0;i<memberList.size();i++) {
+			score += memberList.get(i).getHealthLevel();
+			score += memberList.get(i).getTiredness();
+			score += memberList.get(i).getHungerLevel();
 		}
-
-		public void setGameIsOver(boolean gameIsOver) {
-			this.gameIsOver = gameIsOver;
-		}
-
-        public void launchWinnerWindow() {
-			WinnerWindow winner = new WinnerWindow(this);
-			
-			winner.setVisible(true);
-		}
-        
-     	public int getDaysProgressedThrough() {
-			return daysProgressedThrough;
-		}
-     	
-     	public void setDaysProgressedThrough(int daysProgressedThrough) {
-			this.daysProgressedThrough = daysProgressedThrough;
-		}
-     	
-     	public int getScore() {
-			return score;
-		}
-
-
-		public void setScore(int score) {
-			this.score = score;
-		}
-		public int getCrewMemberScores() {
-			int score = 50;
-			ArrayList<CrewMember> memberList = crew1.getCrewMemberList();
-			for (int i=0;i<memberList.size();i++) {
-				score += memberList.get(i).getHealthLevel();
-				score += memberList.get(i).getTiredness();
-				score += memberList.get(i).getHungerLevel();
-			}
-			return score;
-		}
+		return score;
+	}
 
 
      }
