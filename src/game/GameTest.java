@@ -25,7 +25,7 @@ class GameTest {
 	private Type1 member;
 	private RandomEvents random;
 	@BeforeEach
-	void inti() {
+	void init() {
 		testCrew = new Crew();
 		apple = new Food("apple", 15, 7);
 		medicine = new MedicalItem("Medicine", false, 20, 20);
@@ -83,6 +83,9 @@ class GameTest {
 		ship.setShieldHealth(100);
 		random.asteroidBelt(ship);
 		assertEquals(60, ship.getShieldHealth());
+		ship.setShieldHealth(20);
+		random.asteroidBelt(ship);
+		assertEquals(10, ship.getShieldHealth());
 		
 	}
 	
