@@ -23,6 +23,7 @@ public class FlyToNewPlanetWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public FlyToNewPlanetWindow(GameEnvironment game) {
+		setTitle("Space Explorer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 853, 488);
 		getContentPane().setLayout(null);

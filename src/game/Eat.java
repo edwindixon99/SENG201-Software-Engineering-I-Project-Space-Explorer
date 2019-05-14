@@ -41,6 +41,7 @@ public class Eat extends JFrame {
 	 * Create the frame.
 	 */
 	public Eat(GameEnvironment game, CrewMember member) {
+		setTitle("Space Explorer");
 		Set<String> foodSet = new LinkedHashSet<>();
 		ArrayList<Food> foodArray = new ArrayList<>();
 		ArrayList<String> stringFoodArray = new ArrayList<>();

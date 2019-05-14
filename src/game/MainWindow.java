@@ -63,6 +63,7 @@ public class MainWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Space Explorer");
 		frame.setBounds(100, 100, 703, 564);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

@@ -41,6 +41,7 @@ public class Heal extends JFrame {
 	 * Create the frame.
 	 */
 	public Heal(GameEnvironment game, CrewMember member) {
+		setTitle("Space Explorer");
 		Set<String> healSet = new LinkedHashSet<>();
 		ArrayList<MedicalItem> healArray = new ArrayList<>();
 		ArrayList<String> stringHealArray = new ArrayList<>();

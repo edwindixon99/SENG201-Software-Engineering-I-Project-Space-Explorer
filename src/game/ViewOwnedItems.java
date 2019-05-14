@@ -24,6 +24,7 @@ public class ViewOwnedItems extends JFrame {
 	 * Create the frame.
 	 */
 	public ViewOwnedItems(GameEnvironment game) {
+		setTitle("Space Explorer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 838, 585);
 		getContentPane().setLayout(null);

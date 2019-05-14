@@ -28,6 +28,7 @@ public class SalePopup extends JFrame {
 	 * Create the frame.
 	 */
 	public SalePopup(GameEnvironment game, ItemsForSale itemsForSale) {
+		setTitle("Space Explorer");
 		this.game = game;
 		this.itemsForSale = itemsForSale;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

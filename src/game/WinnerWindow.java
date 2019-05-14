@@ -21,6 +21,7 @@ public class WinnerWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public WinnerWindow(GameEnvironment game) {
+		setTitle("Space Explorer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 853, 450);
 		getContentPane().setLayout(null);

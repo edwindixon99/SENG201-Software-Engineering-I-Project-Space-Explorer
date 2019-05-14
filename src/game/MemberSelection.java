@@ -58,6 +58,7 @@ public class MemberSelection extends JFrame {
 	
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Space Explorer");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 703, 564);
 		frame.getContentPane().setLayout(null);
@@ -207,8 +208,7 @@ public class MemberSelection extends JFrame {
 				if(game.getActTaken() == "Pilot") {
 					String message = game.flyToNewPlanet(game.getPickedMember());
 					if (message == "Fail") {
-						message = ("The shield of your ship has depleted, and everyone on the crew has died!");
-						
+						message = ("The shield of your ship has depleted, and everyone on the crew has died!");	
 					}
 					else {
 						game.setMessage(message);

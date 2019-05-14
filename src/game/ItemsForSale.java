@@ -38,6 +38,7 @@ public class ItemsForSale extends JFrame {
 	 * Create the frame.
 	 */
 	public ItemsForSale(GameEnvironment game) {
+		setTitle("Space Explorer");
 		this.game = game;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);

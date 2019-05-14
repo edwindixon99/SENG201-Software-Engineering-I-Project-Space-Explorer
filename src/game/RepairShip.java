@@ -37,6 +37,7 @@ public class RepairShip extends JFrame {
 	 * Create the frame.
 	 */
 	public RepairShip(GameEnvironment game) {
+		setTitle("Space Explorer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 853, 219);
 		getContentPane().setLayout(null);

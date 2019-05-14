@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
@@ -27,6 +28,7 @@ public class GameOverWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public GameOverWindow(GameEnvironment game) {
+		setTitle("Space Explorer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 853, 450);
 		getContentPane().setLayout(null);
@@ -46,7 +48,11 @@ public class GameOverWindow extends JFrame {
 		lblNumberOfDays.setBounds(10, 198, 582, 61);
 		getContentPane().add(lblNumberOfDays);
 		
-		lblScore = new JLabel("Score: " + Integer.toString(500*(game.getScore()/game.getDaysProgressedThrough())));
+		int score =  500*(game.getScore()/game.getDaysProgressedThrough());
+		if (game.getCrew1().getCrewMemberList().size() > 0) {
+			score += 10 * game.getCrewMemberScores();
+		}
+		lblScore = new JLabel("Score: " + Integer.toString(score));
 		lblScore.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lblScore.setBounds(10, 254, 582, 69);
 		getContentPane().add(lblScore);
@@ -61,4 +67,5 @@ public class GameOverWindow extends JFrame {
 		btnNewButton.setBounds(678, 350, 149, 50);
 		getContentPane().add(btnNewButton);
 	}
+
 }

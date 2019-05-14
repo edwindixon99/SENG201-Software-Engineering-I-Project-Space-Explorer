@@ -106,7 +106,7 @@ public class SetupWindow {
 	 */
 	private void initialize() {
 		frmGame = new JFrame();
-		frmGame.setTitle("game");
+		frmGame.setTitle("Space Explorer");
 		frmGame.setBounds(100, 100, 800, 600);
 		frmGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGame.getContentPane().setLayout(null);
@@ -155,7 +155,7 @@ public class SetupWindow {
 		NumOfDaysSlider.setBounds(467, 133, 249, 56);
 		frmGame.getContentPane().add(NumOfDaysSlider);
 		
-		JLabel titleLabel = new JLabel("Game Title");
+		JLabel titleLabel = new JLabel("Space Explorer");
 		titleLabel.setBounds(30, 12, 305, 33);
 		frmGame.getContentPane().add(titleLabel);
 		titleLabel.setFont(new Font("Dialog", Font.BOLD, 27));

@@ -27,6 +27,7 @@ public class NextDayPopup extends JFrame {
 	 * Create the frame.
 	 */
 	public NextDayPopup(GameEnvironment game, MainWindow main) {
+		setTitle("Space Explorer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.game = game;
 		this.main = main;
