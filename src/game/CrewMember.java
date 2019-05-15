@@ -7,8 +7,8 @@ import java.util.Random;
 /**
  * This class contains variables and methods that affect or concern individual crew members statistics
  *
- * @author Matthew Ruffell
- * @version 1.1, Feb 2018.
+ * @author  
+ * @version 15/05/2019.
  */
 public class CrewMember {
 	/**
@@ -165,96 +165,72 @@ public class CrewMember {
 	}
 	
 	/**
-	 * Returns the name of the crew member
-	 *
 	 * @return 			The crew members name as a string
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
-	 * sets the name of the crew member
-	 *
 	 * @param name		The name of the crew member
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	/**
-	 * returns the health level of the crew member
-	 *
 	 * @return 			The crew members health level
 	 */
 	public int getHealthLevel() {
 		return healthLevel;
 	}
 	/**
-	 * sets the health level of the crew member
-	 *
 	 * @param healthLevel		The crew members health level
 	 */
 	public void setHealthLevel(int healthLevel) {
 		this.healthLevel = healthLevel;
 	}
 	/**
-	 * returns the crew members hunger level
-	 *
 	 * @return 			The crew members hunger level
 	 */
 	public int getHungerLevel() {
 		return hungerLevel;
 	}
 	/**
-	 *Sets the crew members hunger level
-	 *
 	 * @param hungerLevel		The crew members hunger level
 	 */
 	public void setHungerLevel(int hungerLevel) {
 		this.hungerLevel = hungerLevel;
 	}
 	/**
-	 * Returns the tiredness level of the crew member
-	 *
 	 * @return 			The crew members tiredness level
 	 */
 	public int getTiredness() {
 		return tiredness;
 	}
 	/**
-	 * Sets the tiredness of the crew member
-	 *
 	 * @param tiredness		The crew members tiredness
 	 */
 	public void setTiredness(int tiredness) {
 		this.tiredness = tiredness;
 	} 
 	/**
-	 * Returns whether the crew member has the space plague or not
-	 *
 	 * @return 			A boolean dictating whether the crew member has space plague
 	 */
 	public boolean hasSpacePlague() {
 		return spacePlague;
 	}
 	/**
-	 * Sets if the crew member has space plague or not
-	 *
 	 * @param spacePlague		A boolean which is if the crew member has space plague
 	 */
 	public void setSpacePlague(boolean spacePlague) {
 		this.spacePlague = spacePlague;
 	}
 	/**
-	 * Returns the number of actions the crew member has remaining
-	 *
 	 * @return 			The number of actions the player has remaining
 	 */
 	public int getActionCounter() {
 		return actionCounter;
 	}
 	/**
-	 * Sets the amount of actions the crew member can perform
-	 *
 	 * @param actionCounter		The amount of actions the player can perform
 	 */
 
@@ -262,48 +238,36 @@ public class CrewMember {
 		this.actionCounter = actionCounter;
 	}
 	/**
-	 * Returns the rate at which the crew members hunger declines
-	 *
 	 * @return 			The rate of which the crew members hunger degrades
 	 */
 	public int getHungerDegrade() {
 		return hungerDegrade;
 	}
 	/**
-	 * Sets the rate at which the crew members hunger declines 
-	 *
 	 * @param hunger		The rate which the crew members hunger declines
 	 */
 	public void setHungerDegrade(int hunger) {
 		this.hungerDegrade = hunger;
 	}
 	/**
-	 * Returns the rate at which the crew members health declines
-	 *
 	 * @return 			The rate of which the crew members health degrades
 	 */
 	public int getHealthDegrade() {
 		return healthDegrade;
 	}
 	/**
-	 * Sets the rate at which the crew members health level declines 
-	 *
 	 * @param health		The rate which the crew members health level declines
 	 */
 	public void setHealthDegrade(int health) {
 		this.healthDegrade = health;
 	}
 	/**
-	 * Returns the rate at which the crew members tiredness level declines
-	 *
 	 * @return 			The rate of which the crew members tiredness level degrades
 	 */
 	public int getTirednessDegrade() {
 		return tirednessDegrade;
 	}
 	/**
-	 * Sets the rate at which the crew members tiredness level declines 
-	 *
 	 * @param tiredness		The rate which the crew members tiredness declines
 	 */
 	public void setTirednessDegrade(int tired) {
