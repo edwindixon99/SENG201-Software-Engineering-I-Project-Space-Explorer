@@ -31,7 +31,7 @@ public class MedicalItem extends Item {
 		setPrice(tempPrice);
 	}
 	/**
-	 * Returns a food object in the form of a string. It was used for testing and is no longer used.
+	 * Returns a MedicalItem object in the form of a string. It was used for testing and is no longer used.
 	 * @return		A string that contains all of the attributes of the item
 	 */
 	public String toString() {					
