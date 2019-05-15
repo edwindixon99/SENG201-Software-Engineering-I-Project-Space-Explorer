@@ -1,43 +1,42 @@
 package game;
 
 import java.util.ArrayList;
-
+/**
+ * This is the class for the space outpost, which is where the crew can view their owned items, as well as buying new ones
+ *
+ * @author  
+ * @version 15/05/2019.
+ */
 public class SpaceOutpost {
+	/**
+	 * The name of the outpost
+	 */
 	private String name;
+	/**
+	 * An array list containing the items for sale at the outpost
+	 */
 	private ArrayList<Item> itemsForSale  = new ArrayList<Item>();
-
-	
-	
-	
-	/*
-	 * methods required include
-	 * buy(Item item)
-	 * view(Item item)
+	/**
+	 * @return		The name of the outpost
 	 */
-
-	
-	/*
-	 * Getter and Setters for 
-	 * name
-	 * itemsForSale
-	 */
-	
-	
-	
 	public String getName() {
 		return name;
 	}
-	
+	/**
+	 * @param		The name of the outpost
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
+	/**
+	 * @return		An array list containing all of the items for sale at the outpost
+	 */
 	public ArrayList<Item> getItemsForSale() {
 		return itemsForSale;
 	}
-
-
+	/**
+	 * Creates and sets all of the possible items for sale at the outpost
+	 */
 	public void setItemsForSale(){
 		Food Apple = new Food("Apple", 15, 7);
 		itemsForSale.add(Apple);
@@ -57,23 +56,6 @@ public class SpaceOutpost {
 		itemsForSale.add(BigHealing);
 		Item Spaceplaguecure = new MedicalItem("Space Plague Cure", true, 0, 15);
 		itemsForSale.add(Spaceplaguecure);
-	}
-	
-	public static void main(String[] args) {    // random testing
-		
-		Crew team = new Crew();
-		System.out.println(team.getMoney());
-		System.out.println(team.getItems());
-		SpaceShip rocket = new SpaceShip();
-		System.out.println(rocket.getShieldHealth());
-		team.setShip(rocket);
-		Food apple = new Food("apple", 10, 2.5);
-		Food bapple = new Food("bapple", 22, 2.3);
-		MedicalItem pills = new MedicalItem("pills", true, 60, 30);
-		ArrayList<Item> itemsForSale = new ArrayList<Item>();
-		itemsForSale.add(pills);
-		itemsForSale.add(apple);
-		itemsForSale.add(bapple);
 	}
 
 
