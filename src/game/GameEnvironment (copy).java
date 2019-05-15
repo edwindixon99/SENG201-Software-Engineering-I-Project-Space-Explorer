@@ -21,7 +21,7 @@ import java.util.TreeSet;
  * @author Matthew Ruffell
  * @version 1.1, Feb 2018.
  */
-class GameEnvironment {
+class newGameEnvironment {
 	/**
 	 * The number planet pieces on one planet. This value is 1 when planet piece not found and 0 when it is.
 	 */

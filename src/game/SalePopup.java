@@ -26,6 +26,8 @@ public class SalePopup extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param game			The game environment in which is being played.
+	 * @param itemsForSale		the items for sale Window in use.
 	 */
 	public SalePopup(GameEnvironment game, ItemsForSale itemsForSale) {
 		setTitle("Space Explorer");
@@ -57,6 +59,9 @@ public class SalePopup extends JFrame {
 		lblNewLabel.setBounds(10, 11, 564, 83);
 		getContentPane().add(lblNewLabel);
 	}
+	/**
+	 * Closes the window.
+	 */
 	private void close() {
 		dispose();
 		game.closeItemsForSale(itemsForSale);

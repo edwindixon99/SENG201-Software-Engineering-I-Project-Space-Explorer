@@ -55,21 +55,30 @@ public class SetupWindow {
 	public SetupWindow() {	
 		initialize();
 	}
-	
+	/**
+	 * Class constructor.
+	 */
 	public SetupWindow(GameEnvironment newGame) {
 		game = newGame;
 		initialize();
 		frmGame.setVisible(true);
 	}
-	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frmGame.dispose();
 	}
-	
+	/**
+	 * Closes the window.
+	 */
 	public void finishedWindow() {
 		game.closeSetupScreen(this);
 	}
-	
+	/**
+	 * Returns a boolean to whether or not two confirmation buttons have been selected.
+	 * @return			A boolean has to whether the setup is finished
+	 */
 	public boolean gameReady() {
 		if (confirmCrewMemButt.isSelected() && confirmNumOfCrewMemLockInButt.isSelected()) {
 			return true;
@@ -78,7 +87,11 @@ public class SetupWindow {
 		}
 			
 	}
-	
+	/**
+	 * Creates a crew member of a type chosen by the user.
+	 * @param type			A string of that is has a crew member type.
+	 * @return			A crew member
+	 */
 	public CrewMember createCrewMember(String type) {
 		if (type == "Type 1") {
 			Type1 newMember = new Type1("", 40, 2, 10);
@@ -180,11 +193,7 @@ public class SetupWindow {
 					crewMemberList.get(3).setName(mem4txtField.getText());
 				}
 				game.getCrew1().setCrewMemberList(crewMemberList);
-				//System.out.println(game);						//This bit is causing errors trying to set the crewmemberlist of the crew in the game to the one created just before.
-				//System.out.println();
 				finishedWindow();
-				
-				//Needs to open new window(main game) 
 			}
 		});
 		startGameButt.setEnabled(false);

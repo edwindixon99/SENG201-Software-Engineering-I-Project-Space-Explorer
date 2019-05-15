@@ -34,6 +34,7 @@ public class SearchPlanet extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param game			The game environment in which is being played.
 	 */
 	public SearchPlanet(GameEnvironment game) {
 		setTitle("Space Explorer");

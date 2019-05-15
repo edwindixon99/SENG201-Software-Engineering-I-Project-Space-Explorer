@@ -39,6 +39,9 @@ public class Eat extends JFrame {
 	private SalePopup popup;
 	/**
 	 * Create the frame.
+	 * 
+	 * @param game			The game environment in which is being played.
+	 * @param member		The member who eats.
 	 */
 	public Eat(GameEnvironment game, CrewMember member) {
 		setTitle("Space Explorer");

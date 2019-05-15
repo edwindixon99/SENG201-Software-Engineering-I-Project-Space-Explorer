@@ -22,6 +22,7 @@ public class ViewOwnedItems extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param game			The game environment in which is being played.
 	 */
 	public ViewOwnedItems(GameEnvironment game) {
 		setTitle("Space Explorer");

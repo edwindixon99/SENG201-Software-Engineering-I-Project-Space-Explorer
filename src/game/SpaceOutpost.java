@@ -23,7 +23,7 @@ public class SpaceOutpost {
 		return name;
 	}
 	/**
-	 * @param		The name of the outpost
+	 * @param name		The name of the outpost
 	 */
 	public void setName(String name) {
 		this.name = name;

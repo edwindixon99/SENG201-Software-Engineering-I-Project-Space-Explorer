@@ -25,6 +25,8 @@ public class NextDayPopup extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param game			The game environment in which is being played.
+	 * @param main			the main window which is in use.
 	 */
 	public NextDayPopup(GameEnvironment game, MainWindow main) {
 		setTitle("Space Explorer");
@@ -58,6 +60,9 @@ public class NextDayPopup extends JFrame {
 		lblNewLabel.setBounds(10, 11, 564, 183);
 		getContentPane().add(lblNewLabel);
 	}
+	/**
+	 * Closes the popup window.
+	 */
 	private void close() {
 		dispose();
 		game.closeMainScreen(main);

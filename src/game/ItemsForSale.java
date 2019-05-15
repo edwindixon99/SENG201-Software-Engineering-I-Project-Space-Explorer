@@ -36,6 +36,8 @@ public class ItemsForSale extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param game			The game environment in which is being played.
 	 */
 	public ItemsForSale(GameEnvironment game) {
 		setTitle("Space Explorer");

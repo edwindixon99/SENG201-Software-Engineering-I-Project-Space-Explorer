@@ -21,6 +21,7 @@ public class SpaceOutpostWindow {
 
 	/**
 	 * Create the application.
+	 * @param gameEnvironment			The game environment in which is being played.
 	 */
 	public SpaceOutpostWindow(GameEnvironment gameEnvironment) {
 		game = gameEnvironment;
@@ -80,18 +81,25 @@ public class SpaceOutpostWindow {
 		btnGoBack.setBounds(562, 89, 177, 88);
 		frame.getContentPane().add(btnGoBack);
 	}
+	/**
+	 * closes this window and opens the items for sale window.
+	 */
 	private void launchViewItemsForSale() {
 		game.closeSpaceOutpost(this);
 		game.launchItemsForSale();
 		
 		
 	}
-
+	/**
+	 * Closes this window and opens the main window.
+	 */
 	private void goBack() {
 		game.closeSpaceOutpost(this);
 		game.launchMainScreen();
 	}
-
+	/**
+	 * Closes this window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 		

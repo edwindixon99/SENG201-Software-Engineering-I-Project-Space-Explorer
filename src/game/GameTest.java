@@ -1,4 +1,4 @@
-package Test;
+package game;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,15 +6,6 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import game.Crew;
-import game.Food;
-import game.Item;
-import game.MedicalItem;
-import game.RandomEvents;
-import game.SpaceOutpost;
-import game.SpaceShip;
-import game.Type1;
 
 class GameTest {
 	private Crew testCrew;

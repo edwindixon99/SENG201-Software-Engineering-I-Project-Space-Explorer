@@ -39,9 +39,8 @@ public class MainWindow {
 
 	/**
 	 * Create the application.
-	 * @return 
-	 * @return 
-	 * @return 
+	 * 
+	 * @param gameEnvironment			The game environment in which is being played.
 	 */
 
 	public MainWindow(GameEnvironment gameEnvironment) { 

@@ -21,6 +21,8 @@ public class FlyToNewPlanetWindow extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param game			The game environment in which is being played.
 	 */
 	public FlyToNewPlanetWindow(GameEnvironment game) {
 		setTitle("Space Explorer");

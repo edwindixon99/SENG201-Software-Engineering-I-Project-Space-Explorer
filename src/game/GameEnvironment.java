@@ -21,7 +21,7 @@ import java.util.TreeSet;
  * @author Matthew Ruffell
  * @version 1.1, Feb 2018.
  */
-class GameEnvironment {
+public class GameEnvironment {
 	/**
 	 * The number planet pieces on one planet. This value is 1 when planet piece not found and 0 when it is.
 	 */
@@ -498,7 +498,7 @@ class GameEnvironment {
   	/**
   	 * launches the Eat window.
   	 * 
-  	 * @param The crew member that will eat.
+  	 * @param member The crew member that will eat.
   	 */  
  	public void launchEatWindow(CrewMember member) {
  		Eat eat = new Eat(this, member);
@@ -508,7 +508,7 @@ class GameEnvironment {
   	/**
   	 * Launches the Heal window.
   	 * 
-  	 * @param The crew member that will heal.
+  	 * @param member The crew member that will heal.
   	 */  
  	public void launchHealWindow(CrewMember member) {
  		Heal heal = new Heal(this, member);
@@ -526,6 +526,7 @@ class GameEnvironment {
   	 * converts a string to a multiple line string for windows.
   	 * 
   	 * @param orig		 The original string. 
+  	 * @return 			A string taht can be displayed as multiple lines for windows.
   	 */  
  	public String convertToMultiline(String orig) {
  	    return "<html>" + orig.replaceAll("\n", "<br>");

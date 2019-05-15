@@ -43,19 +43,30 @@ public class MemberSelection extends JFrame {
 	}
 
 	/**
-	 * Create the 
+	 * Create the frame and the user picks which crew member to perform an action.
+	 * 
+	 * @param game			The game environment in which is being played.
+	 * @return				The crew member that gets selected.
 	 */
 	public CrewMember getCrewMember(GameEnvironment game) {
 		MemberSelection frame = new MemberSelection(game);
 		frame.setVisible(true);
 		return crewMember;
 	}
+	/**
+	 * The constructor for the class.
+	 * 
+	 * @param game			The game environment in which is being played.
+	 */
 	public MemberSelection(GameEnvironment game) {
 		this.game = game;
 		initialize();
 		frame.setVisible(true);
 	}
-	
+	/**
+	 * The Window initializer.
+	 * 
+	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Space Explorer");
@@ -250,33 +261,53 @@ public class MemberSelection extends JFrame {
 		btnconfirm.setBounds(20, 445, 190, 69);
 		frame.getContentPane().add(btnconfirm);
 	}
+	/**
+	 * Launches the pilot window.
+	 */
 	private void goPilotWindow() {
 		game.closeMemberSelection(this);
 		game.launchFlyToNewPlanetWindow();
 		
 	}
+	/**
+	 * Launches the game over window.
+	 */
 	private void goGameOverWindow() {
 		game.closeMemberSelection(this);
 		game.launchGameOverWindow();
 		
 	}
+	/**
+	 * Launches the eat window.
+	 */
 	private void goEatWindow(CrewMember member) {
 		game.closeMemberSelection(this);
 		game.launchEatWindow(member);
 	}
+	/**
+	 * Launches the heal window.
+	 */
 	private void goHealWindow(CrewMember member) {
 		game.closeMemberSelection(this);
 		game.launchHealWindow(member);
 	}
+	/**
+	 * Launches the search window.
+	 */
 	private void goSearchWindow() {
 		game.closeMemberSelection(this);
 		game.launchSearchWindow(); 
 	}
+	/**
+	 * Closes the window and opens the main window.
+	 */
 	private void goBack() {
 		game.closeMemberSelection(this);
 		game.launchMainScreen();
 	}
-
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}

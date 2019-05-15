@@ -268,7 +268,7 @@ public class CrewMember {
 		return tirednessDegrade;
 	}
 	/**
-	 * @param tiredness		The rate which the crew members tiredness declines
+	 * @param tired		The rate which the crew members tiredness declines
 	 */
 	public void setTirednessDegrade(int tired) {
 		this.tirednessDegrade = tired;

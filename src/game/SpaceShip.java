@@ -40,7 +40,7 @@ public class SpaceShip {
 		return shieldHealth;
 	}
 	/**
-	 * @param		The ships shield level
+	 * @param shieldHealth		The ships shield level
 	 */
 	public void setShieldHealth(int shieldHealth) {
 		this.shieldHealth = shieldHealth;
@@ -52,7 +52,7 @@ public class SpaceShip {
 		return shipName;
 	}
 	/**
-	 * @param		The ships name
+	 * @param name		The ships name
 	 */
 	public void setShipName(String name) {
 		this.shipName = name;
