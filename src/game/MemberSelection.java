@@ -79,53 +79,53 @@ public class MemberSelection extends JFrame {
 		
 		JButton btnconfirm = new JButton("Confirm");
 		btnconfirm.setEnabled(false);
-		JToggleButton btnNewButton = new JToggleButton(member1.getName());
-		JToggleButton btnMember20 = new JToggleButton("");
-		JToggleButton btnMember_1 = new JToggleButton("");
-		JToggleButton btnMember_2 = new JToggleButton("");
+		JToggleButton member1Button = new JToggleButton(member1.getName());
+		JToggleButton member2Button = new JToggleButton("");
+		JToggleButton member3Button = new JToggleButton("");
+		JToggleButton member4Button = new JToggleButton("");
 		
-		JLabel label = new JLabel("");
-		label.setForeground(Color.BLACK);
-		label.setBackground(Color.WHITE);
-		label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label.setBounds(21, 140, 158, 142);
-		frame.getContentPane().add(label);
-		label.setText(game.convertToMultiline(member1.viewStatus()));
-		btnNewButton.setBounds(21, 338, 147, 58);
-		frame.getContentPane().add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
+		JLabel member1Label = new JLabel("");
+		member1Label.setForeground(Color.BLACK);
+		member1Label.setBackground(Color.WHITE);
+		member1Label.setFont(new Font("Dialog", Font.PLAIN, 15));
+		member1Label.setBounds(21, 140, 158, 142);
+		frame.getContentPane().add(member1Label);
+		member1Label.setText(game.convertToMultiline(member1.viewStatus()));
+		member1Button.setBounds(21, 338, 147, 58);
+		frame.getContentPane().add(member1Button);
+		member1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (!btnNewButton.isSelected()) {
+				if (!member1Button.isSelected()) {
 					btnconfirm.setEnabled(false);
 				}else {
-					btnMember20.setSelected(false);
-					btnMember_1.setSelected(false);
-					btnMember_2.setSelected(false);
+					member2Button.setSelected(false);
+					member3Button.setSelected(false);
+					member4Button.setSelected(false);
 					btnconfirm.setEnabled(true);
 					game.setPickedMember(member1);
 				}
 			}
 		});
 		
-		JLabel label_1 = new JLabel("");
-		label_1.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_1.setBounds(188, 140, 155, 142);
-		frame.getContentPane().add(label_1);
+		JLabel member2Label = new JLabel("");
+		member2Label.setFont(new Font("Dialog", Font.PLAIN, 15));
+		member2Label.setBounds(188, 140, 155, 142);
+		frame.getContentPane().add(member2Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 2) {
 			CrewMember member2 = game.getCrew1().getCrewMemberList().get(1);
-			label_1.setText(game.convertToMultiline(member2.viewStatus()));
-			btnMember20.setText(member2.getName());
-			btnMember20.setVisible(true);
-			btnMember20.setBounds(188, 338, 147, 58);
-			frame.getContentPane().add(btnMember20);
-			btnMember20.addActionListener(new ActionListener() {
+			member2Label.setText(game.convertToMultiline(member2.viewStatus()));
+			member2Button.setText(member2.getName());
+			member2Button.setVisible(true);
+			member2Button.setBounds(188, 338, 147, 58);
+			frame.getContentPane().add(member2Button);
+			member2Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (!btnMember20.isSelected()) {
+					if (!member2Button.isSelected()) {
 						btnconfirm.setEnabled(false);
 					}else {
-						btnNewButton.setSelected(false);
-						btnMember_1.setSelected(false);
-						btnMember_2.setSelected(false);
+						member1Button.setSelected(false);
+						member3Button.setSelected(false);
+						member4Button.setSelected(false);
 						btnconfirm.setEnabled(true);
 						game.setPickedMember(member2);
 					}
@@ -133,26 +133,26 @@ public class MemberSelection extends JFrame {
 			});
 		}
 		
-		JLabel label_2 = new JLabel("");
-		label_2.setBackground(Color.WHITE);
-		label_2.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_2.setBounds(353, 140, 155, 142);
-		frame.getContentPane().add(label_2);
+		JLabel member3Label = new JLabel("");
+		member3Label.setBackground(Color.WHITE);
+		member3Label.setFont(new Font("Dialog", Font.PLAIN, 15));
+		member3Label.setBounds(353, 140, 155, 142);
+		frame.getContentPane().add(member3Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 3) {
 			CrewMember member3 = game.getCrew1().getCrewMemberList().get(2);
-			label_2.setText(game.convertToMultiline(member3.viewStatus()));
-			btnMember_1.setText(member3.getName());
-			btnMember_1.setVisible(true);
-			btnMember_1.setBounds(353, 338, 147, 58);
-			frame.getContentPane().add(btnMember_1);
-			btnMember_1.addActionListener(new ActionListener() {
+			member3Label.setText(game.convertToMultiline(member3.viewStatus()));
+			member3Button.setText(member3.getName());
+			member3Button.setVisible(true);
+			member3Button.setBounds(353, 338, 147, 58);
+			frame.getContentPane().add(member3Button);
+			member3Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (!btnMember_1.isSelected()) {
+					if (!member3Button.isSelected()) {
 						btnconfirm.setEnabled(false);
 					}else {
-						btnNewButton.setSelected(false);
-						btnMember20.setSelected(false);
-						btnMember_2.setSelected(false);
+						member1Button.setSelected(false);
+						member2Button.setSelected(false);
+						member4Button.setSelected(false);
 						btnconfirm.setEnabled(true);
 						game.setPickedMember(member3);
 				}
@@ -160,27 +160,27 @@ public class MemberSelection extends JFrame {
 			});
 		}
 		
-		JLabel label_3 = new JLabel("");
-		label_3.setForeground(Color.BLACK);
-		label_3.setBackground(Color.WHITE);
-		label_3.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_3.setBounds(500, 140, 158, 142);
-		frame.getContentPane().add(label_3);
+		JLabel member4Label = new JLabel("");
+		member4Label.setForeground(Color.BLACK);
+		member4Label.setBackground(Color.WHITE);
+		member4Label.setFont(new Font("Dialog", Font.PLAIN, 15));
+		member4Label.setBounds(500, 140, 158, 142);
+		frame.getContentPane().add(member4Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 4) {
 			CrewMember member4 = game.getCrew1().getCrewMemberList().get(3);
-			label_3.setText(game.convertToMultiline(member4.viewStatus()));
-			btnMember_2.setText(member4.getName());
-			btnMember_2.setVisible(true);
-			btnMember_2.setBounds(510, 338, 147, 58);
-			frame.getContentPane().add(btnMember_2);
-			btnMember_2.addActionListener(new ActionListener() {
+			member4Label.setText(game.convertToMultiline(member4.viewStatus()));
+			member4Button.setText(member4.getName());
+			member4Button.setVisible(true);
+			member4Button.setBounds(510, 338, 147, 58);
+			frame.getContentPane().add(member4Button);
+			member4Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (!btnMember_2.isSelected()) {
+					if (!member4Button.isSelected()) {
 						btnconfirm.setEnabled(false);
 					}else {
-						btnNewButton.setSelected(false);
-						btnMember20.setSelected(false);
-						btnMember_1.setSelected(false);
+						member1Button.setSelected(false);
+						member2Button.setSelected(false);
+						member3Button.setSelected(false);
 						btnconfirm.setEnabled(true);
 						game.setPickedMember(member4);
 				}

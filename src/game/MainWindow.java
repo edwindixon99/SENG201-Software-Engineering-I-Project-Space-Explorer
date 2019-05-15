@@ -48,11 +48,15 @@ public class MainWindow {
 	initialize();
 	frame.setVisible(true);
 	}
-
+	/**
+	 * Closes window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
-
+	/**
+	 * Closes window.
+	 */
 	public void finishedWindow() {
 		game.closeMainScreen(this);
 	}
@@ -159,49 +163,49 @@ public class MainWindow {
 		lblRemainingPieces.setBounds(20, 242, 361, 35);
 		frame.getContentPane().add(lblRemainingPieces);
 		
-		JLabel label = new JLabel("");
-		label.setForeground(Color.BLACK);
-		label.setBackground(Color.WHITE);
-		label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label.setBounds(20, 288, 158, 142);
-		frame.getContentPane().add(label);
+		JLabel crewMember1Label = new JLabel("");
+		crewMember1Label.setForeground(Color.BLACK);
+		crewMember1Label.setBackground(Color.WHITE);
+		crewMember1Label.setFont(new Font("Dialog", Font.PLAIN, 15));
+		crewMember1Label.setBounds(20, 288, 158, 142);
+		frame.getContentPane().add(crewMember1Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 1) {
-			label.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(0).viewStatus()));
+			crewMember1Label.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(0).viewStatus()));
 		}
 		
-		JLabel label_1 = new JLabel("");
-		label_1.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_1.setBounds(188, 288, 155, 142);
-		frame.getContentPane().add(label_1);
+		JLabel crewMember2Label = new JLabel("");
+		crewMember2Label.setFont(new Font("Dialog", Font.PLAIN, 15));
+		crewMember2Label.setBounds(188, 288, 155, 142);
+		frame.getContentPane().add(crewMember2Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 2) {
-			label_1.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(1).viewStatus()));
+			crewMember2Label.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(1).viewStatus()));
 		}
 		
-		JLabel label_2 = new JLabel("");
-		label_2.setBackground(Color.WHITE);
-		label_2.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_2.setBounds(353, 288, 155, 142);
-		frame.getContentPane().add(label_2);
+		JLabel crewMember3Label = new JLabel("");
+		crewMember3Label.setBackground(Color.WHITE);
+		crewMember3Label.setFont(new Font("Dialog", Font.PLAIN, 15));
+		crewMember3Label.setBounds(353, 288, 155, 142);
+		frame.getContentPane().add(crewMember3Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 3) {
-			label_2.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(2).viewStatus()));
+			crewMember3Label.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(2).viewStatus()));
 		}
 		
-		JLabel label_3 = new JLabel("");
-		label_3.setForeground(Color.BLACK);
-		label_3.setBackground(Color.WHITE);
-		label_3.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_3.setBounds(500, 288, 158, 142);
-		frame.getContentPane().add(label_3);
+		JLabel crewMember4Label = new JLabel("");
+		crewMember4Label.setForeground(Color.BLACK);
+		crewMember4Label.setBackground(Color.WHITE);
+		crewMember4Label.setFont(new Font("Dialog", Font.PLAIN, 15));
+		crewMember4Label.setBounds(500, 288, 158, 142);
+		frame.getContentPane().add(crewMember4Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 4) {
-			label_3.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(3).viewStatus()));
+			crewMember4Label.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(3).viewStatus()));
 		}
 		
-		JLabel label_4 = new JLabel(game.convertToMultiline(game.getShip().checkShipShield()));
-		label_4.setForeground(Color.BLACK);
-		label_4.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_4.setBackground(Color.WHITE);
-		label_4.setBounds(20, 406, 158, 87);
-		frame.getContentPane().add(label_4);
+		JLabel shipStatusLabel = new JLabel(game.convertToMultiline(game.getShip().checkShipShield()));
+		shipStatusLabel.setForeground(Color.BLACK);
+		shipStatusLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
+		shipStatusLabel.setBackground(Color.WHITE);
+		shipStatusLabel.setBounds(20, 406, 158, 87);
+		frame.getContentPane().add(shipStatusLabel);
 		
 		JButton btnNextDay = new JButton("Next Day");
 		btnNextDay.setFont(new Font("Dialog", Font.BOLD, 15));
@@ -224,7 +228,9 @@ public class MainWindow {
 			}
 		});
 	}
-	
+	/**
+	 * Closes this window and opens the game over window.
+	 */
 	private void goGameOverScreen() {
 		game.closeMainScreen(this);
 		game.launchGameOverWindow();
@@ -233,18 +239,25 @@ public class MainWindow {
 		}
 		
 	}
-
+	/**
+	 * Closes window and opens the space outpost window.
+	 */
 	private void launchSpaceOutpost() {
 		game.closeMainScreen(this);
 		game.launchSpaceOutpost();
 		
 	}
-	
+	/**
+	 * Closes this window and opens the crew member selection window.
+	 */
 	private void chooseMember() {
 		game.closeMainScreen(this);
 		game.launchMemberSelection();
 	}
  	
+	/**
+	 * opens the next day popup.
+	 */
 	private void launchNextDayPopup() {
 		if (popup == null) {
 			popup = new NextDayPopup(game, this);

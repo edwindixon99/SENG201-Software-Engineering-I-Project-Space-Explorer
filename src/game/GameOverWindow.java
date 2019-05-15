@@ -35,10 +35,10 @@ public class GameOverWindow extends JFrame {
 		setBounds(100, 100, 853, 450);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(game.convertToMultiline("Game Over!\n" + game.getMessage()));
-		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblNewLabel.setBounds(10, 11, 817, 116);
-		getContentPane().add(lblNewLabel);
+		JLabel gameOverLabel = new JLabel(game.convertToMultiline("Game Over!\n" + game.getMessage()));
+		gameOverLabel.setFont(new Font("Dialog", Font.BOLD, 20));
+		gameOverLabel.setBounds(10, 11, 817, 116);
+		getContentPane().add(gameOverLabel);
 		
 		JLabel lblYourShip = new JLabel("Your Ship: " + game.getShip().getShipName());
 		lblYourShip.setFont(new Font("Dialog", Font.PLAIN, 15));
@@ -60,14 +60,14 @@ public class GameOverWindow extends JFrame {
 		getContentPane().add(lblScore);
 		
 		
-		JButton btnNewButton = new JButton("Quit");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton quitBttn = new JButton("Quit");
+		quitBttn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(678, 350, 149, 50);
-		getContentPane().add(btnNewButton);
+		quitBttn.setBounds(678, 350, 149, 50);
+		getContentPane().add(quitBttn);
 	}
 
 }

@@ -53,11 +53,11 @@ public class SalePopup extends JFrame {
 		btnClose.setBounds(203, 109, 119, 41);
 		getContentPane().add(btnClose);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setText(game.getMessage());
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(10, 11, 564, 83);
-		getContentPane().add(lblNewLabel);
+		JLabel messageLabel = new JLabel("");
+		messageLabel.setText(game.getMessage());
+		messageLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		messageLabel.setBounds(10, 11, 564, 83);
+		getContentPane().add(messageLabel);
 	}
 	/**
 	 * Closes the window.

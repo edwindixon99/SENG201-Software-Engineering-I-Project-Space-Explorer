@@ -338,7 +338,6 @@ public class SetupWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				stats.setVisible(true);
 				stats.setDefaultCloseOperation(stats.DISPOSE_ON_CLOSE);
-				// Open stats Window
 			}
 		});
 		viewTypeStatsButt.setFont(new Font("Dialog", Font.BOLD, 15));

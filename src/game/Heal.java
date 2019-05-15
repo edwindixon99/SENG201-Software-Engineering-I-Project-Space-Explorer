@@ -57,14 +57,14 @@ public class Heal extends JFrame {
 			stringHealArray.add(healList1.getName());
 		}
 		getContentPane().setLayout(null);
-		JButton button = new JButton((String) null);
-		button.setBounds(10, 101, 292, 45);
-		getContentPane().add(button);
-		button.setVisible(false);
+		JButton buttonMedicalItem1 = new JButton((String) null);
+		buttonMedicalItem1.setBounds(10, 101, 292, 45);
+		getContentPane().add(buttonMedicalItem1);
+		buttonMedicalItem1.setVisible(false);
 		if (healArray.size() >= 1) {
-			button.setVisible(true);
-			button.setText(healArray.get(0).getName() + ("(" + (Collections.frequency(stringHealArray, healArray.get(0).getName())) + ")"));
-			button.addActionListener(new ActionListener() {
+			buttonMedicalItem1.setVisible(true);
+			buttonMedicalItem1.setText(healArray.get(0).getName() + ("(" + (Collections.frequency(stringHealArray, healArray.get(0).getName())) + ")"));
+			buttonMedicalItem1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String message = game.healMethod(member, healArray.get(0), 0);
 					game.setMessage(message);
@@ -73,14 +73,14 @@ public class Heal extends JFrame {
 				}
 			});
 		}
-		JButton button_1 = new JButton((String) null);
-		button_1.setBounds(10, 176, 292, 45);
-		getContentPane().add(button_1);
-		button_1.setVisible(false);
+		JButton buttonMedicalItem2 = new JButton((String) null);
+		buttonMedicalItem2.setBounds(10, 176, 292, 45);
+		getContentPane().add(buttonMedicalItem2);
+		buttonMedicalItem2.setVisible(false);
 		if (healArray.size() >= 2) {
-			button_1.setVisible(true);
-			button_1.setText(healArray.get(1).getName() + ("(" + (Collections.frequency(stringHealArray, healArray.get(1).getName())) + ")"));
-			button_1.addActionListener(new ActionListener() {
+			buttonMedicalItem2.setVisible(true);
+			buttonMedicalItem2.setText(healArray.get(1).getName() + ("(" + (Collections.frequency(stringHealArray, healArray.get(1).getName())) + ")"));
+			buttonMedicalItem2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String message = game.healMethod(member, healArray.get(1), 1);
 					game.setMessage(message);
@@ -89,14 +89,14 @@ public class Heal extends JFrame {
 				}
 			});
 		}
-		JButton button_2 = new JButton((String) null);
-		button_2.setBounds(10, 244, 292, 45);
-		getContentPane().add(button_2);
-		button_2.setVisible(false);
+		JButton buttonMedicalItem3 = new JButton((String) null);
+		buttonMedicalItem3.setBounds(10, 244, 292, 45);
+		getContentPane().add(buttonMedicalItem3);
+		buttonMedicalItem3.setVisible(false);
 		if (healArray.size() >= 3) {
-			button_2.setVisible(true);
-			button_2.setText(healArray.get(2).getName() + ("(" + (Collections.frequency(stringHealArray, healArray.get(2).getName())) + ")"));
-			button_2.addActionListener(new ActionListener() {
+			buttonMedicalItem3.setVisible(true);
+			buttonMedicalItem3.setText(healArray.get(2).getName() + ("(" + (Collections.frequency(stringHealArray, healArray.get(2).getName())) + ")"));
+			buttonMedicalItem3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String message = game.healMethod(member, healArray.get(2), 2);
 					game.setMessage(message);
@@ -111,14 +111,14 @@ public class Heal extends JFrame {
 		setBounds(100, 100, 328, 664);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Pick what healing item you wnat to use");
-		lblNewLabel.setBounds(10, 11, 212, 61);
-		getContentPane().add(lblNewLabel);
+		JLabel titleLabel = new JLabel("Pick what healing item you wnat to use");
+		titleLabel.setBounds(10, 11, 212, 61);
+		getContentPane().add(titleLabel);
 		
-		JButton btnNewButton = new JButton("Go Back");
-		btnNewButton.setBounds(10, 494, 176, 45);
-		getContentPane().add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton goBackButton = new JButton("Go Back");
+		goBackButton.setBounds(10, 494, 176, 45);
+		getContentPane().add(goBackButton);
+		goBackButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				goBack();
 			}
@@ -127,14 +127,22 @@ public class Heal extends JFrame {
 		
 	}
 
-	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		dispose();
 	}
+	/**
+	 * Closes the window and opens the main window.
+	 */
 	private void goBack() {
 		game.closeHeal(this);
 		game.launchMainScreen(); 
 	}
+	/**
+	 * Closes the window and opens a new window.
+	 */
 	private void goSearchWindow() {
 		game.closeHeal(this);
 		game.launchSearchWindow(); 

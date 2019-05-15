@@ -281,6 +281,51 @@ public class GameEnvironment {
               return (memSleep.getName() + " has gone to sleep.\n");
        	}
        }
+      
+      public String viewOwnedFood() {
+       	String finalString = "";
+       	ArrayList<Food> foodList = crew1.getFoodItems();
+   		if (foodList.isEmpty() == true) {
+   			finalString += "You have no Food items\n";
+   		}
+   		else {
+   			TreeSet<String> stringFood;
+   			ArrayList<String> stringFoodList;
+   			stringFoodList = new ArrayList<String>();
+   			stringFood = new TreeSet<String>();
+   			for (Food food: foodList) {
+   				stringFood.add(food.getName());
+   				stringFoodList.add(food.getName());
+   			}
+   			finalString += "Your Food items are:\n";
+     			for (String food: stringFood) {
+     				finalString += food + "(" + (Collections.frequency(stringFoodList, food)) + ")\n";	
+     			}
+   		}
+   		return finalString;
+        }
+        public String viewOwnedMedicalItems() {
+       	 String finalString = "";
+       	 ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
+       	 if (medicalList.isEmpty() == true) {
+    			finalString += "You have no medical items\n";
+    		}
+    		else {
+    			TreeSet<String> stringMed;
+    			ArrayList<String> stringMedList;
+    			stringMedList = new ArrayList<String>();
+    			stringMed = new TreeSet<String>();
+    			for (MedicalItem med: medicalList) {
+    				stringMed.add(med.getName());
+    				stringMedList.add(med.getName());
+    			}
+    			finalString += "Your medical items are:\n";
+      			for (String med: stringMed) {
+      				finalString += med + "(" + (Collections.frequency(stringMedList, med)) + ")\n";	
+      			}
+    		}
+       	 return finalString;
+        }
 
   	/**
   	 * Checks conditions of crew member and crew to determine if they can be healed.

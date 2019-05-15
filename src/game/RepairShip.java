@@ -52,10 +52,10 @@ public class RepairShip extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				game.launchMainScreen();
-		JLabel lblNewLabel = new JLabel(game.getMessage());
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(12, 12, 817, 106);
-		getContentPane().add(lblNewLabel);
+		JLabel messageLabel = new JLabel(game.getMessage());
+		messageLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		messageLabel.setBounds(12, 12, 817, 106);
+		getContentPane().add(messageLabel);
 
 			}
 		});

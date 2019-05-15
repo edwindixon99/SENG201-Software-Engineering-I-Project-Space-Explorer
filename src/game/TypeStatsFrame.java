@@ -46,40 +46,40 @@ public class TypeStatsFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Types of Crew Members");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 33));
-		lblNewLabel.setBounds(192, 11, 381, 91);
-		add(lblNewLabel);
+		JLabel titleLabel = new JLabel("Types of Crew Members");
+		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 33));
+		titleLabel.setBounds(192, 11, 381, 91);
+		add(titleLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("<html>Type 1:<br>Hunger degrade: high<br>Health degrade: medium<br>Tiredness Degrade: low<br>Special ability: None<br>");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(23, 129, 215, 168);
-		add(lblNewLabel_1);
+		JLabel type1Label = new JLabel("<html>Type 1:<br>Hunger degrade: high<br>Health degrade: medium<br>Tiredness Degrade: low<br>Special ability: None<br>");
+		type1Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		type1Label.setBounds(23, 129, 215, 168);
+		add(type1Label);
 		
-		JLabel label = new JLabel("<html>Type 2:<br>Hunger degrade: low<br>Health degrade: high<br>Tiredness Degrade: medium<br>Special ability: None<br>");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label.setBounds(299, 129, 210, 168);
-		add(label);
+		JLabel type2Label = new JLabel("<html>Type 2:<br>Hunger degrade: low<br>Health degrade: high<br>Tiredness Degrade: medium<br>Special ability: None<br>");
+		type2Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		type2Label.setBounds(299, 129, 210, 168);
+		add(type2Label);
 		
-		JLabel label_1 = new JLabel("<html>Type 3:<br>Hunger degrade: medium<br>Health degrade: low<br>Tiredness Degrade: high<br>Special ability: None<br>");
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_1.setBounds(540, 129, 210, 168);
-		add(label_1);
+		JLabel type3Label = new JLabel("<html>Type 3:<br>Hunger degrade: medium<br>Health degrade: low<br>Tiredness Degrade: high<br>Special ability: None<br>");
+		type3Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		type3Label.setBounds(540, 129, 210, 168);
+		add(type3Label);
 		
-		JLabel label_2 = new JLabel("<html>Type 4:<br>Hunger degrade: medium<br>Health degrade: high<br>Tiredness Degrade: medium<br>Special ability: Able to pilot the ship to a new planet by themselves<br>");
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_2.setBounds(23, 323, 215, 168);
-		add(label_2);
+		JLabel type4Label = new JLabel("<html>Type 4:<br>Hunger degrade: medium<br>Health degrade: high<br>Tiredness Degrade: medium<br>Special ability: Able to pilot the ship to a new planet by themselves<br>");
+		type4Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		type4Label.setBounds(23, 323, 215, 168);
+		add(type4Label);
 		
-		JLabel label_3 = new JLabel("<html>Type 5:<br>Hunger degrade: medium<br>Health degrade: medium<br>Tiredness Degrade: high<br>Special ability: Higher chance of finding a spaceship piece when searching a planet<br>");
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_3.setBounds(299, 323, 210, 168);
-		add(label_3);
+		JLabel type5Label = new JLabel("<html>Type 5:<br>Hunger degrade: medium<br>Health degrade: medium<br>Tiredness Degrade: high<br>Special ability: Higher chance of finding a spaceship piece when searching a planet<br>");
+		type5Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		type5Label.setBounds(299, 323, 210, 168);
+		add(type5Label);
 		
-		JLabel label_4 = new JLabel("<html>Type 6:<br>Hunger degrade: high<br>Health degrade: medium<br>Tiredness Degrade: medium<br>Special ability: Fully repair the ships shield<br>");
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_4.setBounds(540, 323, 210, 168);
-		add(label_4);
+		JLabel type6Label = new JLabel("<html>Type 6:<br>Hunger degrade: high<br>Health degrade: medium<br>Tiredness Degrade: medium<br>Special ability: Fully repair the ships shield<br>");
+		type6Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		type6Label.setBounds(540, 323, 210, 168);
+		add(type6Label);
 		
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {

@@ -42,19 +42,19 @@ public class WinnerWindow extends JFrame {
 		lblNumberOfDays.setBounds(10, 153, 582, 61);
 		getContentPane().add(lblNumberOfDays);
 		
-		JLabel lblNewLabel = new JLabel("Score: " + Integer.toString(1000*(game.getScore()/game.getDaysProgressedThrough())));
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
-		lblNewLabel.setBounds(10, 225, 582, 69);
-		getContentPane().add(lblNewLabel);
+		JLabel scoreLabel = new JLabel("Score: " + Integer.toString(1000*(game.getScore()/game.getDaysProgressedThrough())));
+		scoreLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
+		scoreLabel.setBounds(10, 225, 582, 69);
+		getContentPane().add(scoreLabel);
 		
-		JButton btnNewButton = new JButton("Quit");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton quitButton = new JButton("Quit");
+		quitButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		quitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(678, 350, 149, 50);
-		getContentPane().add(btnNewButton);
+		quitButton.setBounds(678, 350, 149, 50);
+		getContentPane().add(quitButton);
 	}
 }

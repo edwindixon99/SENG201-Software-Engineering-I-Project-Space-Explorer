@@ -54,11 +54,11 @@ public class NextDayPopup extends JFrame {
 		btnClose.setBounds(206, 205, 119, 41);
 		getContentPane().add(btnClose);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setText(game.convertToMultiline(game.getMessage()));
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
-		lblNewLabel.setBounds(10, 11, 564, 183);
-		getContentPane().add(lblNewLabel);
+		JLabel messageLabel = new JLabel("");
+		messageLabel.setText(game.convertToMultiline(game.getMessage()));
+		messageLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
+		messageLabel.setBounds(10, 11, 564, 183);
+		getContentPane().add(messageLabel);
 	}
 	/**
 	 * Closes the popup window.

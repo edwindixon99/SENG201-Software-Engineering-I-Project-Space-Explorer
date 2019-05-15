@@ -54,16 +54,16 @@ public class ViewOwnedItems extends JFrame {
 		getContentPane().add(btnClose);
 		
 		String foods = game.getMessage();
-		JLabel lblNewLabel = new JLabel(foods);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(10, 74, 393, 393);
-		getContentPane().add(lblNewLabel);
+		JLabel foodsLabel = new JLabel(foods);
+		foodsLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		foodsLabel.setBounds(10, 74, 393, 393);
+		getContentPane().add(foodsLabel);
 		
 		String medicalItems = game.getsecondMessage();
-		JLabel lblNewLabel_1 = new JLabel(medicalItems);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(413, 74, 399, 385);
-		getContentPane().add(lblNewLabel_1);
+		JLabel medicalItemsLabel = new JLabel(medicalItems);
+		medicalItemsLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		medicalItemsLabel.setBounds(413, 74, 399, 385);
+		getContentPane().add(medicalItemsLabel);
 	}
 
 

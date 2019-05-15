@@ -30,10 +30,10 @@ public class FlyToNewPlanetWindow extends JFrame {
 		setBounds(100, 100, 853, 488);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(game.convertToMultiline(game.getMessage()));
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 24));
-		lblNewLabel.setBounds(65, 27, 665, 288);
-		getContentPane().add(lblNewLabel);
+		JLabel messageLabel = new JLabel(game.convertToMultiline(game.getMessage()));
+		messageLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+		messageLabel.setBounds(65, 27, 665, 288);
+		getContentPane().add(messageLabel);
 		
 		JButton btnContinue = new JButton("Continue");
 		btnContinue.setFont(new Font("Dialog", Font.BOLD, 15));

@@ -51,117 +51,117 @@ public class ItemsForSale extends JFrame {
 		
 		
 		Food apple = new Food("Apple", 15, 7);
-		JButton button_1 = new JButton("Buy " + apple.getName());
-		button_1.setFont(new Font("Dialog", Font.PLAIN, 15));
-		button_1.addActionListener(new ActionListener() {
+		JButton appleButton = new JButton("Buy " + apple.getName());
+		appleButton.setFont(new Font("Dialog", Font.PLAIN, 15));
+		appleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.setMessage(game.getCrew1().buy(foodList, medicalList, apple));
 				itemBought();
 			}
 		});
-		button_1.setBounds(46, 182, 179, 44);
-		getContentPane().add(button_1);
+		appleButton.setBounds(46, 182, 179, 44);
+		getContentPane().add(appleButton);
 		
 		Food sandwich = new Food("Sandwich", 25, 12);
-		JButton button_5 = new JButton("Buy " + sandwich.getName());
-		button_5.setFont(new Font("Dialog", Font.PLAIN, 15));
-		button_5.addActionListener(new ActionListener() {
+		JButton sandwichButton = new JButton("Buy " + sandwich.getName());
+		sandwichButton.setFont(new Font("Dialog", Font.PLAIN, 15));
+		sandwichButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.setMessage(game.getCrew1().buy(foodList, medicalList, sandwich));
 				itemBought();
 			}
 		});
-		button_5.setBounds(546, 182, 179, 44);
-		getContentPane().add(button_5);
+		sandwichButton.setBounds(546, 182, 179, 44);
+		getContentPane().add(sandwichButton);
 		
 		Food biscuit = new Food("Biscut", 10, 5);
-		JButton button_7 = new JButton("Buy " + biscuit.getName());
-		button_7.setFont(new Font("Dialog", Font.PLAIN, 15));
-		button_7.addActionListener(new ActionListener() {
+		JButton biscuitButton = new JButton("Buy " + biscuit.getName());
+		biscuitButton.setFont(new Font("Dialog", Font.PLAIN, 15));
+		biscuitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.setMessage(game.getCrew1().buy(foodList, medicalList, biscuit));
 				itemBought();
 			}
 		});
-		button_7.setBounds(546, 341, 179, 44);
-		getContentPane().add(button_7);
+		biscuitButton.setBounds(546, 341, 179, 44);
+		getContentPane().add(biscuitButton);
 		
 		Food pie = new Food("Pie", 30, 15);
-		JButton button_8 = new JButton("Buy " + pie.getName());
-		button_8.setFont(new Font("Dialog", Font.PLAIN, 15));
-		button_8.addActionListener(new ActionListener() {
+		JButton pieButton = new JButton("Buy " + pie.getName());
+		pieButton.setFont(new Font("Dialog", Font.PLAIN, 15));
+		pieButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.setMessage(game.getCrew1().buy(foodList, medicalList, pie));
 				itemBought();
 			}
 		});
-		button_8.setBounds(298, 341, 179, 44);
-		getContentPane().add(button_8);
+		pieButton.setBounds(298, 341, 179, 44);
+		getContentPane().add(pieButton);
 		
-		MedicalItem spc = new MedicalItem("Space plague cure", true, 0, 15);
-		JButton button = new JButton("Buy " + spc.getName());
-		button.setFont(new Font("Dialog", Font.PLAIN, 12));
-		button.addActionListener(new ActionListener() {
+		MedicalItem spacePlagueCure = new MedicalItem("Space plague cure", true, 0, 15);
+		JButton spacePlagueCureButton = new JButton("Buy " + spacePlagueCure.getName());
+		spacePlagueCureButton.setFont(new Font("Dialog", Font.PLAIN, 12));
+		spacePlagueCureButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.setMessage(game.getCrew1().buy(foodList, medicalList, spc));
+				game.setMessage(game.getCrew1().buy(foodList, medicalList, spacePlagueCure));
 				itemBought();
 			}
 		});
-		button.setBounds(546, 506, 179, 44);
-		getContentPane().add(button);
+		spacePlagueCureButton.setBounds(546, 506, 179, 44);
+		getContentPane().add(spacePlagueCureButton);
 		
 		Food burger = new Food("Burger", 40, 20);
-		JButton button_2 = new JButton("Buy " + burger.getName());
-		button_2.setFont(new Font("Dialog", Font.PLAIN, 15));
-		button_2.addActionListener(new ActionListener() {
+		JButton burgerButton = new JButton("Buy " + burger.getName());
+		burgerButton.setFont(new Font("Dialog", Font.PLAIN, 15));
+		burgerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.setMessage(game.getCrew1().buy(foodList, medicalList, burger));
 				itemBought();
 			}
 		});
-		button_2.setBounds(298, 182, 179, 44);
-		getContentPane().add(button_2);
+		burgerButton.setBounds(298, 182, 179, 44);
+		getContentPane().add(burgerButton);
 		
-		MedicalItem bHealing = new MedicalItem("Big Healing", false, 40, 20);
-		JButton button_3 = new JButton("Buy " + bHealing.getName());
-		button_3.setFont(new Font("Dialog", Font.PLAIN, 15));
-		button_3.addActionListener(new ActionListener() {
+		MedicalItem bigHealing = new MedicalItem("Big Healing", false, 40, 20);
+		JButton bigHealingButton = new JButton("Buy " + bigHealing.getName());
+		bigHealingButton.setFont(new Font("Dialog", Font.PLAIN, 15));
+		bigHealingButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.setMessage(game.getCrew1().buy(foodList, medicalList, bHealing));
+				game.setMessage(game.getCrew1().buy(foodList, medicalList, bigHealing));
 				itemBought();
 			}
 		});
-		button_3.setBounds(298, 506, 179, 44);
-		getContentPane().add(button_3);
+		bigHealingButton.setBounds(298, 506, 179, 44);
+		getContentPane().add(bigHealingButton);
 		
-		MedicalItem sHealing = new MedicalItem("SmallHealing", false, 10, 5);
-		JButton button_4 = new JButton("Buy " + sHealing.getName());
-		button_4.setFont(new Font("Dialog", Font.PLAIN, 15));
-		button_4.addActionListener(new ActionListener() {
+		MedicalItem smallHealing = new MedicalItem("SmallHealing", false, 10, 5);
+		JButton smallHealingButton = new JButton("Buy " + smallHealing.getName());
+		smallHealingButton.setFont(new Font("Dialog", Font.PLAIN, 15));
+		smallHealingButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.setMessage(game.getCrew1().buy(foodList, medicalList, sHealing));
+				game.setMessage(game.getCrew1().buy(foodList, medicalList, smallHealing));
 				itemBought();
 			}
 		});
-		button_4.setBounds(46, 506, 179, 44);
-		getContentPane().add(button_4);
+		smallHealingButton.setBounds(46, 506, 179, 44);
+		getContentPane().add(smallHealingButton);
 		
 		Food pizza = new Food("Pizza", 50, 25);
-		JButton button_6 = new JButton("Buy " + pizza.getName());
-		button_6.setFont(new Font("Dialog", Font.PLAIN, 15));
-		button_6.addActionListener(new ActionListener() {
+		JButton pizzaButton = new JButton("Buy " + pizza.getName());
+		pizzaButton.setFont(new Font("Dialog", Font.PLAIN, 15));
+		pizzaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.setMessage(game.getCrew1().buy(foodList, medicalList, pizza));
 				itemBought();
 			}
 		});
-		button_6.setBounds(46, 341, 179, 44);
-		getContentPane().add(button_6);
+		pizzaButton.setBounds(46, 341, 179, 44);
+		getContentPane().add(pizzaButton);
 		
-		JLabel lblNewLabel = new JLabel(game.convertToMultiline("Pick an item that you want to buy. You have $ " + game.getCrew1().getMoney() + " to spend.\nYou can find money by searching planets."));
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 17));
-		lblNewLabel.setBounds(10, -9, 649, 104);
-		getContentPane().add(lblNewLabel);
+		JLabel label = new JLabel(game.convertToMultiline("Pick an item that you want to buy. You have $ " + game.getCrew1().getMoney() + " to spend.\nYou can find money by searching planets."));
+		label.setFont(new Font("Dialog", Font.PLAIN, 17));
+		label.setBounds(10, -9, 649, 104);
+		getContentPane().add(label);
 		
 		JButton btnExitOutpostStore = new JButton("Exit Outpost Store");
 		btnExitOutpostStore.addActionListener(new ActionListener() {
@@ -197,19 +197,22 @@ public class ItemsForSale extends JFrame {
 		pizzalabel.setBounds(46, 237, 179, 93);
 		getContentPane().add(pizzalabel);
 		
-		JLabel shealinglabel = new JLabel(game.convertToMultiline(sHealing.toString()));
+		JLabel shealinglabel = new JLabel(game.convertToMultiline(smallHealing.toString()));
 		shealinglabel.setBounds(46, 396, 179, 93);
 		getContentPane().add(shealinglabel);
 		
-		JLabel bhealinglabel = new JLabel(game.convertToMultiline(bHealing.toString()));
+		JLabel bhealinglabel = new JLabel(game.convertToMultiline(bigHealing.toString()));
 		bhealinglabel.setBounds(298, 396, 179, 93);
 		getContentPane().add(bhealinglabel);
 		
-		JLabel spclabel = new JLabel(game.convertToMultiline(spc.toString()));
+		JLabel spclabel = new JLabel(game.convertToMultiline(spacePlagueCure.toString()));
 		spclabel.setBounds(546, 396, 179, 93);
 		getContentPane().add(spclabel);
 
 	}
+	/**
+	 * Closes window and opens space outpost window.
+	 */
 	private void goBack() {
 		if (popup != null) {
 			popup.dispose();
@@ -219,6 +222,9 @@ public class ItemsForSale extends JFrame {
 		
 		
 	}
+	/**
+	 * Launches a popup confirming or denying purchase.
+	 */
 	private void itemBought() {
 		if (popup == null) {
 			popup = new SalePopup(game, this);
@@ -227,35 +233,16 @@ public class ItemsForSale extends JFrame {
 		popup = new SalePopup(game, this);
 		popup.setVisible(true);
 		popup.setDefaultCloseOperation(popup.DISPOSE_ON_CLOSE);
-//		game.closeItemsForSale(this);
-//		game.launchItemsForSale();
 		
 	}
+	/**
+	 * Closes window.
+	 */
 	public void closeWindow() {
 		dispose();
 	}
 
 }
-/*
- * if (num == 7) {
- * 
- * 
- * } if (num == 8) {
- * 
- * crew1.buy(foodList, medicalList, med); } if (num == 9) {
- * 
- * crew1.buy(foodList, medicalList, med); } if (num == 6) {
- * 
- * crew1.buy(foodList, medicalList, food); } if (num == 1) { crew1.buy(foodList,
- * medicalList, food);
- * 
- * } if (num == 2) { crew1.buy(foodList, medicalList, food); } if (num == 3) {
- * 
- * crew1.buy(foodList, medicalList, food); } if (num == 4) {
- * 
- * crew1.buy(foodList, medicalList, food); } if (num == 5) {
- * 
- * crew1.buy(foodList, medicalList, food); }
- */
+
 
 	

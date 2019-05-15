@@ -57,14 +57,14 @@ public class Eat extends JFrame {
 			stringFoodArray.add(foodList1.getName());
 		}
 		getContentPane().setLayout(null);
-		JButton button = new JButton((String) null);
-		button.setBounds(10, 101, 176, 45);
-		getContentPane().add(button);
-		button.setVisible(false);
+		JButton buttonFood1 = new JButton((String) null);
+		buttonFood1.setBounds(10, 101, 176, 45);
+		getContentPane().add(buttonFood1);
+		buttonFood1.setVisible(false);
 		if (foodArray.size() >= 1) {
-			button.setVisible(true);
-			button.setText(foodArray.get(0).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(0).getName())) + ")"));
-			button.addActionListener(new ActionListener() {
+			buttonFood1.setVisible(true);
+			buttonFood1.setText(foodArray.get(0).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(0).getName())) + ")"));
+			buttonFood1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String message = game.eat_food(member, foodArray.get(0), 0);
 					game.setMessage(message);
@@ -73,14 +73,14 @@ public class Eat extends JFrame {
 				}
 			});
 		}
-		JButton button_1 = new JButton((String) null);
-		button_1.setBounds(10, 176, 176, 45);
-		getContentPane().add(button_1);
-		button_1.setVisible(false);
+		JButton buttonFood2 = new JButton((String) null);
+		buttonFood2.setBounds(10, 176, 176, 45);
+		getContentPane().add(buttonFood2);
+		buttonFood2.setVisible(false);
 		if (foodArray.size() >= 2) {
-			button_1.setVisible(true);
-			button_1.setText(foodArray.get(1).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(1).getName())) + ")"));
-			button_1.addActionListener(new ActionListener() {
+			buttonFood2.setVisible(true);
+			buttonFood2.setText(foodArray.get(1).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(1).getName())) + ")"));
+			buttonFood2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String message = game.eat_food(member, foodArray.get(1), 1);
 					game.setMessage(message);
@@ -89,14 +89,14 @@ public class Eat extends JFrame {
 				}
 			});
 		}
-		JButton button_2 = new JButton((String) null);
-		button_2.setBounds(10, 244, 176, 45);
-		getContentPane().add(button_2);
-		button_2.setVisible(false);
+		JButton buttonFood3 = new JButton((String) null);
+		buttonFood3.setBounds(10, 244, 176, 45);
+		getContentPane().add(buttonFood3);
+		buttonFood3.setVisible(false);
 		if (foodArray.size() >= 3) {
-			button_2.setVisible(true);
-			button_2.setText(foodArray.get(2).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(2).getName())) + ")"));
-			button_2.addActionListener(new ActionListener() {
+			buttonFood3.setVisible(true);
+			buttonFood3.setText(foodArray.get(2).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(2).getName())) + ")"));
+			buttonFood3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String message = game.eat_food(member, foodArray.get(2), 2);
 					game.setMessage(message);
@@ -106,14 +106,14 @@ public class Eat extends JFrame {
 			});
 		}
 		
-		JButton button_3 = new JButton((String) null);
-		button_3.setBounds(10, 310, 176, 45);
-		getContentPane().add(button_3);
-		button_3.setVisible(false);
+		JButton buttonFood4 = new JButton((String) null);
+		buttonFood4.setBounds(10, 310, 176, 45);
+		getContentPane().add(buttonFood4);
+		buttonFood4.setVisible(false);
 		if (foodArray.size() >= 4) {
-			button_3.setVisible(true);
-			button_3.setText(foodArray.get(3).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(3).getName())) + ")"));
-			button_3.addActionListener(new ActionListener() {
+			buttonFood4.setVisible(true);
+			buttonFood4.setText(foodArray.get(3).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(3).getName())) + ")"));
+			buttonFood4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String message = game.eat_food(member, foodArray.get(3), 3);
 					game.setMessage(message);
@@ -122,14 +122,14 @@ public class Eat extends JFrame {
 				}
 			});
 		}
-		JButton button_4 = new JButton((String) null);
-		button_4.setBounds(10, 373, 176, 45);
-		getContentPane().add(button_4);
-		button_4.setVisible(false);
+		JButton buttonFood5 = new JButton((String) null);
+		buttonFood5.setBounds(10, 373, 176, 45);
+		getContentPane().add(buttonFood5);
+		buttonFood5.setVisible(false);
 		if (foodArray.size() >= 5) {
-			button_4.setVisible(true);
-			button_4.setText(foodArray.get(4).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(4).getName())) + ")"));
-			button_4.addActionListener(new ActionListener() {
+			buttonFood5.setVisible(true);
+			buttonFood5.setText(foodArray.get(4).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(4).getName())) + ")"));
+			buttonFood5.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String message = game.eat_food(member, foodArray.get(4), 4);
 					game.setMessage(message);
@@ -138,14 +138,14 @@ public class Eat extends JFrame {
 				}
 			});
 		}
-		JButton button_5 = new JButton((String) null);
-		button_5.setBounds(10, 438, 176, 45);
-		getContentPane().add(button_5);
-		button_5.setVisible(false);
+		JButton buttonFood6 = new JButton((String) null);
+		buttonFood6.setBounds(10, 438, 176, 45);
+		getContentPane().add(buttonFood6);
+		buttonFood6.setVisible(false);
 		if (foodArray.size() >= 6) {
-			button_5.setVisible(true);
-			button_5.setText(foodArray.get(5).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(5).getName())) + ")"));
-			button_5.addActionListener(new ActionListener() {
+			buttonFood6.setVisible(true);
+			buttonFood6.setText(foodArray.get(5).getName() + ("(" + (Collections.frequency(stringFoodArray, foodArray.get(5).getName())) + ")"));
+			buttonFood6.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String message = game.eat_food(member, foodArray.get(5), 5);
 					game.setMessage(message);
@@ -160,9 +160,9 @@ public class Eat extends JFrame {
 		setBounds(100, 100, 328, 664);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Pick what food item you want to eat");
-		lblNewLabel.setBounds(10, 11, 176, 61);
-		getContentPane().add(lblNewLabel);
+		JLabel titleLabel = new JLabel("Pick what food item you want to eat");
+		titleLabel.setBounds(10, 11, 176, 61);
+		getContentPane().add(titleLabel);
 		
 		JButton btnNewButton = new JButton("Go Back");
 		btnNewButton.setBounds(10, 494, 176, 45);
@@ -176,14 +176,22 @@ public class Eat extends JFrame {
 		
 	}
 
-	
+	/**
+	 * Closes window.
+	 */
 	public void closeWindow() {
 		dispose();
 	}
+	/**
+	 * Closes this window and opens main window.
+	 */
 	private void goBack() {
 		game.closeEat(this);
 		game.launchMainScreen(); 
 	}
+	/**
+	 * Closes this window and opens new window.
+	 */
 	private void goSearchWindow() {
 		game.closeEat(this);
 		game.launchSearchWindow(); 
