@@ -1,10 +1,24 @@
-package game;
 
+package game;
+/**
+ * This is the class for crew members that are of type 5. This class extends the CrewMember class.
+ *
+ * @author  
+ * @version 15/05/2019.
+ */
 public class Type5 extends CrewMember {
-	public Type5(String name, int tempHunger,int tempHealth, int tempTiredness) {
+	/**
+	 * This is a constructor for Type5. This sets the name, along with the hunger, health and tiredness degrade for the crew members of type 5.
+	 * 
+	 * @param name		The name of the crew member
+	 * @param hungerDegrade		The rate at which the crew members hunger level declines
+	 * @param healthDegrade		The rate that the crew members health level declines
+	 * @param tirednessDegrade		The rate that the crew members tiredness level declines
+	 */
+	public Type5(String name, int hungerDegrade,int healthDegrade, int tirednessDegrade) {
 		setName(name);
-		setHungerDegrade(tempHunger);
-		setHealthDegrade(tempHealth);
-		setTirednessDegrade(tempTiredness);
+		setHungerDegrade(hungerDegrade);
+		setHealthDegrade(healthDegrade);
+		setTirednessDegrade(tirednessDegrade);
 	}
 }
