@@ -11,7 +11,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * This window displays an final message when game is won.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class WinnerWindow extends JFrame {
 
 	/**

@@ -11,7 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-
+/**
+ * This window is used for actions as a way to display a message relating to that action.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class SearchPlanet extends JFrame {
 	private GameEnvironment game;
 

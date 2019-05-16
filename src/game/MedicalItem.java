@@ -2,8 +2,8 @@ package game;
 /**
  * This is the class for medical items, which is an extension of the Item class. It contains all variables and methods that are specifically for Medical items alone
  *
- * @author  
- * @version 15/05/2019.
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
  */
 public class MedicalItem extends Item {
 	/**

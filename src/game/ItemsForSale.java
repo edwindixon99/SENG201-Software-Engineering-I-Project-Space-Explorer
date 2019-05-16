@@ -12,7 +12,12 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-
+/**
+ * This window displays all the items the space outpost has for sale. The user can use buttons to buy items.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class ItemsForSale extends JFrame {
 
 	/**

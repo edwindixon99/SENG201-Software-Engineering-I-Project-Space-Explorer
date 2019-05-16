@@ -12,7 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * This window displays a message about the ships repair status.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class RepairShip extends JFrame {
 	private GameEnvironment game;
 	

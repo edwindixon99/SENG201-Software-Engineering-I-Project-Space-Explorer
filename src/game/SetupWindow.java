@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.EventQueue;
+
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -15,7 +16,12 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-
+/**
+ * This window is where the user selects several variables about the game through buttons, text boxes and sliders.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class SetupWindow {
 
 	private JFrame frmGame;
@@ -57,6 +63,7 @@ public class SetupWindow {
 	}
 	/**
 	 * Class constructor.
+	 * @param newGame				The new game environment. 
 	 */
 	public SetupWindow(GameEnvironment newGame) {
 		game = newGame;

@@ -11,7 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
-
+/**
+ * This window is a popup which appears whenever the game is progressed through by one day.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class NextDayPopup extends JFrame {
 
 	/**

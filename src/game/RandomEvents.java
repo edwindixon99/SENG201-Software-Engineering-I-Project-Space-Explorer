@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 /**
- * This class RandomEvents is used to form the three random events seen throughout the game. The methods in this class are the separate random events.  
- * @author
- * @version	14/05/19
+ * This is the class RandomEvents and is used to form the three random events seen throughout the game. The methods in this class are the separate random events.  
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
  * 
  */
 

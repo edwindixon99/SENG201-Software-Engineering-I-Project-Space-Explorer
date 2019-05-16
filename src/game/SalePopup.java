@@ -11,7 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
-
+/**
+ * This window is a popup which appears whenever an item is bought in the itemsForSale window.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class SalePopup extends JFrame {
 
 	/**

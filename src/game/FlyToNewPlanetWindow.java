@@ -11,7 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-
+/**
+ * This window displays a message about the crews flying situation.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class FlyToNewPlanetWindow extends JFrame {
 
 	/**

@@ -8,15 +8,16 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * This window is the for the space outpost and has buttons that when selected will open either an itemsForSale window or a viewOwnedItems window.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class SpaceOutpostWindow {
 
 	private JFrame frame;
 	private GameEnvironment game;
-
-	/**
-	 * Launch the application.
-	 */
 
 
 	/**

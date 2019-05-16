@@ -7,8 +7,8 @@ import java.util.Random;
 /**
  * This class contains variables and methods that affect or concern individual crew members statistics
  *
- * @author  
- * @version 15/05/2019.
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
  */
 public class CrewMember {
 	/**

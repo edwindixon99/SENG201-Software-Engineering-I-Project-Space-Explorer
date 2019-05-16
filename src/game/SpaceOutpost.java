@@ -4,8 +4,8 @@ import java.util.ArrayList;
 /**
  * This is the class for the space outpost, which is where the crew can view their owned items, as well as buying new ones
  *
- * @author  
- * @version 15/05/2019.
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
  */
 public class SpaceOutpost {
 	/**

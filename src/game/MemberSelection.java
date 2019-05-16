@@ -15,7 +15,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * This window is where the user selects which crew member they would like to perform the action.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class MemberSelection extends JFrame {
 	public MemberSelection() {
 	}

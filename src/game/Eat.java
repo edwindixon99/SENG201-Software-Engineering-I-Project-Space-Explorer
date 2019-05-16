@@ -15,7 +15,12 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.awt.event.ActionEvent;
-
+/**
+ * This window is where the user chooses what food the crew member will eat through buttons.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class Eat extends JFrame {
 
 	/**

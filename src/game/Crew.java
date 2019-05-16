@@ -6,8 +6,8 @@ import java.util.ArrayList;
 /**
  * This class contains methods and variables that relate or affect the crew
  *
- * @author  
- * @version 15/05/2019.
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
  */
 public class Crew {
     /**

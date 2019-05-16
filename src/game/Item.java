@@ -1,9 +1,9 @@
 package game;
 /**
- * This is class Item. Items are used in the game. Food and MedicalItem are the two types of Item.
+ * This is the class Item. Items are used in the game. Food and MedicalItem are the two types of Item.
  *
- * @author  
- * @version 14/05/2019.
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
  */
 public class Item {
 	/**

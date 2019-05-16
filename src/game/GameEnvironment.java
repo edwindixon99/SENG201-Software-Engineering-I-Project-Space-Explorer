@@ -15,11 +15,11 @@ import java.util.TreeSet;
 
 
 /**
- * This is class contains variables and methods which are used throughout the game by other
+ * This class contains variables and methods which are used throughout the game by other
  * classes. It is also where the main for the entire game is located 
  *
- * @author Matthew Ruffell
- * @version 1.1, Feb 2018.
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
  */
 public class GameEnvironment {
 	/**
@@ -454,14 +454,20 @@ public class GameEnvironment {
      public void setActTaken(String actionTaken1) {
      	actionTaken = actionTaken1;
      }
+    	/**
+    	 * @return 			A string that contains a action that classes use.
+    	 */
      public String getActTaken() {
      	return actionTaken;
      }
+ 	/**
+ 	 * @return 			The selected crew member.
+ 	 */
      public CrewMember getPickedMember() {
      	return pickedMember;
      }
    	/**
-   	 * @param pickedMember1 			mCrew member selected to perform an action.
+   	 * @param pickedMember1 			Crew member selected to perform an action.
    	 */
      public void setPickedMember(CrewMember pickedMember1) {
      	pickedMember = pickedMember1;
@@ -472,21 +478,33 @@ public class GameEnvironment {
      public void setMessage(String message) {
      	this.message = message;
      }
+ 	/**
+ 	 * @return 			A message which is used by other classes to display an output in windows.
+ 	 */
      public String getMessage() {
      	return message;
      }
-     
-     
-     
+ 	/**
+ 	 * @return			The crew.				
+ 	 */
  	public Crew getCrew1() {
  		return crew1;
  	}
+	/**
+	 * @param crew			The crew.			
+	 */
  	public void setCrew1(Crew crew) {
  		crew1 = crew;
  	}
+	/**
+	 * @return		The crews ship.				
+	 */
  	public SpaceShip getShip() {
  		return ship;
  	}
+	/**
+	 * @param ship1			The crews ship.				
+	 */
  	public void setShip(SpaceShip ship1) {
  		ship = ship1;
  	}
@@ -610,57 +628,86 @@ public class GameEnvironment {
  		pilot.setVisible(true);
  	}
 
-
+	/**
+	 * Closes the space outpost window.
+	 * 
+	 * @param spaceOutpostWindow		The space outpost window.
+	 */
  	public void closeSpaceOutpost(SpaceOutpostWindow spaceOutpostWindow) {
  		spaceOutpostWindow.closeWindow();
  		
  	}
 
-
+	/**
+	 * @return 			Sets a String as a second message used by windows.
+	 */
  	public String getsecondMessage() {
  		return secondMessage;
  	}
 
-
+	/**
+	 * @param secondMessage			Sets a String as a second message used by windows.
+	 */
  	public void setsecondMessage(String secondMessage) {
  		this.secondMessage = secondMessage;
  	}
 
-
+	/**
+	 * Launches the items for space outpost window.
+	 */
  	public void launchSpaceOutpost() {
  		SpaceOutpostWindow outpost = new SpaceOutpostWindow(this);		
  	}
+	/**
+	 * Launches the game over window.
+	 */
  	public void launchGameOverWindow() {
  		GameOverWindow gameover = new GameOverWindow(this);
  		gameover.setVisible(true);
  	}
 
-
+	/**
+	 * Closes the items for sale window.
+	 * @param itemsForSale				The items for sale window.
+	 */
  	public void closeItemsForSale(ItemsForSale itemsForSale) {
  		itemsForSale.closeWindow();
  	}
+	/**
+	 * Launches the items for sale window.
+	 */
  	public void launchItemsForSale() {
  		ItemsForSale itemsForSale = new ItemsForSale(this);
  		itemsForSale.setVisible(true);
  	}
+	/**
+	 * @return 				Boolean that dictates whether the game is over.
+	 */
  	public boolean isGameIsOver() {
 		return gameIsOver;
 	}
-
+	/**
+	 * @param gameIsOver				Boolean that dictates whether the game is over.
+	 */
 	public void setGameIsOver(boolean gameIsOver) {
 		this.gameIsOver = gameIsOver;
 	}
-
+	/**
+	 * Launches the winner window.
+	 */
     public void launchWinnerWindow() {
 		WinnerWindow winner = new WinnerWindow(this);
-		
 		winner.setVisible(true);
 	}
-    
+	/**
+	 * @return 			The days the game has progressed through.
+	 */
  	public int getDaysProgressedThrough() {
 		return daysProgressedThrough;
 	}
- 	
+	/**
+	 * @param daysProgressedThrough			The days the game has progressed through.
+	 */
  	public void setDaysProgressedThrough(int daysProgressedThrough) {
 		this.daysProgressedThrough = daysProgressedThrough;
 	}
@@ -672,7 +719,9 @@ public class GameEnvironment {
 		return score;
 	}
 
-
+	/**
+	 * @param score			The game score.
+	 */
 	public void setScore(int score) {
 		this.score = score;
 	}

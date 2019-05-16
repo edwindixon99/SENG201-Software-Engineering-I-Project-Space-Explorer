@@ -14,7 +14,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Color;
 
-
+/**
+ * This is the main window containing buttons to each action. This window acts as the center of the whole game.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class MainWindow {
 	private JFrame frame;
 	private GameEnvironment game;

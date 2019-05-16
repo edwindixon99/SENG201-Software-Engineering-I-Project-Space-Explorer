@@ -11,9 +11,13 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
-
+/**
+ * This window displays an final message when game is lost.
+ *
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
+ */
 public class GameOverWindow extends JFrame {
 	private JLabel lblScore;
 

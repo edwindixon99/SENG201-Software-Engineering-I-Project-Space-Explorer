@@ -3,8 +3,8 @@ package game;
 /**
  * This is the class for crew members that are of type 6. This class extends the CrewMember class.
  *
- * @author  
- * @version 15/05/2019.
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
  */
 public class Type6 extends CrewMember {
 	/**

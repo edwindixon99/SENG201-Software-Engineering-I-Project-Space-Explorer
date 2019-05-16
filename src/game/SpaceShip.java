@@ -2,8 +2,8 @@ package game;
 /**
  * This is the class for the space ship, and includes methods and variables that affect the spaceship.
  *
- * @author  
- * @version 15/05/2019.
+ * @author Jerome Grubb, Edwin Dixon
+ * @version 16/05/19
  */
 public class SpaceShip {
 	/**
