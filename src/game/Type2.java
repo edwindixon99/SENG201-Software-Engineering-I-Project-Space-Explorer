@@ -9,15 +9,16 @@ public class Type2 extends CrewMember {
 	/**
 	 * This is a constructor for Type2. This sets the name, along with the hunger, health and tiredness degrade for the crew members of type 2.
 	 * 
-	 * @param name		The name of the crew member
-	 * @param hungerDegrade		The rate at which the crew members hunger level declines
-	 * @param healthDegrade		The rate that the crew members health level declines
-	 * @param tirednessDegrade		The rate that the crew members tiredness level declines
+	 * @param name		A String that is the name of the crew member.
+	 * @param hungerDegrade		An Integer that is the rate that the crew members hunger level declines.
+	 * @param healthDegrade		An Integer that is the rate that the crew members health level declines.
+	 * @param tirednessDegrade		An Integer that is the rate that the crew members tiredness level declines.
 	 */
 	public Type2(String name, int hungerDegrade, int healthDegrade, int tirednessDegrade) {
 		setName(name);
 		setHungerDegrade(hungerDegrade);
 		setHealthDegrade(healthDegrade);
 		setTirednessDegrade(tirednessDegrade);
+		setType("Type 2");
 	}
 }

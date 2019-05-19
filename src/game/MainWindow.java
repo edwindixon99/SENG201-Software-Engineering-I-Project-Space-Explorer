@@ -76,6 +76,8 @@ public class MainWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		TypeStatsFrame stats = new TypeStatsFrame();
+		
 		JLabel lblWhatDoYou = new JLabel("What would you like your crew member(s) to do?");
 		lblWhatDoYou.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lblWhatDoYou.setBounds(10, 11, 411, 27);
@@ -87,6 +89,7 @@ public class MainWindow {
 		frame.getContentPane().add(btnEat);
 		btnEat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				stats.dispose();
 				game.setActTaken("Eat");
 				chooseMember();
 			}
@@ -98,6 +101,7 @@ public class MainWindow {
 		frame.getContentPane().add(btnHeal);
 		btnHeal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				stats.dispose();
 				game.setActTaken("Heal");
 				chooseMember();
 			}
@@ -109,6 +113,7 @@ public class MainWindow {
 		frame.getContentPane().add(btnSleep);
 		btnSleep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				stats.dispose();
 				game.setActTaken("Sleep");
 				chooseMember();
 			}
@@ -120,6 +125,7 @@ public class MainWindow {
 		frame.getContentPane().add(SearchPlanetbtn);
 		SearchPlanetbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				stats.dispose();
 				game.setActTaken("search");
 				chooseMember();
 			}
@@ -128,6 +134,7 @@ public class MainWindow {
 		JButton btnPilotShip = new JButton("Pilot ship");
 		btnPilotShip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				stats.dispose();
 				game.setActTaken("Pilot");
 				chooseMember();
 			}
@@ -139,6 +146,7 @@ public class MainWindow {
 		JButton btnVisitOutpost = new JButton("Visit Outpost");
 		btnVisitOutpost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				stats.dispose();
 				launchSpaceOutpost();
 			}
 		});
@@ -149,6 +157,7 @@ public class MainWindow {
 		JButton btnRepairShip = new JButton("Repair Ship");
 		btnRepairShip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				stats.dispose();
 				game.setActTaken("Repairship");
 				chooseMember();
 			}
@@ -209,7 +218,7 @@ public class MainWindow {
 		shipStatusLabel.setForeground(Color.BLACK);
 		shipStatusLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
 		shipStatusLabel.setBackground(Color.WHITE);
-		shipStatusLabel.setBounds(20, 406, 158, 87);
+		shipStatusLabel.setBounds(20, 406, 214, 87);
 		frame.getContentPane().add(shipStatusLabel);
 		
 		JButton btnNextDay = new JButton("Next Day");
@@ -223,6 +232,7 @@ public class MainWindow {
 		frame.getContentPane().add(lblMoney);
 		btnNextDay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				stats.dispose();
 				game.setMessage(game.nextDay());
 				if(game.isGameIsOver()) {
 					game.setDaysProgressedThrough(game.getDaysProgressedThrough()-1);
@@ -232,6 +242,16 @@ public class MainWindow {
 				}
 			}
 		});
+		JButton viewTypeStatsButt = new JButton("View Type Stats");
+		viewTypeStatsButt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				stats.setVisible(true);
+				stats.setDefaultCloseOperation(stats.DISPOSE_ON_CLOSE);
+			}
+		});
+		viewTypeStatsButt.setFont(new Font("Dialog", Font.BOLD, 15));
+		viewTypeStatsButt.setBounds(244, 458, 177, 35);
+		frame.getContentPane().add(viewTypeStatsButt);
 	}
 	/**
 	 * Closes this window and opens the game over window.

@@ -52,6 +52,10 @@ public class CrewMember {
 	 */
 	private int tirednessDegrade;
 	/**
+	 * The type that the crew member is.
+	 */
+	private String type;
+	/**
 	 * Calculates the crew members health, hunger and tiredness level at the start of a new day. Also resets the action counter to 2.
 	 */
 	public void newDay() {
@@ -74,7 +78,7 @@ public class CrewMember {
 	}
 	/**
 	 * The crew member eats some food, which will increase their hunger level
-	 * @param food	The food object that the crew member is eating	
+	 * @param food	A Food object that is the food that the crew member is eating	
 	 */
 	public void eat(Food food) {
 		hungerLevel = hungerLevel + food.getHungerRemoved();
@@ -88,8 +92,8 @@ public class CrewMember {
 	/**
 	 * Decides what the crew member will find while searching the nearest planet
 	 *
-	 * @param memSearch		The crew member searching the planet
-	 * @return 			The number which will correspond to what the player will find on the planet.
+	 * @param memSearch		A CrewMember object that is the crew member searching the planet
+	 * @return 			An Integer that is the number which will correspond to what the player will find on the planet.
 	 */
 	public int search(CrewMember memSearch) {
 		Random rand = new Random();
@@ -133,7 +137,7 @@ public class CrewMember {
 	/**
 	 * Heals the crew member.
 	 *
-	 * @param medicine		The medical item being used to heal the crew member
+	 * @param medicine		A MedicalItem object that is the medical item being used to heal the crew member
 	 */
 	public void heal(MedicalItem medicine) {
 		setHealthLevel(getHealthLevel() +  medicine.getHealingAmount());
@@ -147,10 +151,10 @@ public class CrewMember {
 	/**
 	 * Allows the player to view the stats of the crew member
 	 *
-	 * @return 			The stats or the crew member, in the form of a string
+	 * @return 			The stats of the crew member, in the form of a multiline String
 	 */
 	public String viewStatus() {
-		return (name + "'s status: \nHealth level: " + healthLevel + "\nHunger level: " + hungerLevel + "\nTiredness: " + tiredness + "\nSpacePlague: " + spacePlague + "\nActions left: " + actionCounter + "\n");	
+		return (name + "'s status: \nHealth level: " + healthLevel + "\nHunger level: " + hungerLevel + "\nTiredness: " + tiredness + "\nSpacePlague: " + spacePlague + "\nActions left: " + actionCounter + "\nType: "+ type + "\n");	
 	}
 	/**
 	 * Decides whether the crew member is dead, based on their health level
@@ -165,49 +169,49 @@ public class CrewMember {
 	}
 	
 	/**
-	 * @return 			The crew members name as a string
+	 * @return 			A String that is the crew members name as a string
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
-	 * @param name		The name of the crew member
+	 * @param name		A String that is the name of the crew member
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	/**
-	 * @return 			The crew members health level
+	 * @return 			An Integer that is the crew member's health level
 	 */
 	public int getHealthLevel() {
 		return healthLevel;
 	}
 	/**
-	 * @param healthLevel		The crew members health level
+	 * @param healthLevel		An Integer that is the crew member's health level
 	 */
 	public void setHealthLevel(int healthLevel) {
 		this.healthLevel = healthLevel;
 	}
 	/**
-	 * @return 			The crew members hunger level
+	 * @return 			An Integer that is the crew member's hunger level
 	 */
 	public int getHungerLevel() {
 		return hungerLevel;
 	}
 	/**
-	 * @param hungerLevel		The crew members hunger level
+	 * @param hungerLevel		An Integer that is the crew member's hunger level
 	 */
 	public void setHungerLevel(int hungerLevel) {
 		this.hungerLevel = hungerLevel;
 	}
 	/**
-	 * @return 			The crew members tiredness level
+	 * @return 			An Integer that is the crew member's tiredness level
 	 */
 	public int getTiredness() {
 		return tiredness;
 	}
 	/**
-	 * @param tiredness		The crew members tiredness
+	 * @param tiredness		An Integer that is the crew member's tiredness
 	 */
 	public void setTiredness(int tiredness) {
 		this.tiredness = tiredness;
@@ -225,53 +229,65 @@ public class CrewMember {
 		this.spacePlague = spacePlague;
 	}
 	/**
-	 * @return 			The number of actions the player has remaining
+	 * @return 			An Integer that is the number of actions the crew member has remaining
 	 */
 	public int getActionCounter() {
 		return actionCounter;
 	}
 	/**
-	 * @param actionCounter		The amount of actions the player can perform
+	 * @param actionCounter		An Integer that is the amount of actions the crew member can perform
 	 */
 
 	public void setActionCounter(int actionCounter) {
 		this.actionCounter = actionCounter;
 	}
 	/**
-	 * @return 			The rate of which the crew members hunger degrades
+	 * @return 			An Integer that is the rate that the crew member's hunger degrades
 	 */
 	public int getHungerDegrade() {
 		return hungerDegrade;
 	}
 	/**
-	 * @param hunger		The rate which the crew members hunger declines
+	 * @param hunger		An Integer that is the rate that the crew member's hunger declines
 	 */
 	public void setHungerDegrade(int hunger) {
 		this.hungerDegrade = hunger;
 	}
 	/**
-	 * @return 			The rate of which the crew members health degrades
+	 * @return 			An Integer that is the rate that the crew member's health degrades
 	 */
 	public int getHealthDegrade() {
 		return healthDegrade;
 	}
 	/**
-	 * @param health		The rate which the crew members health level declines
+	 * @param health		An Integer that is the rate that the crew member's health level declines
 	 */
 	public void setHealthDegrade(int health) {
 		this.healthDegrade = health;
 	}
 	/**
-	 * @return 			The rate of which the crew members tiredness level degrades
+	 * @return 			An Integer that is the rate that the crew member's tiredness level degrades
 	 */
 	public int getTirednessDegrade() {
 		return tirednessDegrade;
 	}
 	/**
-	 * @param tired		The rate which the crew members tiredness declines
+	 * @param tired		An Integer that is the rate that the crew member's tiredness declines
 	 */
 	public void setTirednessDegrade(int tired) {
 		this.tirednessDegrade = tired;
+	}
+	/**
+	 * @return 			A string which states the type of the crew member
+	 */
+	public String getType() {
+		return type;
+	}
+	/**
+	 * @param type		A string which states the type of the crew member
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 

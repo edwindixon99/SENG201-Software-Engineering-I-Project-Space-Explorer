@@ -133,6 +133,7 @@ public class SetupWindow {
 		
 		String[] types = {"Type 1", "Type 2", "Type 3", "Type 4", "Type 5", "Type 6"}; 
 		JComboBox[] comboBoxes = {typeCombo1, typeCombo2, typeCombo3, typeCombo4}; 
+		TypeStatsFrame stats = new TypeStatsFrame();
 
 		
 		JLabel dayLabel = new JLabel("How many days would you like to play?");
@@ -200,6 +201,7 @@ public class SetupWindow {
 					crewMemberList.get(3).setName(mem4txtField.getText());
 				}
 				game.getCrew1().setCrewMemberList(crewMemberList);
+				stats.dispose();
 				finishedWindow();
 			}
 		});
@@ -340,7 +342,6 @@ public class SetupWindow {
 		frmGame.getContentPane().add(confirmNumOfCrewMemLockInButt);
 		
 		JButton viewTypeStatsButt = new JButton("View Type Stats");
-		TypeStatsFrame stats = new TypeStatsFrame();
 		viewTypeStatsButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				stats.setVisible(true);
