@@ -31,7 +31,7 @@ public class GameOverWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 * 
-	 * @param game			The game environment in which is being played.
+	 * @param game			The GameEnvironment object which is being played.
 	 */
 	public GameOverWindow(GameEnvironment game) {
 		setTitle("Space Explorer");

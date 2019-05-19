@@ -17,7 +17,7 @@ public class SpaceShip {
 	/**
 	 * repairs the ships shield, while making sure that it does not go over its maximum of 100
 	 * 
-	 * @param repair		How much the ships shield is getting repaired by.		
+	 * @param repair		An Integer. How much the ships shield is getting repaired by.		
 	 */
 	public void repairShip(int repair) {
 		setShieldHealth(getShieldHealth() + repair);
@@ -34,25 +34,25 @@ public class SpaceShip {
 		return ("\n" + shipName + "'s status:\nShield: " + shieldHealth + "\n");
 	}
 	/**
-	 * @return		The ships shield level
+	 * @return		An Integer. The ships shield level
 	 */
 	public int getShieldHealth() {
 		return shieldHealth;
 	}
 	/**
-	 * @param shieldHealth		The ships shield level
+	 * @param shieldHealth		An Integer. The ships shield level
 	 */
 	public void setShieldHealth(int shieldHealth) {
 		this.shieldHealth = shieldHealth;
 	}
 	/**
-	 * @return		The ships name
+	 * @return		A String. The ships name
 	 */
 	public String getShipName(){
 		return shipName;
 	}
 	/**
-	 * @param name		The ships name
+	 * @param name		A String. The ships name
 	 */
 	public void setShipName(String name) {
 		this.shipName = name;

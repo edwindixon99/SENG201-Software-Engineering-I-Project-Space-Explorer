@@ -22,7 +22,7 @@ public class SpaceOutpostWindow {
 
 	/**
 	 * Create the application.
-	 * @param gameEnvironment			The game environment in which is being played.
+	 * @param gameEnvironment			The GameEnvironment object which is being played.
 	 */
 	public SpaceOutpostWindow(GameEnvironment gameEnvironment) {
 		game = gameEnvironment;

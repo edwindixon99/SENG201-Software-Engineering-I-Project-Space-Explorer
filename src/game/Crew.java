@@ -70,8 +70,8 @@ public class Crew {
 	/**
 	 * Adds the bought food item to the crews food list
 	 *
-	 * @param foodList		The list of food the crew owns
-	 * @param item		The Food item that the crew bought
+	 * @param foodList		An ArrayList of Food. The list of food the crew owns
+	 * @param item		The Food object that the crew bought
 	 */
 	public void buyFood(ArrayList<Food> foodList, Food item) {   
 		foodList.add(item);
@@ -80,8 +80,8 @@ public class Crew {
 	/**
 	 * Adds the bought medical item to the crews Medical items list
 	 *
-	 * @param medList		The list of medicine the crew owns
-	 * @param item		The Medical item that the crew bought
+	 * @param medList		An ArrayList of MedicalItems. The list of medicine the crew owns
+	 * @param item		The MedicalItem object that the crew bought
 	 */
 	public void buyMedicalItem(ArrayList<MedicalItem> medList, MedicalItem item) {             
 		medList.add(item);
@@ -95,97 +95,97 @@ public class Crew {
 	 * days
 	 */
 	/**
-	 * @return 			The number of pieces that the crew have found
+	 * @return 			An Integer. The number of pieces that the crew have found
 	 */
 	 public int getRequiredPieces() {
 		return requiredPieces;
 	}
 		/**
-		 * @param pieces			the number of pieces that crew have yet to find
+		 * @param pieces			An Integer. The number of pieces that crew have yet to find
 		 */
 	 public void setRequiredPieces(int pieces) {
 	 	this.requiredPieces = pieces;
 	}
 		/**
-		 * @return 			The number of days the crew have been playing
+		 * @return 			An Integer. The number of days the crew have been playing
 		 */
 	public int getDays() {
 		return days;
 	}
 	/**
-	 * @param day			The number of days that the crew have been playing
+	 * @param day			An Integer. The number of days that the crew have been playing
 	 */
 	public void setDays(int day) {
 		this.days = day;
 	}
 	/**
-	 * @param pilotCount			An array list containing all of the crew members ready to fly the ship to a new planet
+	 * @param pilotCount			An ArrayList of CrewMembers. Contains all of the crew members ready to fly the ship to a new planet
 	 */
 	public void setPilotCount(ArrayList<CrewMember> pilotCount) {
 		this.pilotCount = pilotCount;
 	}
 	/**
-	 * @return 			The array list of the crew members that are ready to pilot the ship
+	 * @return 			An ArrayList of CrewMembers. crew members that are ready to pilot the ship
 	 */
 	public ArrayList<CrewMember> getPilotCount() {
 		return pilotCount;
 	}
 	/**
-	 * @return 			The number of pieces that the crew have found
+	 * @return 			An Integer. The number of pieces that the crew have found
 	 */
 	public int getNumPieces() {
 		return numPieces;
 	}
 	/**
-	 * @param pieces			the number of pieces the crew has already found
+	 * @param pieces			An Integer. The number of pieces the crew has already found
 	 */
 	public void setNumPieces(int pieces) {
 		this.numPieces = pieces;
 	}
 	/**
-	 * @return 			The amount of money that the crew has
+	 * @return 			A Double object. The amount of money that the crew has
 	 */
 	public double getMoney() {
 		return money;
 	}
 	/**
-	 * @param money 			the amount of money the crew has as a double
+	 * @param money 			A Double object. The amount of money the crew has as a double
 	 */
 	public void setMoney(double money) {
 		this.money = money;
 	}
 	/**
-	 * @return 			An array list containing all of the crews medical items
+	 * @return 			An ArrayList of MedicalItems containing all of the crews medical items
 	 */
 	public ArrayList<MedicalItem> getMedicalItems() {
 		return medicalItems;
 	}
 	/**
-	 * @param medicalItems 			An array list that contains all the crews medical items
+	 * @param medicalItems 			An ArrayList of MedicalItems. Contains all the crews medical items
 	 */
 	public void setMedicalItems(ArrayList<MedicalItem> medicalItems) {
 		this.medicalItems = medicalItems;
 	}
 	/**
-	 * @return 			An array list containing all of the crews food items
+	 * @return 			An ArrayList of Food containing all of the crews food items
 	 */
 	public ArrayList<Food> getFoodItems() {
 		return foodItems;
 	}
 	/**
-	 * @param foodItems			An array list that contains the crews food items
+	 * @param foodItems			An ArrayList of Food. Contains the crews food items
 	 */
 	public void setFoodItems(ArrayList<Food> foodItems) {
 		this.foodItems = foodItems;
 	}
 	/**
-	 * @return 			An array list containing all of the crew members that are in the crew, and still alive
+	 * @return 			An ArrayList of CrewMembers that are in the crew, and still alive
 	 */
 	public ArrayList<CrewMember> getCrewMemberList() {
 		return crewMemberList;
 	}
 	/**
-	 * @param crewMemberList			An array list containing all of the alive crew members in the crew
+	 * @param crewMemberList			An ArrayList of CrewMembers containing all of the alive crew members in the crew
 	 */
 	public void setCrewMemberList(ArrayList<CrewMember> crewMemberList) {
 		this.crewMemberList = crewMemberList;

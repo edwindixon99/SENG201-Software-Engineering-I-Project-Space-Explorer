@@ -32,14 +32,14 @@ public class Food extends Item{
 		return "Food: " + getName() + "\nPrice: " + Double.toString(getPrice()) + "\nRemoved Hunger: " +  Integer.toString(hungerRemoved);
 		}
 	/**
-	 * @return		The amount of hunger that is restored form eating the food object
+	 * @return		An Integer that is the amount of hunger that is restored form eating the food object
 	 */
 	public int getHungerRemoved() {
 		return hungerRemoved;
 	}
 
 	/**
-	 * @param hungerRemoved 		The amount of hunger that is restored from eating the food object
+	 * @param hungerRemoved 		An Integer that is the amount of hunger that is restored from eating the food object
 	 */
 	public void setHungerRemoved(int hungerRemoved) {
 		this.hungerRemoved = hungerRemoved;

@@ -2,7 +2,7 @@ package game;
 
 import java.util.ArrayList;
 /**
- * This is the class for the space outpost, which is where the crew can view their owned items, as well as buying new ones
+ * This is the class for the space outpost. It has items that are available for the crew to buy.
  *
  * @author Jerome Grubb, Edwin Dixon
  * @version 16/05/19
@@ -17,19 +17,19 @@ public class SpaceOutpost {
 	 */
 	private ArrayList<Item> itemsForSale  = new ArrayList<Item>();
 	/**
-	 * @return		The name of the outpost
+	 * @return		A String that is the name of the outpost
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
-	 * @param name		The name of the outpost
+	 * @param name		A String that is the name of the outpost
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	/**
-	 * @return		An array list containing all of the items for sale at the outpost
+	 * @return		An ArrayList of Items containing all of the items for sale at the outpost
 	 */
 	public ArrayList<Item> getItemsForSale() {
 		return itemsForSale;

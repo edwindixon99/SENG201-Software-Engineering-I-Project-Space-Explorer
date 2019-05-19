@@ -64,7 +64,7 @@ public class ViewOwnedItems extends JFrame {
 		foodsLabel.setBounds(10, 74, 393, 393);
 		getContentPane().add(foodsLabel);
 		
-		String medicalItems = game.getsecondMessage();
+		String medicalItems = game.getsecondMessage();						// second message is used in this case where two messages need to be shown
 		JLabel medicalItemsLabel = new JLabel(medicalItems);
 		medicalItemsLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		medicalItemsLabel.setBounds(413, 74, 399, 385);

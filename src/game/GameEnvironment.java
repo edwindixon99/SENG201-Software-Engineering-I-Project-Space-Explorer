@@ -23,11 +23,11 @@ import java.util.TreeSet;
  */
 public class GameEnvironment {
 	/**
-	 * The number planet pieces on one planet. This value is 1 when planet piece not found and 0 when it is.
+	 *  An Integer that is the number planet pieces on one planet. This value is 1 when planet piece not found and 0 when it is.
 	 */
      private int planetPieces = 1;
      /**
- 	 * A string which is used by other classes to display an output in windows. 
+ 	 * A string which is used by other classes to display an output in windows relating to an action performed. 
  	 */
      private String message = "";
      /**
@@ -35,7 +35,7 @@ public class GameEnvironment {
  	 */
      private String actionTaken;
      /**
- 	 * The number of days progressed in the game. increases by one every in game day.
+ 	 *  An Integer that is the number of days progressed in the game. increases by one every in game day.
  	 */
      private int daysProgressedThrough = 1;
      /**
@@ -43,15 +43,15 @@ public class GameEnvironment {
  	 */
 	private boolean gameIsOver = false; 
 	/**
-	 * Number of days game will last for inputed by user.
+	 * An Integer that is the number of days the game will last for inputed by user.
 	 */
 	private int days;
 	/**
-	 * CrewMember that is selected used by classes for determining which CrewMember peforms an action.
+	 * a CrewMember object that is the crew member that is selected used by classes for determining which CrewMember performs an action.
 	 */
      private CrewMember pickedMember;
      /**
- 	 * an RandomEvents Object used in this class to access it's methods.
+ 	 * A RandomEvents Object used in this class to access it's methods.
  	 */
      private RandomEvents random = new RandomEvents(); 
      /**
@@ -67,7 +67,7 @@ public class GameEnvironment {
  	 */
      private SpaceOutpost outpost = new SpaceOutpost();
      /**
- 	 * A string which is an alternative to attribute message. A string which is used by other classes to display an output in windows.
+ 	 * A string which is an alternative to attribute message when two unique messages are needed in one window. It is used by other classes to display an output in windows relating to an action performed.
  	 */
      private String secondMessage;
      /**
@@ -96,7 +96,7 @@ public class GameEnvironment {
  		outpost.setItemsForSale();
  	}
 	/**
-	 * @param day	Number of days
+	 * @param day	Integer for the number of days
 	 */
  	public void setDays(int day) {
  		this.days = day;
@@ -105,7 +105,7 @@ public class GameEnvironment {
 	/**
 	 * Game gets progressed to the next day.
 	 *
-	 * @return 		A message that will be displayed. 			
+	 * @return 		A String that is a message that will be displayed relating to what happened in between the current day and the next day. 			
 	 */ 
  	public String nextDay() {
  		String finalString = "";
@@ -144,8 +144,8 @@ public class GameEnvironment {
 	/**
 	 * Crew member attempts to fly to a new planet.
 	 *
-	 * @param memPilot		The crew member attempting to fly.
-	 * @return 		A message that will be displayed depending on the crews ability to fly. 			
+	 * @param memPilot		A CrewMember Object that is the crew member attempting to fly.
+	 * @return 		A String that is the message that will be displayed depending on the crews ability to fly. 			
 	 */ 
  	public String flyToNewPlanet(CrewMember memPilot) {
  		String finalString = "";
@@ -178,8 +178,8 @@ public class GameEnvironment {
 	/**
 	 * Crew member attempts to search the planet.
 	 *
-	 * @param member		The crew member attempting to search the planet.
-	 * @return 		A message that will be displayed depending on what is found. 			
+	 * @param member		A CrewMember Object that is the crew member attempting to search the planet.
+	 * @return 		A String that is a message that will be displayed depending on what is found. 			
 	 */ 
  	public String searchPlanet(CrewMember member) {
  		score += 10;
@@ -234,8 +234,8 @@ public class GameEnvironment {
 	/**
 	 * Crew member attempts to repair the spaceship.
 	 *
-	 * @param memRepair		The crew member attempting to repair the spaceship.
-	 * @return 		A message that will be displayed depending on the what happens to the spaceship. 			
+	 * @param memRepair		A CrewMember Object that is the crew member attempting to repair the spaceship.
+	 * @return 		A String that is a message that will be displayed depending on the what happens to the spaceship. 			
 	 */ 
 	public String repairShip(CrewMember memRepair) {
 		score += 30;
@@ -261,8 +261,8 @@ public class GameEnvironment {
 	/**
 	 * Crew member goes to sleep.
 	 *
-	 * @param member		The crew member attempting to sleep.
-	 * @return 		A message that will be displayed depending on whether or not the sleep was a success. 			
+	 * @param member		A CrewMember Object that is the crew member attempting to sleep.
+	 * @return 				A String that is a message that will be displayed depending on whether or not the sleep was a success. 			
 	 */ 
       public String sleep(CrewMember member) {
     	score += 10;
@@ -281,7 +281,10 @@ public class GameEnvironment {
               return (memSleep.getName() + " has gone to sleep.\n");
        	}
        }
-      
+  	/**
+  	 * Makes a multi-line String that shows the name and amount of food owned by the crew.  
+  	 * @return			A String that shows all the food items and amounts owned by the crew. 						
+  	 */ 
       public String viewOwnedFood() {
        	String finalString = "";
        	ArrayList<Food> foodList = crew1.getFoodItems();
@@ -304,6 +307,10 @@ public class GameEnvironment {
    		}
    		return finalString;
         }
+    	/**
+    	 * Makes a multi-line String that shows the name and amount of medical items owned by the crew.  
+    	 * @return			A String that shows all the medical items and amounts owned by the crew. 	
+    	 */ 
         public String viewOwnedMedicalItems() {
        	 String finalString = "";
        	 ArrayList<MedicalItem> medicalList = crew1.getMedicalItems();
@@ -330,8 +337,8 @@ public class GameEnvironment {
   	/**
   	 * Checks conditions of crew member and crew to determine if they can be healed.
   	 *
-  	 * @param member		The crew member attempting to be healed.
-  	 * @return 		A message that will be either displayed on a window or an empty string which causes healMethod() to be called.		
+  	 * @param member		A CrewMember Object that is the crew member attempting to be healed.
+  	 * @return 				A String that is a message that will be either displayed on a window or an empty string which causes healMethod() to be called.		
   	 */ 
       public String heal(CrewMember member) {
     	  ArrayList<MedicalItem> healList = crew1.getMedicalItems();
@@ -350,8 +357,8 @@ public class GameEnvironment {
     	/**
     	 * Checks conditions of crew member and crew to determine if they can eat.
     	 *
-    	 * @param member		The crew member attempting to eat.
-    	 * @return 		A message that will be either displayed on a window or an empty string which causes eat() to be called.		
+    	 * @param member		A CrewMember Object that is the crew member attempting to eat.
+    	 * @return 		A String that is a message that will be either displayed on a window or an empty string which causes eat() to be called.		
     	 */      
       public String eat(CrewMember member) {
     	  ArrayList<Food> foodList = crew1.getFoodItems();
@@ -369,10 +376,10 @@ public class GameEnvironment {
   	/**
   	 * Crew member eats a food.
   	 *
-  	 * @param member		The crew member who eats.
-  	 * @param food			The food that is consumed.
-  	 * @param index			The index of the food in the crews food items list.
-  	 * @return 		A message that will be either displayed on a window or an empty string which causes eat() to be called.		
+  	 * @param member		A CrewMember Object that is the crew member who eats.
+  	 * @param food			A Food object that is the food that is consumed.
+  	 * @param index			An Integer that is the index of the index of the food in the crews food items list.
+  	 * @return 				A String that is a message that will be displayed on a window to say that the crew member has eaten. 	
   	 */       
       public String eat_food(CrewMember member, Food food, int index) {
     	  score += 10;
@@ -385,10 +392,10 @@ public class GameEnvironment {
     	/**
     	 * Crew member heals with a medical item.
     	 *
-    	 * @param member		The crew member who heals.
-    	 * @param med			The medical item used.
-    	 * @param index			The index of the medical item in the crews medical items list.
-    	 * @return 		A message that will be either displayed on a window or an empty string which causes eat() to be called.		
+    	 * @param member		A CrewMember Object that is the crew member who heals.
+    	 * @param med			A MedicalItem object that is the medical item used.
+    	 * @param index			An Integer that is the index of the medical item in the crews medical items list.
+    	 * @return 				A String that is a message that will be displayed on a window to say that the crew member has healed. 		
     	 */          
       public String healMethod(CrewMember member, MedicalItem med, int index) {
     	  score += 10;
@@ -401,8 +408,7 @@ public class GameEnvironment {
   	/**
   	 * Causes there to be a random event. 1 in 3 chance of either alien pirates, space plague, nothing happening.
   	 *
-
-  	 * @return 		a message of when random event occurred which will be displayed on a window.
+  	 * @return 		A String that is a message of if a random event occurred which will be displayed on a nextDayPopup window. If no random event occurs returns empty string.
   	 */     
       public String getRandomEvent() {
     	  String finalString = "";
@@ -421,9 +427,9 @@ public class GameEnvironment {
   	/**
   	 * Crew member successfully flies spaceship to new planet.
   	 *
-  	 * @param memPilot		The crew member who pilots the spaceship.
-  	 * @param pilotList		an ArrayList of crew members that piloted the spaceship.
-  	 * @return 		A message that will be displayed on a window.	
+  	 * @param memPilot		A CrewMember Object that is the crew member who pilots the spaceship.
+  	 * @param pilotList		An ArrayList of crew members that piloted the spaceship.
+  	 * @return 		A String that is a message that will be displayed on a FlytoNewPlanet window about the flight.	
   	 */        
       public String successfulFlight(CrewMember memPilot, ArrayList<CrewMember> pilotList) {
     	  String finalString = "";
@@ -449,71 +455,69 @@ public class GameEnvironment {
       }  
 
   	/**
-  	 * @param actionTaken1		Action taken chosen in the MainWindow.
+  	 * @param actionTaken1		A String that is the action taken chosen in the MainWindow.
   	 */
      public void setActTaken(String actionTaken1) {
      	actionTaken = actionTaken1;
      }
     	/**
-    	 * @return 			A string that contains a action that classes use.
+    	 * @return 			A String that contains an action that classes use.
     	 */
      public String getActTaken() {
      	return actionTaken;
      }
  	/**
- 	 * @return 			The selected crew member.
+ 	 * @return 			A CrewMember object that is the selected crew member.
  	 */
      public CrewMember getPickedMember() {
      	return pickedMember;
      }
    	/**
-   	 * @param pickedMember1 			Crew member selected to perform an action.
+   	 * @param pickedMember1 			A CrewMember Object that is the Crew member selected to perform an action.
    	 */
      public void setPickedMember(CrewMember pickedMember1) {
      	pickedMember = pickedMember1;
      }
     	/**
-    	 * @param message 			A message which is used by other classes to display an output in windows.
+    	 * @param message 			A String that is a message which is used by other classes to display an output in windows.
     	 */
      public void setMessage(String message) {
      	this.message = message;
      }
  	/**
- 	 * @return 			A message which is used by other classes to display an output in windows.
+ 	 * @return 			A String that is a message which is used by other classes to display an output in windows.
  	 */
      public String getMessage() {
      	return message;
      }
  	/**
- 	 * @return			The crew.				
+ 	 * @return			A Crew object that is the crew used in the game.				
  	 */
  	public Crew getCrew1() {
  		return crew1;
  	}
 	/**
-	 * @param crew			The crew.			
+	 * @param crew			A Crew object that is the crew used in the game.			
 	 */
  	public void setCrew1(Crew crew) {
  		crew1 = crew;
  	}
 	/**
-	 * @return		The crews ship.				
+	 * @return		A SpaceShip object that is the crews ship.				
 	 */
  	public SpaceShip getShip() {
  		return ship;
  	}
 	/**
-	 * @param ship1			The crews ship.				
+	 * @param ship1			A SpaceShip object that is the crews ship.				
 	 */
  	public void setShip(SpaceShip ship1) {
  		ship = ship1;
  	}
- 	
- 	
   	/**
   	 * Closes the setup window.
   	 *
-  	 * @param setupWindow 			The window which makes the game based on users inputs.
+  	 * @param setupWindow 			A SetupWindow object. The window which makes the game based on users inputs.
   	 */  
  	public void closeSetupScreen(SetupWindow setupWindow) {
  		setupWindow.closeWindow();
@@ -522,7 +526,7 @@ public class GameEnvironment {
   	/**
   	 * Closes the Eat window.
   	 *
-  	 * @param eat			The window where user decides what food to eat.
+  	 * @param eat			An Eat object. The window where user decides what food to eat.
   	 */  
  	public void closeEat(Eat eat) {
  		eat.closeWindow();
@@ -530,7 +534,7 @@ public class GameEnvironment {
   	/**
   	 * Closes the Heal window.
   	 *
-  	 * @param heal			The window where user decides what medical item to use.
+  	 * @param heal			A Heal object. The window where user decides what medical item to use.
   	 */  
  	public void closeHeal(Heal heal) {
  		heal.closeWindow();
@@ -545,7 +549,7 @@ public class GameEnvironment {
   	/**
   	 * Closes the Main window
   	 *
-  	 * @param main			The main window where all stats and action options.
+  	 * @param main			A MainWindow object. The main window where all stats and action options.
   	 */  
  	public void closeMainScreen(MainWindow main) { 
  		main.closeWindow();
@@ -561,7 +565,7 @@ public class GameEnvironment {
   	/**
   	 * launches the Eat window.
   	 * 
-  	 * @param member The crew member that will eat.
+  	 * @param member	 A CrewMember Object that is the crew member that will eat.
   	 */  
  	public void launchEatWindow(CrewMember member) {
  		Eat eat = new Eat(this, member);
@@ -571,7 +575,7 @@ public class GameEnvironment {
   	/**
   	 * Launches the Heal window.
   	 * 
-  	 * @param member The crew member that will heal.
+  	 * @param member		 A CrewMember Object that is the crew member that will heal.
   	 */  
  	public void launchHealWindow(CrewMember member) {
  		Heal heal = new Heal(this, member);
@@ -588,8 +592,8 @@ public class GameEnvironment {
   	/**
   	 * converts a string to a multiple line string for windows.
   	 * 
-  	 * @param orig		 The original string. 
-  	 * @return 			A string taht can be displayed as multiple lines for windows.
+  	 * @param orig		 A String that is the original string. 
+  	 * @return 			A string that can be displayed as multiple lines for windows.
   	 */  
  	public String convertToMultiline(String orig) {
  	    return "<html>" + orig.replaceAll("\n", "<br>");
@@ -606,7 +610,7 @@ public class GameEnvironment {
   	/**
   	 * Closes the MemberSelection Window.
   	 * 
-  	 * @param memberSelection		 The MemberSelection window. 
+  	 * @param memberSelection		A MemberSelection object that is the MemberSelection window. 
   	 */  
  	public void closeMemberSelection(MemberSelection memberSelection) {
  		memberSelection.closeWindow();
@@ -631,7 +635,7 @@ public class GameEnvironment {
 	/**
 	 * Closes the space outpost window.
 	 * 
-	 * @param spaceOutpostWindow		The space outpost window.
+	 * @param spaceOutpostWindow		A SpaceOutpostWindow object that is the space outpost window.
 	 */
  	public void closeSpaceOutpost(SpaceOutpostWindow spaceOutpostWindow) {
  		spaceOutpostWindow.closeWindow();
@@ -639,14 +643,14 @@ public class GameEnvironment {
  	}
 
 	/**
-	 * @return 			Sets a String as a second message used by windows.
+	 * @return 			A String that is a second message used by windows.
 	 */
  	public String getsecondMessage() {
  		return secondMessage;
  	}
 
 	/**
-	 * @param secondMessage			Sets a String as a second message used by windows.
+	 * @param secondMessage			A String that is a second message that is displayed in windows.
 	 */
  	public void setsecondMessage(String secondMessage) {
  		this.secondMessage = secondMessage;
@@ -668,7 +672,7 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the items for sale window.
-	 * @param itemsForSale				The items for sale window.
+	 * @param itemsForSale				An ItemsForSale object that is the items for sale window.
 	 */
  	public void closeItemsForSale(ItemsForSale itemsForSale) {
  		itemsForSale.closeWindow();
@@ -700,27 +704,27 @@ public class GameEnvironment {
 		winner.setVisible(true);
 	}
 	/**
-	 * @return 			The days the game has progressed through.
+	 * @return 			An Integer for the days the game has progressed through.
 	 */
  	public int getDaysProgressedThrough() {
 		return daysProgressedThrough;
 	}
 	/**
-	 * @param daysProgressedThrough			The days the game has progressed through.
+	 * @param daysProgressedThrough			An Integer for the days the game has progressed through.
 	 */
  	public void setDaysProgressedThrough(int daysProgressedThrough) {
 		this.daysProgressedThrough = daysProgressedThrough;
 	}
   	/**
   	 *  
-  	 * @return		The game score.
+  	 * @return		An Integer for the game score.
   	 */ 
  	public int getScore() {
 		return score;
 	}
 
 	/**
-	 * @param score			The game score.
+	 * @param score			An Integer for the game score.
 	 */
 	public void setScore(int score) {
 		this.score = score;
@@ -728,7 +732,7 @@ public class GameEnvironment {
   	/**
   	 * Makes a score that will be added to the total based on the crew members stats.
   	 *  
-  	 * @return			score based on crew members stats.
+  	 * @return			An Integer for the score based on crew members stats.
   	 */ 
 	public int getCrewMemberScores() {
 		int score = 50;

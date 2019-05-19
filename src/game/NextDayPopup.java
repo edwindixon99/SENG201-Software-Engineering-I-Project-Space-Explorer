@@ -30,8 +30,8 @@ public class NextDayPopup extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @param game			The game environment in which is being played.
-	 * @param main			the main window which is in use.
+	 * @param game			The GameEnvironment object which is being played.
+	 * @param main			MainWindow object. the main window which is in use.
 	 */
 	public NextDayPopup(GameEnvironment game, MainWindow main) {
 		setTitle("Space Explorer");

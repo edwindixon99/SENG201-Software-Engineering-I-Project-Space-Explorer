@@ -45,7 +45,7 @@ public class MainWindow {
 	/**
 	 * Create the application.
 	 * 
-	 * @param gameEnvironment			The game environment in which is being played.
+	 * @param gameEnvironment			The GameEnvironment object which is being played.
 	 */
 
 	public MainWindow(GameEnvironment gameEnvironment) { 
@@ -284,11 +284,11 @@ public class MainWindow {
 	 * opens the next day popup.
 	 */
 	private void launchNextDayPopup() {
-		if (popup == null) {
+		if (popup == null) {								//if popup doesnt exist make one.
 			popup = new NextDayPopup(game, this);
 		}
-		popup.dispose();
-		popup = new NextDayPopup(game, this);
+		popup.dispose();									// close previous instance of a popup
+		popup = new NextDayPopup(game, this);				// create new popup
 		popup.setVisible(true);
 		popup.setDefaultCloseOperation(popup.DISPOSE_ON_CLOSE);
  	}

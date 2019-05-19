@@ -18,34 +18,34 @@ public class Item {
 
 	
 	/**
-	 * @return		The item's name.
+	 * @return		A String. The item's name.
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
-	 * @param name			The name for the item.
+	 * @param name			A String. The name for the item.
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	/**
-	 * @return		The item's price.
+	 * @return		A Double object. The item's price.
 	 */
 	public double getPrice() {
 		return price;
 	}
 	/**
-	 * @param price			The price for the item.
+	 * @param price			A Double object. The price for the item.
 	 */
 	public void setPrice(double price) {
 		this.price = price;
 	}
 	/**
-	 * Turns the Item object into a String object. It was used for testing and is no longer used.
-	 * @return		The name of the item.
+	 * Turns the Item object into a String object.
+	 * @return		A String. The name of the item.
 	 */
-	public String toString() {   // For testing: printing out Items
+	public String toString() {  
 		return name;
 	}
 

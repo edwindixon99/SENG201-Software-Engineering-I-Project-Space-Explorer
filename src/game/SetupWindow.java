@@ -97,7 +97,7 @@ public class SetupWindow {
 	/**
 	 * Creates a crew member of a type chosen by the user.
 	 * @param type			A string of that is has a crew member type.
-	 * @return			A crew member
+	 * @return			A crew member. A CrewMember object.
 	 */
 	public CrewMember createCrewMember(String type) {
 		if (type == "Type 1") {
