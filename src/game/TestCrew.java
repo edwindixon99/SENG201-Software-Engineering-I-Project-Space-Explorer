@@ -24,10 +24,15 @@ class TestCrew {
 	private MedicalItem smallHealing;
 	private MedicalItem bigHealing;
 	private Crew testCrew;
+	private SpaceShip testShip;
+	private RandomEvents testRandom;
+	
 	
 	@BeforeEach
 	void init() {
+		testRandom = new RandomEvents();
 		testCrew = new Crew();
+		testShip = new SpaceShip();
 		apple = new Food("apple", 15, 7);
 		pizza = new Food("pizza", 50, 25);
 		smallHealing = new MedicalItem("Small Healing", false, 10, 5);
@@ -74,7 +79,15 @@ class TestCrew {
 		testCrew.buy(testCrew.getFoodItems(), testCrew.getMedicalItems(), bigHealing);
 		assertTrue(testCrew.getMoney() == 73);
 		}
-
+	@Test
+	void testShip() {		
+		assertEquals(100, testShip.getShieldHealth());
+		testRandom.asteroidBelt(testShip);
+		assertEquals(60, testShip.getShieldHealth());
+		assertEquals(("\n" + testShip.getShipName() + "'s status:\nShield: " + testShip.getShieldHealth() + "\n"), testShip.checkShipShield());
+		testShip.repairShip(50);
+		assertEquals(100, testShip.getShieldHealth());
+		}
 }
 
 
