@@ -93,7 +93,7 @@ public class MemberSelection extends JFrame {
 		member1Label.setForeground(Color.BLACK);
 		member1Label.setBackground(Color.WHITE);
 		member1Label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		member1Label.setBounds(21, 140, 158, 142);
+		member1Label.setBounds(21, 125, 158, 157);
 		frame.getContentPane().add(member1Label);
 		member1Label.setText(game.convertToMultiline(member1.viewStatus()));
 		member1Button.setBounds(21, 338, 147, 58);
@@ -114,7 +114,7 @@ public class MemberSelection extends JFrame {
 		
 		JLabel member2Label = new JLabel("");
 		member2Label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		member2Label.setBounds(188, 140, 155, 142);
+		member2Label.setBounds(188, 125, 155, 157);
 		frame.getContentPane().add(member2Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 2) {
 			CrewMember member2 = game.getCrew1().getCrewMemberList().get(1);
@@ -141,7 +141,7 @@ public class MemberSelection extends JFrame {
 		JLabel member3Label = new JLabel("");
 		member3Label.setBackground(Color.WHITE);
 		member3Label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		member3Label.setBounds(353, 140, 155, 142);
+		member3Label.setBounds(353, 125, 155, 157);
 		frame.getContentPane().add(member3Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 3) {
 			CrewMember member3 = game.getCrew1().getCrewMemberList().get(2);
@@ -169,7 +169,7 @@ public class MemberSelection extends JFrame {
 		member4Label.setForeground(Color.BLACK);
 		member4Label.setBackground(Color.WHITE);
 		member4Label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		member4Label.setBounds(500, 140, 158, 142);
+		member4Label.setBounds(500, 125, 158, 157);
 		frame.getContentPane().add(member4Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 4) {
 			CrewMember member4 = game.getCrew1().getCrewMemberList().get(3);

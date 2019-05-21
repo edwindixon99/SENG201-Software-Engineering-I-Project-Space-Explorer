@@ -169,19 +169,19 @@ public class MainWindow {
 	
 		JLabel lblDaysLeft = new JLabel("Day: " + game.getCrew1().getDays());
 		lblDaysLeft.setFont(new Font("Dialog", Font.PLAIN, 15));
-		lblDaysLeft.setBounds(20, 204, 107, 27);
+		lblDaysLeft.setBounds(30, 187, 107, 27);
 		frame.getContentPane().add(lblDaysLeft);
 		
 		JLabel lblRemainingPieces = new JLabel("Remaining pieces left to find: " + game.getCrew1().getRequiredPieces());
 		lblRemainingPieces.setFont(new Font("Dialog", Font.PLAIN, 15));
-		lblRemainingPieces.setBounds(20, 242, 361, 35);
+		lblRemainingPieces.setBounds(20, 225, 361, 35);
 		frame.getContentPane().add(lblRemainingPieces);
 		
 		JLabel crewMember1Label = new JLabel("");
 		crewMember1Label.setForeground(Color.BLACK);
 		crewMember1Label.setBackground(Color.WHITE);
 		crewMember1Label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		crewMember1Label.setBounds(20, 288, 158, 142);
+		crewMember1Label.setBounds(20, 256, 158, 174);
 		frame.getContentPane().add(crewMember1Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 1) {
 			crewMember1Label.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(0).viewStatus()));
@@ -189,7 +189,7 @@ public class MainWindow {
 		
 		JLabel crewMember2Label = new JLabel("");
 		crewMember2Label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		crewMember2Label.setBounds(188, 288, 155, 142);
+		crewMember2Label.setBounds(188, 256, 155, 174);
 		frame.getContentPane().add(crewMember2Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 2) {
 			crewMember2Label.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(1).viewStatus()));
@@ -198,7 +198,7 @@ public class MainWindow {
 		JLabel crewMember3Label = new JLabel("");
 		crewMember3Label.setBackground(Color.WHITE);
 		crewMember3Label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		crewMember3Label.setBounds(353, 288, 155, 142);
+		crewMember3Label.setBounds(353, 256, 155, 174);
 		frame.getContentPane().add(crewMember3Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 3) {
 			crewMember3Label.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(2).viewStatus()));
@@ -208,7 +208,7 @@ public class MainWindow {
 		crewMember4Label.setForeground(Color.BLACK);
 		crewMember4Label.setBackground(Color.WHITE);
 		crewMember4Label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		crewMember4Label.setBounds(500, 288, 158, 142);
+		crewMember4Label.setBounds(500, 256, 158, 174);
 		frame.getContentPane().add(crewMember4Label);
 		if (game.getCrew1().getCrewMemberList().size() >= 4) {
 			crewMember4Label.setText(game.convertToMultiline(game.getCrew1().getCrewMemberList().get(3).viewStatus()));
