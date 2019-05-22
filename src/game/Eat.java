@@ -1,4 +1,4 @@
-package game;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import game.CrewMember;
+import game.Food;
+import game.GameEnvironment;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -25,6 +30,7 @@ public class Eat extends JFrame {
 
 	/**
 	 * Launch the application.
+	 * @param args			The game environment in which is being played.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -166,7 +172,7 @@ public class Eat extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel titleLabel = new JLabel("Pick what food item you want to eat");
-		titleLabel.setBounds(10, 11, 176, 61);
+		titleLabel.setBounds(10, 11, 214, 61);
 		getContentPane().add(titleLabel);
 		
 		JButton btnNewButton = new JButton("Go Back");
